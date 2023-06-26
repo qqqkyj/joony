@@ -34,7 +34,6 @@ public class QuizFind_05 {
 				}
 			}
 			
-			//배열에 없는 경우 flag는 여전히 false
 			if(!flag) {
 				System.out.println("입력하신 데이터는 존재하지 않습니다.");
 			}
