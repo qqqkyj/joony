@@ -1,0 +1,30 @@
+package day0619;
+
+public class IfTest_14 {
+
+	public static void main(String[] args) {
+		
+		/*int n=200;
+		
+		if(n>=100) {
+			System.out.println("n은 100보다 크거나 같다.");
+			System.out.println("***");
+		}
+			System.out.println("프로그램정료!!!");*/
+		
+		//i가 홀수인지 짝수인지 구하기
+		int i = 10;
+		
+		if(i%2==0) {
+			System.out.println("짝수");
+		}
+		else {
+			System.out.println("홀수");
+		}
+		
+	
+	
+	
+	}
+
+}

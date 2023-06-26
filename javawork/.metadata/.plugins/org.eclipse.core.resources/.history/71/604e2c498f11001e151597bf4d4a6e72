@@ -1,0 +1,25 @@
+package day0623;
+
+public class ArrayMaxMin {
+
+	public static void main(String[] args) {
+		
+		int[] data = {5,1230,44,56,25,12,10,89,58,62};
+		
+		System.out.println("data의 길이:"+data.length);
+		
+		int max=data[0], min;//첫 데이터를 무조건 최대값에 저장
+
+		//두번째 값부터 끝까지 max와 비교
+		for(int i=1; i<data.length; i++) {
+			if(max<data[i])
+				max=data[i];
+			else
+				continue;
+		}
+		
+		System.out.println("최대값:"+max);
+		
+	}
+
+}

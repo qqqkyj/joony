@@ -1,0 +1,13 @@
+package day0623;
+
+public class ArrString_05 {
+
+	public static void main(String[] args) {
+		//배열선언 문자열 선언후 초기값
+		String[] str = new String[4];
+		
+		
+		
+	}
+
+}

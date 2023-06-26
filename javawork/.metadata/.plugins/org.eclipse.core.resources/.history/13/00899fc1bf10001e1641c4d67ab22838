@@ -1,0 +1,34 @@
+package day0622;
+
+import java.util.Scanner;
+
+public class ScanGugu_05 {
+
+	public static void main(String[] args) {
+		//단을 입력해서 해당단 출력하기
+		//0을 입력하면 종료
+		Scanner sc = new Scanner(System.in);
+		
+		int dan;
+		
+		while(true) {
+			System.out.println("단을 입력(0은 종료):");
+			dan=sc.nextInt();
+			
+			if(dan==0) {
+				System.out.println("종료");
+				break;
+				}
+			
+			
+			for(int j=1; j<=9; j++) {
+				System.out.println(dan+"X"+j+"="+dan*j);
+			}
+			
+			
+		}
+		System.out.println();
+		
+	}
+
+}

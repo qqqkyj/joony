@@ -1,0 +1,49 @@
+package day0622;
+
+import java.util.Scanner;
+
+public class QuizForWhile_02 {
+
+	public static void quiz1() {
+		//점수를 입력하면 합계를 구하시오
+		//예외: 1~100이 아니면 제외 _continue_
+		//0을 입력하면 종료
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int score;
+		
+		System.out.println("점수를 입력하세요:");
+		score=sc.nextInt();
+		
+		while(score!=0) {
+			score+=score;
+			
+			if(score<=0||score>=100){
+				continue;
+			}
+			else {
+				System.out.println("점수의 합계:"+score);
+			}
+		}
+		
+	}
+	public static void quiz2() {
+		
+	}
+	public static void quiz3() {
+		
+	}
+	public static void quiz4() {
+		
+	}
+	public static void quiz5() {
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		quiz1();
+	}
+
+}

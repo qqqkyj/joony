@@ -1,0 +1,55 @@
+package day0622;
+
+import java.util.Scanner;
+
+public class QuizForWhile_02 {
+
+	public static void quiz1() {
+		//점수를 입력하면 합계를 구하시오
+		//예외: 1~100이 아니면 제외 _continue_
+		//0을 입력하면 종료
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int score;//입력할 점수
+		int sum=0;
+		
+		while(true) {
+			System.out.println("점수 입력:");
+			score = sc.nextInt();
+			
+			if(score==0) {//break문
+				System.out.println("종료");
+				break;
+			}
+			else if(score<0||score>100) {//종료가 아닌 skip
+				continue;
+			}
+			else {
+				sum+=score;
+			}
+			
+		}
+		System.out.println("총점:"+sum);
+		
+		
+	}
+	public static void quiz2() {
+		
+	}
+	public static void quiz3() {
+		
+	}
+	public static void quiz4() {
+		
+	}
+	public static void quiz5() {
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		quiz1();
+	}
+
+}
