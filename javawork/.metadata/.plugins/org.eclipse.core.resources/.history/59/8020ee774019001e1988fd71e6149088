@@ -1,0 +1,15 @@
+package day0703;
+
+public class FileException_04 {
+	
+	public static void read() {
+		String fileName = "C:\\sis0615\\File";
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		
+	}
+
+}

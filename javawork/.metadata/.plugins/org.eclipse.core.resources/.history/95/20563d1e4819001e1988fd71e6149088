@@ -1,0 +1,69 @@
+package day0703;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+/*
+ score.txt를 읽고 총점, 평귵, 개수까지 구해서 출력
+ */
+public class FileExcep_07 {
+		
+	public static void scoreRead() {
+		String fileName = "C:\\sis0615\\File\\score.txt";
+		BufferedReader br=null;
+		FileReader fr=null;
+		int cnt=0;//총 갯수
+		int total=0;//총 합계
+		double avg=0;//평균
+		
+		int[] arr;
+		
+		try {
+			//파일읽기
+			fr= new FileReader(fileName);
+			br = new BufferedReader(fr);
+			
+			String s = br.readLine();
+			
+			System.out.println("File Open!!");
+			
+			while(true) {
+				if(s==null) {
+					break;
+				}
+				cnt++;				
+			}
+			
+			arr=new int[cnt];
+			
+			for(int i=0; i<cnt; i++) {
+				arr[i]= Integer.parseInt(s);
+				System.out.println(arr[i]);
+			}
+			
+			
+			
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("파일을 찾을 수 없습니다.\n"+e.getMessage());
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				br.close();
+				fr.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	public static void main(String[] args) {
+
+		
+	}
+
+}

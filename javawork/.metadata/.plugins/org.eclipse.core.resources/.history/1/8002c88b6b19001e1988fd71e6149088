@@ -1,0 +1,15 @@
+package day0703;
+
+public class ArrayList_13 {
+
+	public static void main(String[] args) {
+		//List의 메서드 확인, 연습
+		
+		String[] data = {"영주","순영","연주","진평"};
+		
+		//배열의 데이터를 list에 넣기
+		
+		
+	}
+
+}

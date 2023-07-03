@@ -1,0 +1,30 @@
+package day0703;
+
+import java.util.List;
+import java.util.Vector;
+
+//가장많이 사용하는 인터페이스 List
+//List인터페이스를 구현한 Vector, ArrayList
+//순차적으로 데이터 들어감, 중복데이터 허용
+//처음 생성시 일정한 개수로 생성 but 그 이상의 데이터를 넣으면 공간이 자동증가
+
+public class List_12 {
+	
+	public static void main(String[] args) {
+		
+		//List<String> list = new Vector<String>();
+		Vector<String> vector = new Vector<String>();
+		
+		System.out.println("초기할당크기:"+vector.capacity());;
+		System.out.println("초기 데이터 크기:"+vector.size());
+		
+		vector.add("사과");
+		vector.add("배");
+		vector.add("포도");
+		vector.add("감");
+		vector.add("수박");
+		vector.add("사과");//중복 가능
+		
+	}
+
+}

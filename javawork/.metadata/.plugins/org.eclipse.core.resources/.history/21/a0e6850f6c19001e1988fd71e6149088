@@ -1,0 +1,22 @@
+package day0703;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayList_13 {
+
+	public static void main(String[] args) {
+		//List의 메서드 확인, 연습
+		
+		String[] data = {"영주","순영","연주","진평"};
+		
+		//배열의 데이터를 list에 넣기
+		List<String> list = new ArrayList<>();
+		
+		for(String d: data) {
+			list.add(d);
+		}
+		
+	}
+
+}

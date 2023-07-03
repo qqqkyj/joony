@@ -1,0 +1,24 @@
+package day0703;
+
+import java.util.Date;
+
+public class NullPoint_02 {
+	
+	Date date;
+	
+	public void writeDay() {
+		int y,m,d;
+		y=date.getYear()-1900;
+		m=date.getMonth()+1;//calendar도 +1 해줘야 됨
+		d=date.getDate();
+		
+		System.out.printf("%d년 %d월 %d일 입니다.\n",y,m,d);
+	}
+	
+	public static void main(String[] args) {
+		NullPoint_02 np = new NullPoint_02();
+		np.writeDay();
+		
+	}
+
+}

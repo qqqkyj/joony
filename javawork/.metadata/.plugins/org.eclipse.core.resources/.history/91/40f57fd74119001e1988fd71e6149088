@@ -1,0 +1,54 @@
+package day0703;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileException_04 {
+	
+	public static void read() {
+		String fileName = "C:\\sis0615\\File\\monday.txt";
+		BufferedReader br = null;
+		FileReader fr = null;
+		
+		try {
+			fr = new FileReader(fileName);
+			System.out.println("File Open!!");
+			
+			br = new BufferedReader(fr);
+			
+			//여러줄 읽어야 하므로 while문
+			while(true) {
+				//메모장에서 내용을 한 줄씩 읽어온다.
+				String s = br.readLine();
+				//마지막 줄일경우 null값을 읽어서, null값일경우 빠져나가기
+				if(s==null) {
+					break;
+				}
+			}
+			
+		} catch (FileNotFoundException e) {
+			//e.printStackTrace();
+			System.out.println("파일이 없습니다.\n"+e.getMessage());
+		}catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			//자원은 항상 반대로 반납
+			try {
+				br.close();//BufferedReader 끝
+				fr.close();//FileReader 끝
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		
+	}
+
+}

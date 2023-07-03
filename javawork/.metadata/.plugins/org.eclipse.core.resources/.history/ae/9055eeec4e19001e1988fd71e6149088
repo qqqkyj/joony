@@ -1,0 +1,29 @@
+package day0703;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+public class FileToken_08 {
+	
+	public static void movieRead() {
+		String fileName="C:\\sis0615\\File\\movie.txt";
+		FileReader fr=null;
+		BufferedReader br=null;
+		
+		try {
+			fr=new FileReader(fileName);
+			br=new BufferedReader(br);
+			System.out.println("***영화배우 리스트***");
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+
+		
+	}
+
+}
