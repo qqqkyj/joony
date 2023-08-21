@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>divClass</title>
+    <style>
+        div{
+            width: 400px;
+            height: 250px;
+            border: 1px solid gray;
+            margin-bottom: 20px;
+            margin-left: 50px;
+            background-size: 50px 50px;
+            
+        }
+
+        div.a{
+            background-image: url("../flower_ani/s1.JPG");/*default가 repeat이라 이미지가 반복적으로 배경을 채움*/
+        }
+
+        div.b{
+            background-image: url("../flower_ani/s2.JPG");
+            background-repeat: repeat-x;
+        }
+
+        div.c{
+            background-image: url("../flower_ani/s3.JPG");
+            background-repeat: repeat-y;
+        }
+
+        div.d{
+            background-image: url("../flower_ani/s4.JPG");
+            background-repeat: no-repeat;
+            background-size: 100px 100px;
+            background-position: right top;
+        }
+        /*범용클래스 즉 모든 태그에서 사용가능*/
+        .bg{
+            background-color:aquamarine;
+        }
+
+        body{
+            background-image: url("../Food/1.jpg");
+            background-repeat: no-repeat;
+            background-position: center bottom;/*x축, y축으로 800px 200px등으로 줄 수 있음*/
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+
+    </div>
+
+    <div class="b">
+
+    </div>
+
+    <div class="c bg">
+
+    </div><!--클래스 2개이상 공백으로 구분-->
+
+    <div class="d">
+
+    </div>
+
+    <div>
+
+    </div>
+</body>
+</html>

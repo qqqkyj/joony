@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        #out{
+            font-family: 'Nanum Pen Script', cursive;
+            font-weight: bold;
+            padding: 20px;
+            width: 500px;
+            margin-top: 50px;
+            border: 0px solid black;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            /*버튼이벤트 클릭시 3px씩 감소 증가되도록
+            9보다 작아지면 "더 이상 줄일 수 없다" 후 종료
+            60보다 커지면 경고"더 이상 커질 수 없다" 후 종료
+            두개의 버튼클릭시 현재글꼴사이즈를 fsize에 출력*/
+
+            var fsize=document.getElementById("fsize");
+            var out=document.getElementById("out");
+            var btn1=document.getElementById("btn1");
+            var btn2=document.getElementById("btn2");
+            var mycolor=document.getElementById("mycolor");
+            var mycolor2=document.getElementById("mycolor2");
+            var selwidth=document.getElementById("selwidth");
+            
+            fsize.innerHTML="현재 글꼴 사이지는 40px 입니다.";
+
+            //글자 사이즈 줄이기(min<9px)
+            btn1.onclick=function(){
+                var outsize=parseInt(out.style.fontSize);//parseInt를 하지않으면 40px(문자열로 출력)
+                outsize-=3;
+
+                if(outsize<9){
+                    alert("더이상 줄일 수 없습니다.");
+                    return;//메서드 종료
+                }
+
+                out.style.fontSize=outsize+"px";
+                fsize.innerHTML="현재 글꼴 사이즈는 "+outsize+"px 입니다.";
+            }
+
+            //글자 사이즈 키우기(max<60px)
+            btn2.onclick=function(){
+                var outsize=parseInt(out.style.fontSize);//parseInt를 하지않으면 40px(문자열로 출력)
+                outsize+=3;
+
+                if(outsize>60){
+                    alert("더이상 커질 수 없습니다.");
+                    return;//메서드 종료
+                }
+
+                out.style.fontSize=outsize+"px";
+                fsize.innerHTML="현재 글꼴 사이즈는 "+outsize+"px 입니다.";
+            }
+
+            //글자색 변경
+            mycolor.onchange=function(){
+                out.style.color=this.value;
+            }
+
+            //글자배경색 변경
+            mycolor2.onchange=function(){
+                out.style.backgroundColor=this.value;
+            }
+
+            //테두리 굵기 변경(select)
+            selwidth.onchange=function(){
+                out.style.borderWidth=this.value+"px";
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <button type="button" id="btn1">점점작게</button>
+    <button type="button" id="btn2">점점크게</button>
+    <hr>
+    <div id="fsize"></div>
+    <b>글자색 선택:</b>
+    <input type="color" value="#ffccff" id="mycolor">
+    <br>
+    <b>배경색 선택:</b>
+    <input type="color" value="#cc00ff" id="mycolor2">
+    <br>
+    <b>테두리선 굵기선택:</b>
+    <select id="selwidth" style="width: 120px;">
+        <option value="0">없음</option>
+        <option value="1">1</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+        <option value="9">9</option>
+    </select>
+
+    <div id="out" style="font-size: 40px;">
+        오늘은 불타는 금요일입니다.
+    </div>
+</body>
+</html>

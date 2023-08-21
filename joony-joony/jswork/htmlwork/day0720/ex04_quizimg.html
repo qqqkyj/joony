@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload=function(){
+            var park = document.getElementById("btn1");
+            var you = document.getElementById("btn2");
+            var shin = document.getElementById("btn3");
+            var photo = document.getElementById("img1");
+            var large = document.getElementById("btn4");
+            var small = document.getElementById("btn5");
+
+            park.onclick=function(){
+                var srcPath = "../연예인사진/13.jpg";
+                photo.setAttribute("src",srcPath);
+            }
+
+            you.onclick=function(){
+                var srcPath = "../연예인사진/20.jpg";
+                photo.setAttribute("src",srcPath);
+            }
+
+            shin.onclick=function(){
+                var srcPath = "../연예인사진/17.jpg";
+                photo.setAttribute("src",srcPath);
+            }
+
+            large.onclick=function(){
+                var width = parseInt(photo.getAttribute("width"));
+                width+=10;
+                photo.setAttribute("width",width);
+            }
+
+            small.onclick=function(){
+                var width = photo.getAttribute("width");
+                width-=10;
+                photo.setAttribute("width",width);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h3>이미지변경 및 크기</h3>
+    <button type="button" id="btn1">박신혜</button>
+    <button type="button" id="btn2">유아인</button>
+    <button type="button" id="btn3">신민아</button><br><br>
+    <button type="button" id="btn4">점점크게</button>
+    <button type="button" id="btn5">점점작게</button>
+    <hr>
+    <img src="../연예인사진/10.jpg" width="300" id="img1" border="1">
+</body>
+</html>

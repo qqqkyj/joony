@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bts{
+            margin-top: 10px;
+            margin-left: 20px;
+            border: 1px solid gray;
+            width: 500px;
+            height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!--1. 만화이미지 01.png~10.png까지 출력하세요(for문 이용)-->
+    <script>
+        for(var i=1; i<=10; i++){
+            if(i<10){
+                document.write('<img src="../만화이미지/0'+i+'.png">');
+            }
+            else{
+                document.write('<img src="../만화이미지/'+i+'.png">');
+            }
+
+            if(i%5==0){
+                document.write("<br>");
+            }
+        }
+    </script>
+    <hr>
+    <!--2. 음식사진 1.jpg를 img태그로 나타낸 후 id를 img1으로 주고
+        그 아이디로 이벤트 추가합니다.
+        사진에 마우스를 올리면 3.jpg로 바뀌고 클릭하면 5.jpg로 바뀌며
+        마우스를 벗어나면 다시 원래사진으로 돌아가게 이벤트 주기-->
+        <img src="../Food/1.jpg" id="img1" style="margin-top: 20px; margin-left: 20px; width: 500px;"
+        onmouseover="over()" onclick="click2()" onmouseleave="leave()">
+        <script>
+            var img1 = document.getElementById("img1");
+
+            function over(){
+                img1.setAttribute("src","../Food/3.jpg")
+            }
+
+            function click2(){
+                    img1.setAttribute("src","../Food/5.jpg");
+                }
+
+            function leave(){
+                img1.setAttribute("src","../Food/1.jpg");
+            }
+
+        </script>
+
+        <hr>
+
+    <!--3. img로 width=200 height=280으로 사진(아무거나) body에 넣은 후
+        이미지를 클릭하면 아래 div태그안에 각종정보(src,width,height)를 얻어서
+        출력하시오(getAttribute, innerHTML 사용)-->
+        <img id="photo" onclick="click1()" src="../연예인사진/10.jpg" width="200" height="280" style="margin-top: 20px; margin-left: 20px;">
+        <div id="out2" class="bts"></div>
+
+        <script>
+            function click1(){
+                    var photo=document.getElementById("photo");
+                    var out2 = document.getElementById("out2");
+
+                    var src = photo.getAttribute("src");
+                    var width = photo.getAttribute("width");
+                    var height = photo.getAttribute("height");
+                    
+                    out2.innerText=src+" "+width+" "+height
+            }
+        </script>
+
+        <hr>
+
+    <!--4. 버튼을 하나 만든 후 클릭하면 prompt창에 이름을 입력받아서 div태그안에
+        "내이름은 *** 입니다"라고 출력하세요
+        (div에 class="bts"라고 준 후 css로 예쁘게 스타일 적용할 것!!)-->
+        <script>
+            function click3(){
+                
+                var btn=document.getElementById("btn");
+
+                var ans = prompt("이름을 입력해 주세요.");
+                    
+                    if(ans==null){
+                        out.innerText="취소를 입력하셨습니다.";
+                        return false;
+                    }
+
+                    if(ans){
+                        out.innerText="내 이름은 "+ans+"입니다.";
+                    }
+                    else{
+                        out.innerText="이름을 입력하지 않았습니다.";
+                    }
+
+            }
+           
+        </script>
+
+        <input type="button" value="이름입력" id="btn" style="margin-top: 20px; margin-left: 20px; font-size: 20px;"
+        onclick="click3()">
+        <div id="out" class="bts"></div>
+</body>
+</html>

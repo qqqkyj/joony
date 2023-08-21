@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<form action="quizAction.jsp" method="post">
+	<table class="table table-bordered" style="width: 450px;">
+		<tr>
+			<th colspan="2" style="text-align:center;">상품리스트</th>
+		</tr>
+		<tr>
+			<th style="width: 100px;">상품명</th>
+			<td>
+				<input type="text" name="sang" placeholder="상품명을 기재하세요"
+				>
+			</td>
+		</tr>
+		<tr>
+			<th>사이즈</th>
+			<td>
+				<input type="radio" name="size" value="240">240
+				<input type="radio" name="size" value="250">250
+				<input type="radio" name="size" value="260">260
+				<input type="radio" name="size" value="270">270
+				<input type="radio" name="size" value="270">280
+			</td>
+		</tr>
+		<tr>
+			<th>색상</th>
+			<td>
+				<input type="checkbox" name="color" value="red">red
+				<input type="checkbox" name="color" value="white">white
+				<input type="checkbox" name="color" value="black">black
+				<input type="checkbox" name="color" value="navy">navy
+				<input type="checkbox" name="color" value="cyan">cyan
+				<input type="checkbox" name="color" value="pink">pink
+			</td>
+		</tr>
+		<tr>
+			<th>추가상품</th>
+			<td>
+				<select size="3" multiple="multiple" name="plussang">
+					<option value="신발끈">신발끈</option>
+					<option value="깔창">깔창</option>
+					<option value="신발 클리너">신발 클리너</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" class="btn btn-outline-info" width="100px">
+			</td>
+		</tr>
+		
+	</table>
+	
+</form>
+</body>
+</html>

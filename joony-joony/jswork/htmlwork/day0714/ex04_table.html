@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table 연습</title>
+    <style>
+        .tb1{
+            width: 400px;
+            border: 3px solid gray;
+            border-collapse: collapse;
+        }
+        .tb1 td, .tb1 th{
+            border: 1px solid gray;
+        }
+
+        .tb1 tr th{
+            background-color: aquamarine;
+        }
+
+        .tb1 tr td:hover{
+            background-color: blueviolet;
+            color: white;
+        }
+
+        .iu tr td:hover{
+            background-color: cadetblue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <table border="1" style="width: 300px;">
+        <caption><b>[표1]</b></caption>
+        <tr height="50" bgcolor="orange">
+            <td align="center">하나</td>
+            <td align="right" valign="top"> 둘</td>
+            <td valign="bottom" bgcolor="gray">셋</td>
+        </tr>
+
+        <tr hight="50px" align="center">
+            <td colspan="3">3칸 합치기</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table class="tb1">
+        <caption><b>[표 2]</b></caption>
+        <tr>
+            <th>사진</th>
+            <th>이름</th>
+            <th>핸드폰</th>
+            <th>주소</th>
+        </tr>
+        <tr>
+            <td rowspan="3">
+                <img src="../html_img/1.png" height="150px">
+            </td>
+            <td>성신</td>
+            <td>010-123</td>
+            <td>서울시</td>
+        </tr>
+
+        <tr>
+            <td>은영</td>
+            <td>010-123</td>
+            <td>서울시</td>
+        </tr>
+
+        <tr>
+            <td>성빈</td>
+            <td>010-123</td>
+            <td>서울시</td>
+        </tr>
+
+    </table>
+
+    <table border="1" style="width: 200px; height: 250px; text-align: center;">
+        <caption><b>[표 문제_span]</b></caption>
+        <tr>
+            <td rowspan="2">1</td>
+            <td colspan="2">2</td>
+            <td>3</td>
+        </tr>
+
+        <tr>
+            <td colspan="3">4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+        </tr>
+    </table>
+
+    <table class="iu" border="1" style="width: 500px; height: 250px; text-align: center;">
+        <tr>
+            <td>이름</td>
+            <td>사진</td>
+            <td>신상정보</td>
+        </tr>
+
+        <tr>
+            <td rowspan="5">아이유</td>
+            <td rowspan="5"><img src="iu.png"></td>
+            <td>나이:31세</td>
+        </tr>
+
+        <tr>
+            <td>핸드폰:비밀</td>
+        </tr>
+
+        <tr>
+            <td>주소:비밀</td>
+        </tr>
+
+        <tr>
+            <td>성별:여성</td>
+        </tr>
+
+        <tr>
+            <td>직업:가수</td>
+        </tr>
+
+    </table>
+</body>
+</html>

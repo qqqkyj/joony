@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <title>Span</title>
+    <style>
+        .tb1{
+            width: 350px;
+            border: 5px inset gray;
+            border-collapse: collapse;
+        }
+
+        .tb1 td{
+            border: 5px solid gray;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 1.5em;
+        }
+
+        .tb1 .line{
+            border-bottom: 5px double rebeccapurple;
+        }
+    </style>
+</head>
+<body>
+    <table class="tb1">
+        <caption><b>[표 span 연습]</b></caption>
+        <tr>
+            <td rowspan="3" align="conter">
+                <img src="iu.PNG">
+            </td>
+            <td>이름:장순영</td>
+        </tr>
+
+        <tr>
+            <td>나이:28세</td>
+        </tr>
+
+        <tr class="line">
+            <td>핸드폰:비밀</td>
+        </tr>
+
+        <tr>
+            <td rowspan="3" align="center">
+                <img src="김종국.PNG">
+            </td>
+            <td>이름:김종국</td>
+        </tr>
+
+        <tr>
+            <td>나이:43세</td>
+        </tr>
+
+        <tr>
+            <td>핸드폰:비밀</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,15 @@
+#box1{
+    background-color: antiquewhite;
+    color: magenta;
+    text-align: center;
+    height: 500px;
+    width: 800px;
+    margin: auto;
+}
+#box1 li{
+    list-style-type: none;
+}
+
+#box1 h1{
+    color: blue;
+}

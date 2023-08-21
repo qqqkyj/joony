@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <script>
+        $(function(){
+            $("#btn").click(function(){
+                var result = "";
+                var cityData="";
+
+                var ageData=$("input[name='age']:checked").val();
+                result+="연령대: "+ageData+"<br>";
+
+                result+="여행해본 나라: "
+                if($("input[name='city']:checked").length==0){
+                    result+="없습니다.<br>"
+                }
+                else{
+                    $("input[name='city']:checked").each(function(i){
+                        cityData+=$(this).val()+"&nbsp;"
+                    })
+
+                    result+=cityData+"<br>";
+                }
+                
+                result+="코로나 백신: "
+                if($("#vacine").is(":checked")){
+                    result+="맞음<br>"
+                }else{
+                    result+="안맞음<br>"
+                }
+
+                var font=$("#font option:selected").text();
+
+                $("#result").html(result).css("font-family",font);
+
+
+            })
+        })
+    </script>
+</head>
+<body>
+    <form>
+        <legend align="center">과제</legend>
+        <table class="table table-bordered" style="margin-top: 50px;">
+            <tr>
+                <th>당신의 연령대는?</th>
+                <td>
+                    <input type="radio" name="age" value="20대">20대
+                    <input type="radio" name="age" value="30대">30대
+                    <input type="radio" name="age" value="40대">40대
+                    <input type="radio" name="age" value="50대">50대
+                </td>
+            </tr>
+
+            <tr>
+                <th>여행해본 나라는?</th>
+                <td>
+                    <input type="checkbox" name="city" value="일본">일본
+                    <input type="checkbox" name="city" value="영국">영국
+                    <input type="checkbox" name="city" value="한국">한국
+                    <input type="checkbox" name="city" value="인도">인도
+                    <input type="checkbox" name="city" value="미국">미국
+                </td>
+            </tr>
+
+            <tr>
+                <th>코로나 백신</th>
+                <td>
+                    <input type="checkbox" id="vacine">맞음
+                </td>
+            </tr>
+
+            <tr>
+                <th>글씨체</th>
+                <td>
+                    <select id="font">
+                        <option value="Nanum Pen Script">Nanum Pen Script</option>
+                        <option value="Noto Sans KR">Noto Sans KR</option>
+                        <option value="Noto Serif KR">Noto Serif KR</option>
+                        <option value="Open Sans">Open Sans</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" align="center">
+                    <input id="btn" type="button" value="결과제출" class="btn btn-outline-success">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div id="result" style="text-align: center;"></div>
+
+</body>
+</html>
