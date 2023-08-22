@@ -14,7 +14,7 @@ import mysql.db.DBConnect_2;
 public class simpleBoardDao {
 	 DBConnect_2 db=new DBConnect_2();
 	 
-	 //전체 조회
+	 //전체 조회, 페이징없을 때 사용
 	 public List<simpleBoardDto> getAllDatas(){
 	    List<simpleBoardDto> list=new ArrayList<simpleBoardDto>();
 	    
@@ -239,6 +239,76 @@ public class simpleBoardDao {
 		}finally {
 			db.dbClose(pstmt, conn);
 		}
+	 }
+	 
+	 //페이징처리_1.전체 갯수를 반환
+	 public int getTotalCount() {
+		 int total=0;
+		 
+		 Connection conn = db.getConnection();
+		 PreparedStatement pstmt = null;
+		 ResultSet rs = null;
+		 
+		 String sql ="select count(*) from simpleboard";
+		 
+		 try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				total=rs.getInt(1);//인덱스 1번열
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		 
+		 return total;
+	 }
+	 
+	 //부분조회
+	 public List<simpleBoardDto> getPagingList(int startNum, int perPage){
+		 List<simpleBoardDto> list = new ArrayList<>();
+		 
+		 Connection conn = db.getConnection();
+		 PreparedStatement pstmt = null;
+		 ResultSet rs = null;
+		 
+		 String sql = "select * from simpleboard order by num desc limit ?,?";
+		 
+		 try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, startNum);
+			pstmt.setInt(2, perPage);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				simpleBoardDto dto=new simpleBoardDto();
+				
+		         dto.setNum(rs.getString("num"));
+		         dto.setWriter(rs.getString("writer"));
+		         dto.setPass(rs.getString("pass"));
+		         dto.setSubject(rs.getString("subject"));
+		         dto.setStory(rs.getString("story"));
+		         dto.setReadcount(rs.getInt("readcount"));
+		         dto.setWriteday(rs.getTimestamp("writeday"));
+		         
+		         list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		 
+		 return list;
 	 }
 	 
 }

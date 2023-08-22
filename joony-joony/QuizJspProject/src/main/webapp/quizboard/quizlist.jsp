@@ -1,38 +1,34 @@
+<%@page import="java.awt.image.renderable.ParameterBlock"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="org.eclipse.jdt.internal.compiler.util.SimpleLookupTable"%>
+<%@page import="db.quiz.QuizBoardDto"%>
 <%@page import="java.util.List"%>
-<%@page import="db.simpleboard.simpleBoardDao"%>
-<%@page import="db.simpleboard.simpleBoardDto"%>
+<%@page import="db.quiz.QuizBoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300&family=Noto+Serif+KR&display=swap" rel="stylesheet">  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-	body *{
-		font-family: 'Gaegu';
-	}
-	
-	a:link, a:visited{
-		text-decoration: none;
-		color:black;
-	}
-	
-	a:hover{
-		text-decoration: underline;
-		color: gray;
-	}
-</style>
+ <style type="text/css">
+ a{
+ 	text-decoration: none;
+ 	color: black;
+ }
+ 
+ div.btns{
+ 	margin: 30px;
+ }
+ </style>
 </head>
+<body>
 <%
-	simpleBoardDao dao = new simpleBoardDao();
-	//List<simpleBoardDto> list = dao.getAllDatas();
+	QuizBoardDao dao = new QuizBoardDao();
+	//List<QuizBoardDto> list = dao.selectBoard();//페이징처리 없이 전체조회시
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	int totalCount=dao.getTotalCount();//전체 게시글의 수
@@ -76,74 +72,66 @@
 	     no=totalCount-(currentPage-1)*perPage;
 	     
 	     //페이지에서 보여질 글만 가져오기
-	     List<simpleBoardDto> list = dao.getPagingList(startNum, perPage);
+	     List<QuizBoardDto> list = dao.getPagingList(startNum, perPage);
 
 %>
-<body>
-<div style="margin:30px; 30px; width:800px;">
-   <button type="button" class="btn btn-outline-info"
-   onclick="location.href='addform.jsp'"><i class="bi bi-pencil"></i>글쓰기</button>
-   
-   <br>
-   <h6><b>총 <%=list.size() %>개의 게시글이 있습니다.</b></h6>
-   <table class="table table-bordered">
-   	<caption><b>간단 게시판 목록</b></caption>
-   	<tr>
-   		<th width="60">번호</th>
-   		<th width="360">제목</th>
-   		<th width="100">작성자</th>
-   		<th width="60">작성일</th>
-   		<th width="60">조회</th>
-   	</tr>
-   	
-   	<%
-   		if(list.size()==0){
-   			%>
-   			<tr>
-   				<td colspan="5" align="center">
-   					<h6><b>등록된 게시글이 없습니다.</b></h6>
-   				</td>
-   			</tr>
-   			<%
-   		}else{
-   			for(int i=0; i<list.size(); i++){
-   				simpleBoardDto dto = list.get(i);
-   				%>
-   				<tr>
-   					<td align="center"><%=no--%></td>
-   					<td><a href="detailview.jsp?num=<%=dto.getNum()%>"><%=dto.getSubject() %></a></td>
-   					<td><%=dto.getWriter() %></td>
-   					<td><%=sdf.format(dto.getWriteday()) %></td>
-   					<td><%=dto.getReadcount() %></td>
-   				</tr>
-   				<%
-   			}
-   		}
-   	%>
-   	
-   </table>
-   
-   <!-- 페이지번호 출력 -->
+<div class="btns">
+	<button onclick="location.href='quizform.jsp'" class="btn btn-outline-success"><i class="bi bi-pencil"></i>글작성</button>
+	<button onclick="location.href='quizimagelist.jsp'"  class="btn btn-outline-success"><i class="bi bi-list"></i>이미지목록</button>
+</div>
+<hr>
+<h6 style="text-align: left"><b>총 <%=list.size() %>개의 게시글이 있습니다.</b></h6>
+<table class="table table-bordered" style="margin: 30px; margin-right: 30px; text-align: center">
+	<caption align="top" style="text-align: center"><h2>게시글 목록</h2></caption>
+	<tr>
+		<th>번호</th>
+		<th>제목</th>
+		<th>작성자</th>
+		<th>작성일</th>
+		<th>조회수</th>
+	</tr>
+	<%
+		for(int i=0; i<list.size(); i++){
+			QuizBoardDto dto = list.get(i);
+			%>
+			<tr>
+				<td><%=no-- %></td>
+				<td>
+					<a href="contentview.jsp?num=<%=dto.getQ_num()%>">
+						<%=dto.getTitle() %>
+						<img src="<%=dto.getImgname()%>" style="width: 50px;">
+					</a>
+				</td>
+				<td><%=dto.getWriter() %></td>
+				<td><%=sdf.format(dto.getWriteday()) %></td>
+				<td><%=dto.getReadcount() %></td>
+			</tr>
+			<%
+		}
+	%>
+</table>
+
+<!-- 페이지번호 출력 -->
    <div>
    	 <ul class="pagination justify-content-center">
    	 <%
    	 	//이전
    	 	if(startPage>1){
    	 		%>
-   	 		<li class="page-item"><a class="page-link" href="boardlist.jsp?currentPage=<%=startPage-1%>">Previous</a></li>
+   	 		<li class="page-item"><a class="page-link" href="quizlist.jsp?currentPage=<%=startPage-1%>">Previous</a></li>
    	 		<%
    	 	}
    	 	for(int pp=startPage; pp<=endPage; pp++){
    	 		if(pp==currentPage){
    	 			%>
    	 			<li class="page-item active">
-   	 				<a class="page-link" href="boardlist.jsp?currentPage=<%=pp%>"><%=pp %></a>
+   	 				<a class="page-link" href="quizlist.jsp?currentPage=<%=pp%>"><%=pp %></a>
    	 			</li>
    	 			<%
    	 		}else{
    	 			%>
    	 			<li class="page-item">
-   	 				<a class="page-link" href="boardlist.jsp?currentPage=<%=pp%>"><%=pp %></a>
+   	 				<a class="page-link" href="quizlist.jsp?currentPage=<%=pp%>"><%=pp %></a>
    	 			</li>
    	 			<%
    	 		}
@@ -151,13 +139,12 @@
    	 	
    	 	if(totalPage>endPage){
    	 	%>
-   	 		<li class="page-item"><a class="page-link" href="boardlist.jsp?currentPage=<%=endPage+1%>">Next</a></li>
+   	 		<li class="page-item"><a class="page-link" href="quizlist.jsp?currentPage=<%=endPage+1%>">Next</a></li>
    	 	<%
    	 	}
    	 %>
    	 </ul>  	 
    </div>
-   
-</div>
+
 </body>
 </html>
