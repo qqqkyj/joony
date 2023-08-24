@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -35,8 +36,26 @@
 						<ul class="sub-menu">
 							<li><a href="<%=root%>/index.jsp?main=login/loginForm.jsp"><i class="icon-wrench"></i> 로그인</a></li>
 							<li><a href="<%=root%>/index.jsp?main=member/memberform.jsp"><i class="icon-credit-card"></i>  회원가입</a></li>
-							<li><a href="<%=root%>/index.jsp?main=member/memberlist.jsp"><i class="icon-gift"></i> 회원목록</a></li>
-							<li><a href="<%=root%>/index.jsp?main=member/myinfo.jsp"><i class="icon-gift"></i> 나의정보</a></li>
+							<%
+								String loginok = (String)session.getAttribute("loginok");
+								String myid = (String)session.getAttribute("myid");
+								
+								MemberDao dao = new MemberDao();
+								String num = dao.IdNum(myid);
+								
+								if(loginok!=null){
+									if(myid.equals("admin")){
+										%>
+										<li><a href="<%=root%>/index.jsp?main=member/memberlist.jsp"><i class="icon-gift"></i> 회원목록</a></li>
+										<%
+									}else{
+										%>
+										<li><a href="<%=root%>/index.jsp?main=member/myinfo.jsp?num=<%=num%>"><i class="icon-gift"></i> 나의정보</a></li>
+										<%
+									}
+								}
+							
+							%>
 						</ul>
 					</li>
 					<li><a href="<%=root%>/index.jsp?main=guest/guestlist.jsp">방명록</a></li>

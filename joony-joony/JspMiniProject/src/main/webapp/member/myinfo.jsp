@@ -18,7 +18,7 @@
 <div>
 	<img alt="" src="../image/짱구/짱구4.PNG">
 <%
-	String id = request.getParameter("id");
+	String num = request.getParameter("num");
 	MemberDao dao = new MemberDao();
 	List<MemberDto> list = dao.getAllMembers();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -26,6 +26,7 @@
 	<table	class="table table-bordered">
 		<%
 			for(MemberDto dto:list){
+				if(dto.getNum().equals(num)){
 				%>
 				<tr>
 						<td rowspan="6" width="300px;" align="center">
@@ -60,6 +61,7 @@
 					</td>
 				</tr>
 				<%
+				}
 			}
 		%>
 	</table>

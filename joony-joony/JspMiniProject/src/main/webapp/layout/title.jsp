@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,4 +19,22 @@
 </body>
 <a href="<%=root%>" style="color: black; text-decoration: none;">
 JSP & JQuery Mini Project</a>
+<div style="float: right; margin-right: 50px;">
+<%
+	String loginok = (String)session.getAttribute("loginok");
+	String myid = (String)session.getAttribute("myid");
+	MemberDao dao = new MemberDao();
+	String name = dao.getName(myid);
+	if(loginok==null){
+		%>
+		<input type="button" value="로그인" class="btn btn-outline-success" onclick="location.href='<%=root%>/index.jsp?main=login/loginForm.jsp'">
+		<%
+	}else{
+		%>
+		<span style="font-size: 0.7em;"><%=name %>님</span>&nbsp;
+		<input type="button" value="로그아웃" class="btn btn-outline-danger" onclick="location.href='<%=root%>/index.jsp?main=login/logoutForm.jsp'">
+		<%
+	}
+%>
+</div>
 </html>

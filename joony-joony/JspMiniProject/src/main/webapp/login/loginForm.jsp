@@ -17,16 +17,25 @@
 	}
 </style>
 </head>
+<%
+	//세션얻기
+	String saveok = (String)session.getAttribute("saveok");
+
+	String myid="";
+	if(saveok!=null){
+		myid=(String)session.getAttribute("myid");
+	}
+%>
 <body>
 	<div class="loginForm">
 		<form action="login/loginAction.jsp" method="post">
 			<input type="text" name="id" style="width: 200px"
-			class="form-control" placeholder="아이디입력" required="required"><br>
+			class="form-control" placeholder="아이디입력" required="required" value=<%=myid %>><br>
 			
 			<input type="password" name="pass" style="width: 200px"
 			class="form-control" placeholder="비밀번호입력" required="required"><br>
 			
-			<input type="checkbox" name="cbsave">아이디저장<br>
+			<input type="checkbox" name="cbsave" <%=saveok==null?"":"checked" %>>아이디저장<br>
 			<input type="submit" value="로그인" class="btn btn-outline-success btn-lg" style="width: 200px;"><br>
 			
 	
