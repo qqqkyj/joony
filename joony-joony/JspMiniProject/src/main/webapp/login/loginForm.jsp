@@ -26,7 +26,7 @@
 			<input type="password" name="pass" style="width: 200px"
 			class="form-control" placeholder="비밀번호입력" required="required"><br>
 			
-			<input type="checkbox" name="savechk">아이디저장<br>
+			<input type="checkbox" name="cbsave">아이디저장<br>
 			<input type="submit" value="로그인" class="btn btn-outline-success btn-lg" style="width: 200px;"><br>
 			
 	

@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,18 +13,10 @@
 </head>
 <body>
 <%
-//loginok는 로그인 성공시 저장하고 로그아웃시 제거
-String loginok = (String)session.getAttribute("loginok");
-
-if(loginok==null){
-	%>
-	<jsp:include page="loginForm.jsp"/>
-	<%
-}else{
-	%>
-	<jsp:include page="logoutForm.jsp"/>
-	<%
-}
+	String num = request.getParameter("num");
+	MemberDao dao = new MemberDao();
+	dao.deleteMember(num);
+	response.sendRedirect("../index.jsp?main=member/memberlist.jsp");
 %>
 </body>
 </html>

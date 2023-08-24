@@ -33,9 +33,10 @@
 					<li class="parent">
 						<a href="#">about 회원</a>
 						<ul class="sub-menu">
-							<li><a href="<%=root%>/index.jsp?main=login/loginMain.jsp"><i class="icon-wrench"></i> 로그인</a></li>
+							<li><a href="<%=root%>/index.jsp?main=login/loginForm.jsp"><i class="icon-wrench"></i> 로그인</a></li>
 							<li><a href="<%=root%>/index.jsp?main=member/memberform.jsp"><i class="icon-credit-card"></i>  회원가입</a></li>
 							<li><a href="<%=root%>/index.jsp?main=member/memberlist.jsp"><i class="icon-gift"></i> 회원목록</a></li>
+							<li><a href="<%=root%>/index.jsp?main=member/myinfo.jsp"><i class="icon-gift"></i> 나의정보</a></li>
 						</ul>
 					</li>
 					<li><a href="<%=root%>/index.jsp?main=guest/guestlist.jsp">방명록</a></li>

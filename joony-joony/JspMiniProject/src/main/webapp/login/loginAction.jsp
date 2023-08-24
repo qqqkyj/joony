@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +12,32 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
+<%
+	String id = request.getParameter("id");
+	String pass = request.getParameter("pass");
+	String cbsave = request.getParameter("cbsave");//체크안하면 null
+	
+	MemberDao dao = new MemberDao();
+	boolean check = dao.isIdPass(id, pass);
+	
+	//아이디와 비번이 맞으면 3개의 세션을 저장하고 로그인메인으로 이동
+	if(check){
+		session.setMaxInactiveInterval(60*60*3);//3시간
+		session.setAttribute("loginok", "yes");
+		session.setAttribute("myid", id);
+		session.setAttribute("saveok", cbsave==null?null:"yes");
+		
+		//로그인메인으로 이동
+		response.sendRedirect("../index.jsp?main=login/loginMain.jsp");
+	}else{
+		%>
+		<script type="text/javascript">
+			alert("아이디와 비밀번호가 일치하지 않습니다.");
+			history.back();
+		</script>
+		<%
+	}
+	
+%>
 </body>
 </html>

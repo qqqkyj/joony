@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,6 +12,19 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
+<%
+	//세션으로부터 아이디를 얻기
+	String myid = (String)session.getAttribute("myid");
+	MemberDao dao = new MemberDao();
+	
+	//db에 있는 이름 가져오기
+	String name = dao.getName(myid);
+%>
+<div style="margin: 100px 200px;">
+	<img alt="" src="image/짱구/짱구4.PNG" width="150px;">
+	<br><br>
+	<b><%=name %></b>님이 로그인 하셨습니다.</b>
+	<button type="button" class="btn btn-danger" onclick="location.href='login/logoutAction.jsp'">로그아웃</button>
+</div>
 </body>
 </html>
