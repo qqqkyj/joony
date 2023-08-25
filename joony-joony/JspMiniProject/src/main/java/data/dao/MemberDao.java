@@ -252,34 +252,5 @@ public class MemberDao {
 		return b;
 	}
 	
-	//아이디에 해당하는 num찾아오기
-	public String IdNum(String id) {
-		String num=null;
-		
-		Connection conn = db.getConnection();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql ="select num from member where id=?";
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			
-			pstmt.setString(1, id);
-			
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				num=rs.getString("num");
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			db.dbClose(rs, pstmt, conn);
-		}
-		
-		return num;
-	}
 	
 }

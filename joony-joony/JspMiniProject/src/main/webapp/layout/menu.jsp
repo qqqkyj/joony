@@ -9,6 +9,9 @@
 <%
 	//절대경로잡기
 	String root = request.getContextPath();
+
+	String loginok = (String)session.getAttribute("loginok");
+	String myid = (String)session.getAttribute("myid");
 %>
 
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300&family=Noto+Serif+KR&display=swap" rel="stylesheet">  
@@ -37,11 +40,6 @@
 							<li><a href="<%=root%>/index.jsp?main=login/loginForm.jsp"><i class="icon-wrench"></i> 로그인</a></li>
 							<li><a href="<%=root%>/index.jsp?main=member/memberform.jsp"><i class="icon-credit-card"></i>  회원가입</a></li>
 							<%
-								String loginok = (String)session.getAttribute("loginok");
-								String myid = (String)session.getAttribute("myid");
-								
-								MemberDao dao = new MemberDao();
-								String num = dao.IdNum(myid);
 								
 								if(loginok!=null){
 									if(myid.equals("admin")){
@@ -50,7 +48,7 @@
 										<%
 									}else{
 										%>
-										<li><a href="<%=root%>/index.jsp?main=member/myinfo.jsp?num=<%=num%>"><i class="icon-gift"></i> 나의정보</a></li>
+										<li><a href="<%=root%>/index.jsp?main=member/myinfo.jsp?id=<%=myid%>"><i class="icon-gift"></i> 나의정보</a></li>
 										<%
 									}
 								}
@@ -58,7 +56,7 @@
 							%>
 						</ul>
 					</li>
-					<li><a href="<%=root%>/index.jsp?main=guest/guestlist.jsp">방명록</a></li>
+					<li><a href="<%=root%>/index.jsp?main=guest/guestlist.jsp">회원방명록</a></li>
 					<li class="parent">
 						<a href="#">고객의 소리</a>
 						<ul class="sub-menu">
@@ -66,7 +64,7 @@
 							<li><a href="#">스마트 게시판</a></li>
 						</ul>
 					</li>
-					<li><a href=href="#">찾아오시는길</a></li>
+					<li><a href="<%=root%>/index.jsp?main=load/map.jsp">찾아오시는길</a></li>
 				</ul>
 			</nav>
 			<div class="clear"></div>

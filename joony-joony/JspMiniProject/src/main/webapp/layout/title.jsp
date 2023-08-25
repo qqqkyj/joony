@@ -15,16 +15,19 @@
 <%
 	//절대경로잡기
 	String root = request.getContextPath();
+	//로그인세션
+	String loginok = (String)session.getAttribute("loginok");
+	//아이디얻기
+	String myid = (String)session.getAttribute("myid");
+	//dao에서 이름얻기
+	MemberDao dao = new MemberDao();
+	String name = dao.getName(myid);
 %>
 </body>
 <a href="<%=root%>" style="color: black; text-decoration: none;">
 JSP & JQuery Mini Project</a>
 <div style="float: right; margin-right: 50px;">
 <%
-	String loginok = (String)session.getAttribute("loginok");
-	String myid = (String)session.getAttribute("myid");
-	MemberDao dao = new MemberDao();
-	String name = dao.getName(myid);
 	if(loginok==null){
 		%>
 		<input type="button" value="로그인" class="btn btn-outline-success" onclick="location.href='<%=root%>/index.jsp?main=login/loginForm.jsp'">
@@ -32,7 +35,7 @@ JSP & JQuery Mini Project</a>
 	}else{
 		%>
 		<span style="font-size: 0.7em;"><%=name %>님</span>&nbsp;
-		<input type="button" value="로그아웃" class="btn btn-outline-danger" onclick="location.href='<%=root%>/index.jsp?main=login/logoutForm.jsp'">
+		<input type="button" value="로그아웃" class="btn btn-outline-danger" onclick="location.href='login/logoutAction.jsp'">
 		<%
 	}
 %>

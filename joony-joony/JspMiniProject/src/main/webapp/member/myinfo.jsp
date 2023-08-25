@@ -13,12 +13,26 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".btndelete").click(function(){
+			var num = $(this).attr("num");
+			//alert(num);
+			
+			var ans = confirm("정말 탈퇴하시겠습니까?");
+			
+			if(ans){
+				location.href="member/deleteme.jsp?num="+num;
+			}
+		})
+	})
+</script>
 </head>
 <body>
 <div>
 	<img alt="" src="../image/짱구/짱구4.PNG">
 <%
-	String num = request.getParameter("num");
+	String id = request.getParameter("id");
 	MemberDao dao = new MemberDao();
 	List<MemberDto> list = dao.getAllMembers();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -26,7 +40,7 @@
 	<table	class="table table-bordered">
 		<%
 			for(MemberDto dto:list){
-				if(dto.getNum().equals(num)){
+				if(dto.getId().equals(id)){
 				%>
 				<tr>
 						<td rowspan="6" width="300px;" align="center">
@@ -57,7 +71,7 @@
 				<tr>
 					<td colspan="3" align="center">
 						<input type="button" value="수정" class="btn btn-outline-warning" onclick="location.href='index.jsp?main=member/updateform.jsp?num=<%=dto.getNum()%>'">
-						<input type="button" value="탈퇴" class="btn btn-outline-danger" onclick="#">
+						<input type="button" value="탈퇴" class="btn btn-outline-danger btndelete" num=<%=dto.getNum() %>>
 					</td>
 				</tr>
 				<%
