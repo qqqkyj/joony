@@ -60,8 +60,7 @@
 					<li class="parent">
 						<a href="#">고객의 소리</a>
 						<ul class="sub-menu">
-							<li><a href="<%=root%>/index.jsp?main=board/boardlist.jsp">회원게시판</a></li>
-							<li><a href="#">스마트 게시판</a></li>
+							<li><a href="<%=root%>/index.jsp?main=board/boardlist.jsp">스마트게시판</a></li>
 						</ul>
 					</li>
 					<li><a href="<%=root%>/index.jsp?main=load/map.jsp">찾아오시는길</a></li>

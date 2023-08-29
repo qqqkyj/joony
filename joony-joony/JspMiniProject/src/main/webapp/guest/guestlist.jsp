@@ -68,7 +68,7 @@ $(function(){
 		});
 	});
 	
-	//댓글수정
+	/* //댓글수정
 	$("i.aedit").click(function(){
 		var idx = $(this).attr("idx");
 		var content = $(this).next().find(".content");
@@ -79,7 +79,7 @@ $(function(){
 			content = $(this).val();
 			
 		})
-		alert(content);
+		//alert(content);//수정된 content 확인
 		
 		$(".btnEdit").click(function(){
 			$.ajax({
@@ -94,7 +94,51 @@ $(function(){
 			})
 		})
 		
+	}); */
+	
+	
+ 	//댓글 수정폼
+	$("i.aedit").click(function() {
+		var idx=$(this).attr("idx");
+		//alert(idx);
+		
+		//댓글수정폰의 hidden에 idx를 넣어주기
+		$("#idx").val(idx);
+		
+		//모달창띄우기
+		$("#myModal").modal("show");
+		
+		$.ajax({
+			type:"get",
+			dataType:"json",
+			url:"guest/answerContent.jsp",
+			data:{"idx":idx},
+			success:function(res){
+				$("#idx").val(res.idx);
+				$("#content").val(res.story);
+			}
+		})
+
+		
 	});
+	
+	//모달창의 수정버튼 누르면 수정된 후 reload
+	$("#btnupdate").click(function(){
+		var idx = $("#idx").val();
+		var content = $("#content").val();
+		
+		$.ajax({
+			type:"post",
+			dataType:"html",
+			url:"guest/answerupdate.jsp",
+			data:{"idx":idx,"content":content},
+			success:function(data){
+				document.location.reload();
+				//alert("수정되었습니다.");
+			}
+		})
+	})
+	
 	
 	
  
@@ -290,11 +334,11 @@ $(function(){
 													//수정 삭제는 로그인중이면서 로그인한 아이디와 같은 경우만 보이게
 													if(loginok!=null&&adto.getMyid().equals(myid)){%>
 														<i class="bi bi-pencil aedit" style="margin-left:100px; cursor: pointer;" 
-														idx="<%=adto.getIdx()%>"></i>
-														
+														idx="<%=adto.getIdx()%>" data-bs-toggle="modal"></i>
+														 <!-- data-bs-toggle="modal" data-bs-target="#myModal" -->
 														<!-- 댓글 수정 모달 -->
 														<!-- The Modal -->
-														<div class="modal">
+														<div class="modal" id="myModal">
 														  <div class="modal-dialog">
 														    <div class="modal-content">
 														
@@ -306,7 +350,13 @@ $(function(){
 														
 														      <!-- Modal body -->
 														      <div class="modal-body">
-																<textarea name="content" style="width: 500px; height: 80px;" required="required" class="form-control content"><%=adto.getContent()!=null?adto.getContent().replace("\n", "<br>"):"" %></textarea>
+																<!-- <textarea name="content" style="height: 80px;" required="required" class="form-control content"><%=adto.getContent()!=null?adto.getContent().replace("\n", "<br>"):"" %></textarea>-->
+																
+																<div class="updateform">
+																	<input type="hidden" id="idx">
+																	<input type="text" id="content" class="form-control">
+																	<button class="btn btn-outline-warning" id="btnupdate">수정</button>
+																</div>
 														      </div>
 														
 														      <!-- Modal footer -->
