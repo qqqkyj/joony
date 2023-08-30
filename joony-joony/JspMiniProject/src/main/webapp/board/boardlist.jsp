@@ -22,6 +22,52 @@
 		text-decoration: underline;
 	}
 </style>
+<script type="text/javascript">
+$(function() {
+	//전체선택클릭시 체크값 얻어서 모든 체크값 전달하기
+	$(".alldelcheck").click(function() {
+		//전체 체크값 얻기
+		var chk =$(this).is(":checked");
+		console.log(chk);
+		
+		//전체체크값을 글 앞의 체크에 일괄 전달하기
+		$(".delcheck").prop("checked",chk);
+	})
+	
+	$("#btndel").click(function(){
+		//체크된 길이
+		var len=$(".delcheck:checked").length;
+		
+		//alert(len);
+		
+		if(len==0){
+			alert("삭제할 항목을 체크해 주세요!");
+		}else{
+			var a = confirm(len+"개의 글을 삭제하려면 [확인]을 눌러주세요.");
+			
+			if(a){
+				
+				//체크된 곳의 value값 얻기(num)
+				var n="";
+				$(".delcheck:checked").each(function(idx){
+					n+=$(this).val()+",";
+				});
+				
+				//마지막 ,(컴마) 제거
+				n=n.substring(0,n.length-1);
+				
+				console.log(n);
+				
+				//삭제파일로 전송
+				location.href="board/alldelete.jsp?nums="+n;
+			}
+			
+			
+		}
+		
+	})
+})
+</script>
 </head>
 <body>
 
@@ -119,7 +165,7 @@ else
                		<td colspan="5">
                			<input type="checkbox" class="alldelcheck">전체선택
                			<span style="float: right;">
-               				<button type="button" class="btn btn-outline-danger">삭제</button>
+               				<button type="button" class="btn btn-outline-danger" id="btndel">삭제</button>
                				   	  <button type="button" class="btn btn-outline-success" onclick="location.href='index.jsp?main=board/smartform.jsp'">글쓰기</button>               				
                			</span>
                		</td>
