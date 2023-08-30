@@ -75,8 +75,6 @@ else
 %>
 <body>
    <div style="margin:30px 30px;width:800px;">
-   	  <button type="button" class="btn btn-outline-success"
-		         onclick="location.href='index.jsp?main=board/smartform.jsp'">글쓰기</button>
       <h5><b>총<%=totalCount %>개의 게시글이 있습니다.</b></h5>
          <table class="table table-bordered">
             <caption aling="top"><b>스마트 게시판 목록</b></caption>
@@ -100,7 +98,11 @@ else
                   for(smartDto dto: list){%>
                      
                      <tr>
-                     	<td align="center"><%=no-- %></td>
+                     	<td align="center">
+                     		<input type="checkbox" value="<%=dto.getNum()%>" class="delcheck">
+                     		&nbsp;
+                     		<%=no-- %>
+                     	</td>
                      	<td>
                      		<a href="index.jsp?main=board/contentview.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>"><%=dto.getSubject() %></a>
                      	</td>
@@ -113,7 +115,15 @@ else
                   
                }
                %>
-               
+               <tr>
+               		<td colspan="5">
+               			<input type="checkbox" class="alldelcheck">전체선택
+               			<span style="float: right;">
+               				<button type="button" class="btn btn-outline-danger">삭제</button>
+               				   	  <button type="button" class="btn btn-outline-success" onclick="location.href='index.jsp?main=board/smartform.jsp'">글쓰기</button>               				
+               			</span>
+               		</td>
+               </tr>
          </table>
          
      <!-- 페이지번호 출력 -->
