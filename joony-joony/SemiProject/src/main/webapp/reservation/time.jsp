@@ -1,4 +1,3 @@
-<%@page import="com.mysql.cj.xdevapi.JsonArray"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="java.util.Iterator"%>
@@ -34,16 +33,13 @@ treeSet.add(timelist.get(idx));
 
 Iterator iter = treeSet.iterator();//iterator-> 오름차순 treeset메서드
 
- JsonArray arr = new JsonArray();
-JSONObject ob = new JSONObject();
+JSONArray arr = new JSONArray();
+
 //ob.put(iter.next());
-
-
-%>
-<div style="position: absolute;top:10px;left: 10px;">
-<%
 while(iter.hasNext()){
- %>
-  <input style="margin-bottom: 10px;" type="button" value="<%=iter.next()%>" class="btn btn-outline-success">
-  <%
-}%>
+	JSONObject ob = new JSONObject();
+	ob.put("time", iter.next());
+	arr.add(ob);
+}
+%>
+<%=arr.toString() %>
