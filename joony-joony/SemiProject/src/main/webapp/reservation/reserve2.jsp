@@ -18,6 +18,113 @@
 <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>영화예매</title>
+<%
+
+MovieDao dao=new MovieDao();
+
+List<MovieDto> list=dao.getAllMovieInfo();
+
+%>
+<script>
+   $(function(){
+
+      $(".loc").hide();
+      
+      $("th.local").click(function(){
+         var name=$(this).attr("value");
+         //alert(name);
+         $(".loc").hide();
+         $("."+name).show(); //클래스 호출
+         
+      })
+      
+      $(".btn").hide();
+      
+      $(".datelabel").click(function(){
+   
+         $(".btn").hide();
+         
+         var date=$(this).text();
+         
+         if(date!=null){
+            $(".btn").show();
+            
+            return;
+         }
+
+      
+      })
+      
+      
+      $(".mvname").click(function(){
+     
+      var src =$(this).find(".agelogo").attr("src");
+           
+      var poster=$(this).attr("photo");
+      var name=$(this).text();
+      
+      $("#mvage").attr("src",src).css("width","40px");
+      $(".poster").html(poster);
+      $(".mvtitle").html(name);
+      
+      
+      
+      
+   
+})
+
+//날짜 클릭시 시간이 뜸
+$("li.date").click(function(){
+     var date = $(this).val();//날짜
+     var day = $(this).attr("day");//요일
+     //alert(date);
+     //alert(day);
+     $.ajax({
+        type:"get",
+        dataType:"json",
+        url:"time.jsp",
+        success:function(res){
+           //alert(res.time);
+           var result="";
+           var morning="";
+           var after="";
+           $.each(res, function(idx, item){
+              var timeString=item.time;
+              var timeSplit=timeString.split(':');
+              
+              if(timeSplit[0]>=12){
+                 after+="<button type='button' class='btn btn-outline-warning' class='time' value='"+item.time+"'>"+item.time+"</button>&nbsp;";
+              }else{
+                 morning+="<button type='button' class='btn btn-outline-warning' class='time' value='"+item.time+"'>"+item.time+"</button>&nbsp;";
+              }
+           });
+           if(morning!=""){
+              result+="<b>오전</b><br>"
+                 result+=morning
+                 result+="<hr>"
+           }
+           
+           if(after!=""){
+              result+="<b>오후</b><br>"
+                  result+=after
+           }
+           
+           $("#mv_time").html(result); 
+        }
+     });
+});
+   
+
+     $(".loca").click(function(){
+        var locname=$(this).text();
+        //alert(locname);
+        $("#mvcinema").html(locname);
+     })
+
+      
+   })
+      
+</script>
 <style>
 
 #mv_name{
@@ -139,137 +246,6 @@ position: absolute;
 right: 100px;
 }
 </style>
-<%
-
-MovieDao dao=new MovieDao();
-
-List<MovieDto> list=dao.getAllMovieInfo();
-
-%>
-<script>
-   $(function(){
-
-      $(".loc").hide();
-      
-      $("th.local").click(function(){
-         var name=$(this).attr("value");
-         //alert(name);
-         $(".loc").hide();
-         $("."+name).show(); //클래스 호출
-         
-      });
-      
-      $(".btn").hide();
-      
-      $(".datelabel").click(function(){
-   
-         $(".btn").hide();
-         
-         var date=$(this).text();
-         
-         if(date!=null){
-            $(".btn").show();
-            
-            return;
-         }
-
-      
-      });
-      
-      
-      //영화제목과 포스터출력
-      $(".mvname").click(function(){
-    	     
-          var src =$(this).find(".agelogo").attr("src");
-               
-          var poster=$(this).attr("photo");
-          var name=$(this).text();
-          
-          $("#mvage").attr("src",src).css("width","40px");
-          $(".poster").html(poster);
-          $(".mvtitle").html(name);
-      });
-
-      //클릭한 극장명출력
-      $(".loca").click(function(){
-          var locname=$(this).text();
-          //alert(locname);
-          $("#mvcinema").html(locname);
-       })
-
-	//날짜 합치기
-	var date="";
-	var day="";
-	      
-	//날짜 클릭시 시간이 뜸
-	$("li.date").click(function(){
-		  date = $(this).val();//날짜
-		  day = $(this).attr("day");//요일
-		  //alert(date);
-		  //alert(day);
-		  $.ajax({
-			  type:"get",
-			  dataType:"json",
-			  url:"time.jsp",
-			  success:function(res){
-				  //alert(res.time);
-				  var result="";
-				  var morning="";
-				  var after="";
-				  $.each(res, function(idx, item){
-					  
-					  
-					  
-					  var timeString=item.time;
-					  var timeSplit=timeString.split(':');
-					  
-					  if(timeSplit[0]>=12){
-						  after+="<button type='button' class='btn btn-outline-warning time'  value='"+item.time+"'>"+item.time+"</button>&nbsp;";
-					  }else{
-						  morning+="<button type='button' class='btn btn-outline-warning time'  value='"+item.time+"'>"+item.time+"</button>&nbsp;";
-					  }
-				  });
-				  if(morning!=""){
-					  result+="<b>오전</b><br>"
-						  result+=morning
-						  result+="<hr>"
-				  }
-				  
-				  if(after!=""){
-					  result+="<b>오후</b><br>"
-		    			  result+=after
-				  }
-				  
-				  $("#mv_time").html(result); 
-			  }
-			
-		  	
-		  
-		  });
-	});
-
-	
-
-	//시간 클릭할때 상영관 랜덤배정하고 시간 insert하기
-	$(document).on("click",".time",function(){
-		var time = $(this).val();
-		$.ajax({
-			type:"get",
-			dataType:"json",
-			url:"mvPlaceRandom.jsp",
-			success:function(res){
-				$("#mvdate").text("2023.9."+date+"("+day+")"+time);
-				$("#mvplace").text(res.mvplace+"관");
-				//버튼 보여주는 곳
-			}
-		});
-	}); 
-	
-      
-   })
-      
-</script>
-
 </head>
 <body>
 
@@ -318,7 +294,8 @@ for(int i=0; i<list.size();i++){
    %>
    
    <li class="mvname" photo="<img src='<%=mv_dto.getMv_poster()%>' style='width:200px;height:250px;'>">
-   <img src="../image/<%=photo %>" class="agelogo" style="width: 30px;">&nbsp;&nbsp;<%=mv_dto.getMv_title()%></li><br>
+      <img src="../image/<%=photo %>" class="agelogo" style="width: 30px;">&nbsp;&nbsp;<%=mv_dto.getMv_title()%>
+   </li><br>
    
 <%}%>
 </ul>
@@ -432,10 +409,7 @@ for(int i=1;i<=30;i++){
    
    }%>
    <span style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;"><%=dayOfweek%></span>
-   <lable class="datelabel"><li style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;" class="date" value=<%=i %> day="<%=dayOfweek %>">
-   		<b><%= i%></b>
-   	</li>
-   	</lable>
+   <lable class="datelabel"><li style="color: <%=i%7==2?"blue":i%7==3?"red":"black"%>;" class="date" value=<%=i %>><b value="<%= dayOfweek%>"><%= i%></b></li></lable>
    <br>
 
 <% 
@@ -452,7 +426,6 @@ for(int i=1;i<=30;i++){
 </div>
 
 
-<form>
 <div id="select_info">
 
 <div class="poster"></div>
@@ -460,10 +433,10 @@ for(int i=1;i<=30;i++){
 <div class="mvinfo" >
 <span>영화명<b class="mvtitle"></b></span>
 <br><br>
-<span>관람연령</span>&nbsp;<img src="" id="mvage">
+<span>관람 연령</span>&nbsp;<img src="" id="mvage">
 </div>
 
-<span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
+<span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 520px;" ></span>
 
 <form>
 <div class="clickinfo">
@@ -476,7 +449,5 @@ for(int i=1;i<=30;i++){
 <span>인원&nbsp;&nbsp;<b>인원</b></span>
 </div>
 </form>
-
-</div>
 </body>
 </html>

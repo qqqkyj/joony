@@ -1,6 +1,6 @@
 package Dto;
 
-public class movieDto {
+public class MovieDto {
 	
 	private String mv_no;
 	private String mv_title;

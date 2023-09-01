@@ -8,34 +8,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@300&family=Noto+Serif+KR&display=swap" rel="stylesheet">  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- <link rel="stylesheet" href="../css/seat.css" /> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  <style type="text/css">
-  @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-
+<style type="text/css">
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #242333;
+  /* background-color: #242333; */
   display: flex;
   flex-direction: column;
-  color: white;
+  color: gray;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  font-family: 'Lato', 'sans-serif';
+  /* font-family: 'Lato', 'sans-serif'; */
 }
 
-.movie-container {
-  margin: 20px 0;
+.movie-container{
+	margin: 20px 0; 
 }
 
 .movie-container select {
-  background-color: #fff;
-  border: 0;
+	margin-right: 20px;
+  /* background-color: #fff; */
+  border: 1;
   border-radius: 5px;
   font-size: 14px;
   margin-left: 10px;
@@ -43,11 +40,6 @@ body {
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
-}
-
-.container {
-  perspective: 1000px;
-  margin-bottom: 30px;
 }
 
 .seat {
@@ -80,16 +72,11 @@ body {
   transform: scale(1.2);
 }
 
-.showcase .seat:not(.occupied):hover {
-  cursor: default;
-  transform: scale(1);
-}
-
 .showcase {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: gray;
   padding: 5px 10px;
   border-radius: 5px;
-  color: #777;
+  color: white;
   list-style-type: none;
   display: flex;
   justify-content: space-between;
@@ -106,28 +93,35 @@ body {
   margin-left: 10px;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-}
-
 .screen {
-  background-color: #fff;
+  background-color: black;
   height: 70px;
   width: 100%;
   margin: 15px 0;
   transform: rotateX(-45deg);
-  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.75);
+  box-shadow: 0 3px 10px gray;
 }
 
-p.text {
-  margin: 5px 0;
+.container {
+  perspective: 1000px;
+  margin-bottom: 30px;
 }
 
-p.text span {
-  color: #6feaf6;
+.seat {
+  background-color: gray;
+  height: 12px;
+  width: 15px;
+  margin: 3px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
-  </style>
+
+.row {/* 좌석 가운데 정렬*/
+  display: flex;
+  justify-content: center;
+}
+
+</style>
 </head>
 <body>
 <div class="movie-container">
@@ -158,7 +152,7 @@ p.text span {
         <option value="5">5</option>
       </select>
     </div>
-
+    
     <ul class="showcase">
       <li>
         <div class="seat"></div>
@@ -175,78 +169,27 @@ p.text span {
         <small>Occupied</small>
       </li>
     </ul>
-
-    <div class="container">
-      <div class="screen"></div>
-      <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-      </div>
-      <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-      </div>
-
-      <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-      </div>
-
-      <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-      </div>
-
-      <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-      </div>
-
-      <div class="row">
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-      </div>
-    </div>
-
-    <p class="text">
+    
+   <div class="container">
+    <div class="screen"></div>
+    <table class="table table-bordered">
+    <%
+    	for(int i=65; i<75; i++){%>
+    	<div class="row">
+    	<%
+    		for(int j=1; j<9; j++){%>
+    			<div class="seat"><%=(char)i %><%=j %></div>
+    		<%}
+    	%>
+    	</div>
+    	<%}
+    %>
+    </table>
+   </div>
+    
+     <p class="text">
       선택 좌석: <span id="count">0</span>&nbsp; 가격: &nbsp;<span id="total">0</span>원
     </p>
-    <script src="../js/seat.js"></script>
+    
 </body>
 </html>

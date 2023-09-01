@@ -1,0 +1,77 @@
+@charset "UTF-8";
+#mv_name{
+
+position:absolute;
+top:200px;
+left:200px;
+border:2px solid gray;
+width:350px;
+height:500px;
+
+}
+#mv_theater{
+
+position:absolute;
+border:2px solid gray;
+top:200px;
+left:550px;
+width:340px;
+height:500px;
+
+}
+
+#mv_day{
+
+position:absolute;
+border:2px solid gray;
+left:890px;
+top:200px;
+width:195px;
+height:500px;
+
+}
+#mv_time{
+position:absolute;
+border:2px solid gray;
+left:1085px;
+top:200px;
+width:340px;
+height:500px;
+
+}
+
+.table{
+
+position:absolute;
+top:150px;
+left:200px;
+text-align:center;
+width:1225px;
+}
+
+#select_info{
+
+position:absolute;
+border:2px solid gray;
+top:750px;
+left:200px;
+width:1200px;
+height:200px;
+
+
+}
+li{list-style: none;}
+
+div.container{
+   overflow: scroll;
+    border:solid 1px green;
+    height: 100px;
+    width: 200px;
+}
+li.date{
+font-size:15pt;
+text-align: center;
+margin-left: -20px; 
+margin-top: -27px;
+cursor: pointer;
+}
