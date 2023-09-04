@@ -252,5 +252,43 @@ public class MemberDao {
 		return b;
 	}
 	
+	//id에따른 member
+	public MemberDto getDataById(String id) {
+		MemberDto dto = new MemberDto();
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from member where id=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				dto.setNum(Integer.toString(rs.getInt(1)));
+				dto.setName(rs.getString(2));
+				dto.setId(rs.getString(3));
+				dto.setHp(rs.getString(5));
+				dto.setAddr(rs.getString(6));
+				dto.setEmail(rs.getString(7));
+				dto.setGaipday(rs.getTimestamp(8));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+				
+		return dto;
+	}
+	
 	
 }

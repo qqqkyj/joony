@@ -1,3 +1,5 @@
+<%@page import="Dto.ReservationDto"%>
+<%@page import="Dao.ReservationDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -121,6 +123,43 @@ body {
   justify-content: center;
 }
 
+/*영화정보css*/
+#select_info{
+
+position:absolute;
+border:2px solid gray;
+top:750px;
+left:200px;
+width:1200px;
+height:300px;
+}
+
+div.poster{
+ 
+ width:200px;
+ height:250px;
+ position:absolute;
+ top:25px;
+ left:25px;
+}
+
+div.mvinfo{
+position:absolute;
+top:25px;
+left:250px;
+width:250px;
+height:100px;
+
+}
+
+div.clickinfo{
+position:absolute;
+top:25px;
+left:570px;
+width:200px;
+height:100px;
+
+}
 </style>
 </head>
 <body>
@@ -190,6 +229,43 @@ body {
      <p class="text">
       선택 좌석: <span id="count">0</span>&nbsp; 가격: &nbsp;<span id="total">0</span>원
     </p>
-    
+
+<%
+	ReservationDao dao = new ReservationDao();
+	int num = dao.maxNum();
+	//System.out.println(num);
+	ReservationDto dto = dao.getData(num);
+%>
+
+<form action="#" method="post">
+<div id="select_info">
+
+<div class="poster" id="poster"><%=dto.getRev_poster() %></div>
+
+<div class="mvinfo">
+<span>영화명<b id="mvtitle" class="mvtitle"><%=dto.getRev_title() %></b></span>
+<br><br>
+<span>관람연령</span>&nbsp;<img src="<%=dto.getRev_age() %>" id="mvage">
+</div>
+
+<span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
+
+
+<div class="clickinfo">
+<span>극장&nbsp;<b>'3'CINE&nbsp;</b><b id="mvcinema"><%=dto.getRev_name() %></b></span>
+<br><br>
+<span>일시&nbsp;&nbsp;</span><b id="mvdate"><%=dto.getRev_date() %></b>
+<br><br>
+<span>상영관&nbsp;&nbsp;<b id="mvplace"><%=dto.getRev_place() %></b></span>
+<br><br>
+<span>인원&nbsp;&nbsp;<b>인원</b></span>
+</div>
+
+<span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
+
+<input type="button" value="좌석선택" class="btn btn-outline-success" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
+</div>
+
+</form>
 </body>
 </html>

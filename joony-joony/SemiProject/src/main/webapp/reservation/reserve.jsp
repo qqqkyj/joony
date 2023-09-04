@@ -80,10 +80,8 @@ top:750px;
 left:200px;
 width:1200px;
 height:300px;
-
-
-
 }
+
 li{list-style: none;}
 
 div.container{
@@ -148,6 +146,9 @@ List<MovieDto> list=dao.getAllMovieInfo();
 %>
 <script>
    $(function(){
+	   
+	   //버튼 숨기기
+	   $("#seatBtn").hide();
 
       $(".loc").hide();
       
@@ -185,9 +186,12 @@ List<MovieDto> list=dao.getAllMovieInfo();
           var poster=$(this).attr("photo");
           var name=$(this).text();
           
+          $(".mvname").removeClass("clickcolor");
+          $(this).addClass("clickcolor");
+          
           $("#mvage").attr("src",src).css("width","40px");
-          $(".poster").html(poster);
-          $(".mvtitle").html(name);
+          $("#poster").html(poster);
+          $("#mvtitle").html(name);
       });
 
       //클릭한 극장명출력
@@ -253,17 +257,60 @@ List<MovieDto> list=dao.getAllMovieInfo();
 	//시간 클릭할때 상영관 랜덤배정하고 시간 insert하기
 	$(document).on("click",".time",function(){
 		var time = $(this).val();
-		$.ajax({
-			type:"get",
-			dataType:"json",
-			url:"mvPlaceRandom.jsp",
-			success:function(res){
-				$("#mvdate").text("2023.9."+date+"("+day+")"+time);
-				$("#mvplace").text(res.mvplace+"관");
-				//버튼 보여주는 곳
+		var mvtitle = $("#mvtitle").text();
+		var mvcinema =$("#mvcinema").text();
+		
+		//영화선택 없이 시간 선택시 경고창
+		if(mvtitle==""){
+			alert("영화를 선택해 주세요.");
+		}else{
+			//극장선택 없이 시간 선택시 경고창
+			if(mvcinema=="극장이름"){
+				alert("극장을 선택해 주세요.");
+			}else{
+				$.ajax({
+					type:"get",
+					url:"mvPlaceRandom.jsp",
+					dataType:"json",
+					success:function(res){
+						$("#mvdate").text("2023.9."+date+"("+day+")"+time);
+						$("#mvplace").text(res.mvplace+"관");
+						//버튼 보여주는 곳
+						$("#seatBtn").show();
+					}
+				});
 			}
-		});
+		
+		}
+		
 	}); 
+	
+	
+	//좌석선택버튼 클릭시 예약정보 DB에 넣고 좌석선택 페이지로 이동
+	/* $(document).on("click","#seatBtn",function(){ */
+		$("#seatBtn").click(function(){
+			var poster = $("#poster").html();
+			var mvtitle =$("#mvtitle").html();
+			var mvage =$("#mvage").attr("src");
+			var mvcinema =$("#mvcinema").html();
+			var mvdate =$("#mvdate").html();
+			var mvplace =$("#mvplace").html();
+			
+			//alert(poster);
+			$.ajax({
+				type:"post",
+				url:"reserveAction.jsp",
+				data:{"poster":poster,"mvtitle":mvtitle,"mvage":mvage,"mvcinema":mvcinema,"mvdate":mvdate,"mvplace":mvplace},
+				dataType:"html",
+				success:function(){
+					//alert("success");
+					url="mvSeat.jsp";
+					location.replace(url);
+				}
+			}); 
+		
+		});
+	
 	
       
    })
@@ -452,20 +499,20 @@ for(int i=1;i<=30;i++){
 </div>
 
 
-<form>
+<form action="#" method="post">
 <div id="select_info">
 
-<div class="poster"></div>
+<div class="poster" id="poster"></div>
 
-<div class="mvinfo" >
-<span>영화명<b class="mvtitle"></b></span>
+<div class="mvinfo">
+<span>영화명<b id="mvtitle" class="mvtitle"></b></span>
 <br><br>
 <span>관람연령</span>&nbsp;<img src="" id="mvage">
 </div>
 
 <span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
 
-<form>
+
 <div class="clickinfo">
 <span>극장&nbsp;<b>'3'CINE&nbsp;</b><b id="mvcinema">극장이름</b></span>
 <br><br>
@@ -475,8 +522,13 @@ for(int i=1;i<=30;i++){
 <br><br>
 <span>인원&nbsp;&nbsp;<b>인원</b></span>
 </div>
+
+<span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
+
+<input type="button" value="좌석선택" class="btn btn-outline-success" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
+</div>
+
 </form>
 
-</div>
 </body>
 </html>
