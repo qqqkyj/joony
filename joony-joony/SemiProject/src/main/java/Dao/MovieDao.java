@@ -47,6 +47,41 @@ public class MovieDao {
          return list;
          
       };
+      
+      
+      //mv_no에 해당하는 성인,청소년,아동의 티켓 가격
+      public MovieDto getPrice(String no){
+          MovieDto dto= new MovieDto();
+          
+          Connection conn=db.getConnection();
+          PreparedStatement pstmt=null;
+          ResultSet rs=null;
+          
+          String sql="select mv_adult,mv_teen,mv_child from movie_table where mv_no=?";
+          
+          try {
+             pstmt=conn.prepareStatement(sql);
+             pstmt.setString(1, no);
+             rs=pstmt.executeQuery();
+             
+             if(rs.next()) {
+                
+                dto.setMv_adult(rs.getInt(1));
+                dto.setMv_teen(rs.getInt(2));
+                dto.setMv_child(rs.getInt(3));             
+                
+             }
+          } catch (SQLException e) {
+             // TODO Auto-generated catch block
+             e.printStackTrace();
+          }finally {
+             db.dbClose(rs, pstmt, conn);
+          }
+          
+          
+          return dto;
+       };
+      
 };
    
 

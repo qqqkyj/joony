@@ -5,7 +5,8 @@
     pageEncoding="UTF-8"%>
 <%
 	String id = "joony";	
-
+	
+	String mv_no = request.getParameter("mv_no");
 	String poster = request.getParameter("poster");
 	String mvtitle = request.getParameter("mvtitle");
 	String mvage = request.getParameter("mvage");
@@ -17,6 +18,7 @@
 	
 	ReservationDto dto = new ReservationDto();
 	dto.setMem_id(id);
+	dto.setMv_no(mv_no);
 	dto.setRev_poster(poster);
 	dto.setRev_title(mvtitle);
 	dto.setRev_age(mvage);

@@ -19,15 +19,6 @@
 		height: 580px;
 	}
 </style>
-<script type="text/javascript">
-$(function() {
-	$("#btncart").click(function(){
-		//form태그의 모든값 가져오기
-		var formdata = $("#frm").serialize();
-		alert(formdata);
-	});
-});
-</script>
 </head>
 <%
 	String shopnum = request.getParameter("shopnum");
@@ -77,5 +68,36 @@ $(function() {
 			</tr>
 		</table>
 	</form>
+	
+<script type="text/javascript">
+$(function(){
+	$("#btncart").click(function(){
+		var login = "<%=loginok%>";
+		if(login=="null"){
+			alert("로그인을 먼저 해주세요.");
+			return;
+		}
+		//form태그의 모든값 가져오기
+		var formdata = $("#frm").serialize();
+		//alert(formdata);
+		
+		$.ajax({
+			type:"post",
+			dataType:"html",
+			data:formdata,
+			url:"shop/detailcartinsertprocess.jsp",
+			success:function(){
+				alert("장바구니에 담겼습니다.");
+				var a =confirm("장바구니에 저장하였습니다.\n장바구니로 이동하려면 [확인]을 눌러주세요.");
+				
+				if(a){
+					location.href="index.jsp?main=shop/mycart.jsp";
+				}
+			}
+		});
+		
+	});
+})
+</script>
 </body>
 </html>

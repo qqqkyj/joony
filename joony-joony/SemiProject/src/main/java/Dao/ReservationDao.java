@@ -16,18 +16,19 @@ public class ReservationDao {
 		Connection conn = db.getConnection();
 		PreparedStatement pstmt = null;
 		
-		String sql = "insert into reservation values(null,?,?,?,?,?,?,?,now())";
+		String sql = "insert into reservation values(null,?,?,?,?,?,?,?,?,now())";
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setString(1, dto.getMem_id());
-			pstmt.setString(2, dto.getRev_title());
-			pstmt.setString(3, dto.getRev_poster());
-			pstmt.setString(4, dto.getRev_age());
-			pstmt.setString(5, dto.getRev_name());
-			pstmt.setString(6, dto.getRev_date());
-			pstmt.setString(7, dto.getRev_place());
+			pstmt.setString(1, dto.getMv_no());
+			pstmt.setString(2, dto.getMem_id());
+			pstmt.setString(3, dto.getRev_title());
+			pstmt.setString(4, dto.getRev_poster());
+			pstmt.setString(5, dto.getRev_age());
+			pstmt.setString(6, dto.getRev_name());
+			pstmt.setString(7, dto.getRev_date());
+			pstmt.setString(8, dto.getRev_place());
 			
 			pstmt.execute();
 			
@@ -84,14 +85,15 @@ public class ReservationDao {
 			
 			if(rs.next()) {
 				dto.setRev_no(rs.getString(1));
-				dto.setMem_id(rs.getString(2));
-				dto.setRev_title(rs.getString(3));
-				dto.setRev_poster(rs.getString(4));
-				dto.setRev_age(rs.getString(5));
-				dto.setRev_name(rs.getString(6));
-				dto.setRev_date(rs.getString(7));
-				dto.setRev_place(rs.getString(8));
-				dto.setRev_regdate(rs.getTimestamp(9));
+				dto.setMv_no(rs.getString(2));
+				dto.setMem_id(rs.getString(3));
+				dto.setRev_title(rs.getString(4));
+				dto.setRev_poster(rs.getString(5));
+				dto.setRev_age(rs.getString(6));
+				dto.setRev_name(rs.getString(7));
+				dto.setRev_date(rs.getString(8));
+				dto.setRev_place(rs.getString(9));
+				dto.setRev_regdate(rs.getTimestamp(10));
 			}
 			
 		} catch (SQLException e) {

@@ -1,3 +1,4 @@
+<%@page import="data.dao.ShopDao"%>
 <%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,6 +11,39 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<style type="text/css">
+	div.cart{
+		float: right;
+		cursor: pointer;
+	}
+	.count{
+		width: 30px;
+		height: 30px;
+		float: right;
+		background-color: red;
+		border-radius: 100px;
+		text-align: center;
+		line-height:30px;
+		z-index: 10;
+		position: relative;
+		left: -25px;
+		top: 15px;
+		color: white;
+	}
+</style>
+<script>
+$(function(){
+   
+   $("div.cart").click(function(){
+   
+      location.href="index.jsp?main=shop/mycart.jsp";
+      
+   });
+   
+});
+
+</script>
 </head>
 <body>
 <%
@@ -36,8 +70,21 @@ JSP & JQuery Mini Project</a>
 		%>
 		<span style="font-size: 0.7em;"><%=name %>님</span>&nbsp;
 		<input type="button" value="로그아웃" class="btn btn-outline-danger" onclick="location.href='login/logoutAction.jsp'">
+		
+		<div class="cart">
+			<%
+				ShopDao sdao = new ShopDao();
+				//카트개수
+				int cartSize = sdao.getCartList(myid).size();
+			%>
+			
+			<i class="bi bi-cart4 carticon" style="font-size: 1.2em;"></i>
+			<div class="count"><%=cartSize %></div>
+		</div>
+
 		<%
 	}
 %>
+
 </div>
 </html>

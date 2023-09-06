@@ -147,6 +147,9 @@ List<MovieDto> list=dao.getAllMovieInfo();
 <script>
    $(function(){
 	   
+	   //선택한 영화의 시퀀스 번호
+	   var mv_no="";
+	   
 	   //버튼 숨기기
 	   $("#seatBtn").hide();
 
@@ -185,6 +188,8 @@ List<MovieDto> list=dao.getAllMovieInfo();
                
           var poster=$(this).attr("photo");
           var name=$(this).text();
+          mv_no=$(this).attr("mv_no");
+          alert(mv_no);
           
           $(".mvname").removeClass("clickcolor");
           $(this).addClass("clickcolor");
@@ -300,11 +305,11 @@ List<MovieDto> list=dao.getAllMovieInfo();
 			$.ajax({
 				type:"post",
 				url:"reserveAction.jsp",
-				data:{"poster":poster,"mvtitle":mvtitle,"mvage":mvage,"mvcinema":mvcinema,"mvdate":mvdate,"mvplace":mvplace},
+				data:{"poster":poster,"mvtitle":mvtitle,"mvage":mvage,"mvcinema":mvcinema,"mvdate":mvdate,"mvplace":mvplace,"mv_no":mv_no},
 				dataType:"html",
 				success:function(){
 					//alert("success");
-					url="mvSeat.jsp";
+					url="mvSeat.jsp;
 					location.replace(url);
 				}
 			}); 
@@ -364,7 +369,7 @@ for(int i=0; i<list.size();i++){
    }else{}
    %>
    
-   <li class="mvname" photo="<img src='<%=mv_dto.getMv_poster()%>' style='width:200px;height:250px;'>">
+   <li class="mvname" photo="<img src='<%=mv_dto.getMv_poster()%>' style='width:200px;height:250px;'>" mv_no="<%=mv_dto.getMv_no() %>">
    <img src="../image/<%=photo %>" class="agelogo" style="width: 30px;">&nbsp;&nbsp;<%=mv_dto.getMv_title()%></li><br>
    
 <%}%>
