@@ -2,7 +2,10 @@ package Dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Dto.SeatDto;
 import mysql.db.DBConnect_2;
@@ -36,6 +39,43 @@ public class SeatDao {
 			db.dbClose(pstmt, conn);
 		}
 		
+	}
+	
+	//select_이미 선택된 좌석들을 가져오기
+	public List<SeatDto> getSeats(){
+		List<SeatDto> list = new ArrayList<>();
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		
+		String sql = "select * from seat_table order by seat_no";
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				SeatDto dto = new SeatDto();
+				
+				dto.setSeat_no(rs.getString(1));
+				dto.setRev_no(rs.getString(2));
+				dto.setAdultCnt(rs.getInt(3));
+				dto.setTeenCnt(rs.getInt(4));
+				dto.setChildCnt(rs.getInt(5));
+				dto.setSeat_name(rs.getString(6));
+				dto.setTotalPrice(rs.getInt(7));
+				
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return list;
 	}
 
 }

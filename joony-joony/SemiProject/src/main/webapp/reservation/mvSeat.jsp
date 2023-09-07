@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Dto.SeatDto"%>
+<%@page import="java.util.List"%>
+<%@page import="Dao.SeatDao"%>
 <%@page import="Dto.MovieDto"%>
 <%@page import="Dao.MovieDao"%>
 <%@page import="Dto.ReservationDto"%>
@@ -196,9 +200,35 @@ ul li{
 	
 	//System.out.println(adultPrice+","+ teenPrice+","+ childPrice);
 	
+	//사전에 예매된 좌석들을 가져오기
+	SeatDao sdao = new SeatDao();
+	List<SeatDto> list = sdao.getSeats();
+	
+	String occupiedSeats="";
+	
+	for(int i=0; i<list.size(); i++){
+		occupiedSeats+=list.get(i).getSeat_name()+",";
+	}
+	
+	String[] seats = occupiedSeats.split(",");
+	
 %>
 <script type="text/javascript">
 $(function(){
+	
+	
+	<%
+		for(int i=0; i<seats.length; i++){
+			%>
+			var seat = $("#<%=seats[i]%>");
+			if(seat){
+				seat.addClass("occupied");
+			}
+			<%
+		}
+	%>
+	
+	
 	
 	var adult=0;
 	var teen=0;
@@ -344,6 +374,7 @@ $(function(){
 	
 	
 });
+
 </script>
 </head>
 <body>
@@ -403,7 +434,7 @@ $(function(){
     	<div class="row">
     	<%
     		for(int j=1; j<9; j++){%>
-    			<div class="seat"><%=(char)i %><%=j %></div>
+    			<div class="seat" id="<%=(char)i %><%=j %>"><%=(char)i %><%=j %></div>
     		<%}
     	%>
     	</div>
@@ -483,7 +514,7 @@ $(function(){
 <div>
 <span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
 
-<input type="button" value="좌석선택" class="btn btn-outline-success" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
+<input type="button" value="결제하기" class="btn btn-outline-danger" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
 </div>
 
 </body>
