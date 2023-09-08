@@ -77,5 +77,68 @@ public class SeatDao {
 		}
 		return list;
 	}
+	
+	//마지막 insert한 seat_no를 반환(결제페이지에 넘겨줘야됨)
+	public int maxNum() {
+		int max=0;
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select max(seat_no) max from seat_table";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				max=rs.getInt("max");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return max;
+	}
+	
+	//seat_no에 해당하는 데이터가져오기
+	public SeatDto getData(int seat_no) {
+		SeatDto dto = new SeatDto();
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from seat_table where seat_no=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, seat_no);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setRev_no(rs.getString("rev_no"));
+				dto.setSeat_name(rs.getString("seat_name"));
+				dto.setAdultCnt(rs.getInt("adultCnt"));
+				dto.setTeenCnt(rs.getInt("teenCnt"));
+				dto.setChildCnt(rs.getInt("childCnt"));
+				dto.setTotalPrice(rs.getInt("totalPrice"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return dto;
+	}
 
 }

@@ -216,7 +216,7 @@ ul li{
 <script type="text/javascript">
 $(function(){
 	
-	
+	//사전에 예매된 좌석들에 occupied 클래스 적용
 	<%
 		for(int i=0; i<seats.length; i++){
 			%>
@@ -364,9 +364,10 @@ $(function(){
 			type:"post",
 			url:"seatInsert.jsp",
 			data:{"adultCnt":adultCnt,"teenCnt":teenCnt,"childCnt":childCnt,"totalPrice":totalPrice,"selectedSeat":selectedSeat,"rev_no":rev_no},
-			dataType:"html",
-			success:function(){
+			dataType:"json",
+			success:function(res){
 				alert("insert success");
+				location.href="payment.jsp?seat_no="+res.seat_no;
 			}
 		});
 		
