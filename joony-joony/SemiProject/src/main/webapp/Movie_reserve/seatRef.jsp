@@ -148,7 +148,7 @@ body {
 /*영화정보css*/
 #select_info{
 
-background-color:white;
+position:absolute;
 border:2px solid gray;
 top:750px;
 left:200px;
@@ -380,7 +380,7 @@ $(function(){
    
 });
 
-</script> --%>
+</script>
 </head>
 <body>
 <br><hr style="color: white;"><br>
@@ -436,7 +436,7 @@ $(function(){
     </div>
     
    <div class="container">
-    <div class="screen" style="text-align: center;font-size: 35pt;margin-top: 30px;margin-bottom: 30px;">SCREEN</div>
+    <div class="screen"></div>
     <%
        for(int i=65; i<75; i++){%>
        <div class="row">
@@ -451,34 +451,55 @@ $(function(){
    </div>
 
 
-<div class="container">
-<div id="select_info" class="container" style="clear: both;">
+<div id="select_info">
 
-<div class="poster" id="poster" style="float: left;" ><%=dto.getRev_poster() %></div>
+<div class="poster" id="poster"><%=dto.getRev_poster() %></div>
 
-<div class="mvinfo" style="float: left;">
-영화명<b id="mvtitle" class="mvtitle"><%=dto.getRev_title() %></b>
+<div class="mvinfo">
+<span>영화명<b id="mvtitle" class="mvtitle"><%=dto.getRev_title() %></b></span>
 <br><br>
-관람연령&nbsp;<img src="<%=dto.getRev_age() %>" id="mvage" style="width: 40px;">
+<span>관람연령</span>&nbsp;<img src="<%=dto.getRev_age() %>" id="mvage">
 </div>
 
+<span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
 
-<div class="clickinfo" >
-극장&nbsp;<b>'3'CINE&nbsp;</b><b id="mvcinema"><%=dto.getRev_name() %></b><br><br>
-일시&nbsp;&nbsp;<b id="mvdate"><%=dto.getRev_date() %></b><br><br>
-상영관&nbsp;&nbsp;<b id="mvplace"><%=dto.getRev_place() %></b><br><br>
-인원&nbsp;<b id="mvpeople">
-성인<b id="adultCnt"></b>
-청소년 <b id="teenCnt"></b>
-아동 <b id="childCnt"></b>
-</b><br><br>
-좌석&nbsp;&nbsp;<b id="selectedSeat"></b><br><br>
-가격&nbsp;&nbsp;<b id="totalPrice"></b>원<br>
+
+<div class="clickinfo">
+<table>
+   <tr>
+      <td>극장</td>
+      <td><b id="mvcinema"><%=dto.getRev_name() %></b></td>
+   </tr>
+   <tr>
+      <td>일시</td>
+      <td><b id="mvdate"><%=dto.getRev_date() %></b></td>
+   </tr>
+   <tr>
+      <td>상영관</td>
+      <td><b id="mvplace"><%=dto.getRev_place() %></b></td>
+   </tr>
+   <tr>
+      <td >인원</td>
+      <td>
+         <b>성인</b><b id="adultCnt"></b><br>
+         <b>청소년</b><b id="teenCnt"></b><br>
+         <b>아동</b><b id="childCnt"></b><br>
+      </td>
+   </tr>
+   <tr>
+      <td>좌석</td>
+      <td><b><span id="selectedSeat"></span></b></td>
+   </tr>
+   <tr>
+      <td>가격</td>
+      <td><b id="totalPrice">0</b>원</td>
+   </tr>
+</table>
 </div>
 
+<span style="border: 1px solid gray;height:250px;position: absolute;top: 25px;left: 410px;" ></span>
 
-<input type="button" value="좌석선택" class="btn btn-outline-success" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
-</div>
+<input type="button" value="결제하기" class="btn btn-outline-danger" id="seatBtn" style="float: right; width: 150px; height: 150px; margin: 20px;">
 </div>
 
 </body>
