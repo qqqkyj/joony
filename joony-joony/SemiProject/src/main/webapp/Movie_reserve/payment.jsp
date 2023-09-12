@@ -16,10 +16,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <!-- iamport.payment.js -->
-<script
-  type="text/javascript"
-  src="https://cdn.iamport.kr/js/iamport.payment-1.4.0.js"
-></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 
 <%
 	//로그인한 id를 가져옴
@@ -84,11 +82,68 @@ $(function(){
 		}
 	});
 	
-	
-	var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-	var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-	  return new bootstrap.Tooltip(tooltipTriggerEl)
-	})
+	//카카오페이 결제
+	IMP.init("imp10502566");
+
+	$("#payKakao").click(function(){
+		alert("test");
+		IMP.request_pay({
+			pg:"kakaopay.TC0ONETIME",
+			pay_method:"card",
+			merchant_uid : "3cine(1)"+ Date.now(),
+			name:"오펜하이머",
+			amount:14000
+		},function(rsp){
+			console.log(rsp);
+			
+			if(imp.success){
+				var msg="결제가 완료되었습니다.";
+				msg+="\n결제금액 : "+rsp.paid_amount+"원";
+				
+				location.href="index.jsp?main=Movie_payment/paySuccess.jsp?msg="+msg;
+			}
+			else{
+				var msg = "결제에 실패하였습니다.";
+				msg+=rsp.error_msg;
+				
+				//실패시 reload
+				location.reload();
+			}
+			alert(msg);
+		
+		});
+	});
+
+	//kg이니시스 결제
+	$("#kg").click(function(){
+		alert("test");
+		IMP.request_pay({
+			pg:"html5_inicis.INIBillTst",
+			pay_method:"card",
+			merchant_uid : "3cine(1)"+ Date.now(),
+			name:"오펜하이머",
+			amount:14000
+		},function(rsp){
+			console.log(rsp);
+			
+			/if(imp.success){
+				var msg="결제가 완료되었습니다.";
+				msg+="\n결제금액 : "+rsp.paid_amount+"원";
+				
+				location.href="index.jsp?main=Movie_payment/paySuccess.jsp?msg="+msg;
+			}
+			else{
+				var msg = "결제에 실패하였습니다.";
+				msg+=rsp.error_msg;
+				
+				//실패시 reload
+				location.reload();
+			} 
+			alert(msg);
+		
+		});
+		
+	});
 	
 });
 
@@ -136,7 +191,7 @@ $(function(){
 			<b>최종결제 수단</b>
 		</td>
 	</tr>
-	<tr>
+<!-- 	<tr>
 		<td colspan="7">
 			<input type="radio" value="신용카드" name="payment" checked><b>신용카드</b>
 			<input type="radio" value="카카오페이" name="payment"><b>카카오페이</b>
@@ -190,49 +245,17 @@ $(function(){
 			-
 			<b style="font-size: 1.7em;">*******</b>
 		</td>
-	</tr>
+	</tr> -->
 	<tr>
 		<td colspan="7">
-			<input type="button" value="결제하기" class="btn btn-outline-success" id="payKakao" data-bs-toggle="tooltip">
+			<input type="button" value="카카오페이" class="btn btn-outline-success" id="payKakao">
+			<input type="button" value="kG이니시스" class="btn btn-outline-success" id="kg">
 		</td>
 	</tr>
+	
 </table>
 
 
 
-<script type="text/javascript">
-//카카오페이 결제
-IMP.init('imp10502566');
-
-$("#payKakao").click(function(){
-	alert("test");
-	IMP.request_pay({
-		pg:'kakaopay',
-		pay_method:'card',
-		merchant_uid : '3cine(1)',
-		name:'<%=rdto.getRev_title() %>',
-		amount:14000
-	},function(imp){
-		console.log(imp);
-		
-		/* if(imp.success){
-			var msg="결제가 완료되었습니다.";
-			msg+="\n결제금액 : "+rsp.paid_amount+"원";
-			
-			location.href="index.jsp?main=Movie_payment/paySuccess.jsp?msg="+msg;
-		}
-		else{
-			var msg = "결제에 실패하였습니다.";
-			msg+=rsp.error_msg;
-			
-			//실패시 reload
-			location.reload();
-		}
-		alert(msg); */
-	
-	});
-});
-
-</script>
 </body>
 </html>
