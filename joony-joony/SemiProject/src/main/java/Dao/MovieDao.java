@@ -82,10 +82,9 @@ public class MovieDao {
           return dto;
        };
       
-};
    
 
-/*      
+     
       //영화, 포스터, 영화 클릭시 info에 불러오기
       public MovieDto getData(String no){
          MovieDto mv_dto= new MovieDto();
@@ -119,6 +118,6 @@ public class MovieDao {
          
          return mv_dto;
       };
-   };*/
+   };
 
  
