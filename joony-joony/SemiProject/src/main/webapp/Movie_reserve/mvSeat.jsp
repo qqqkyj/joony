@@ -371,7 +371,7 @@ $(function(){
          dataType:"json",
          success:function(res){
             alert("insert success");
-            location.href="payment.jsp?seat_no="+res.seat_no;
+            location.href="index.jsp?main=Movie_reserve/payment.jsp?seat_no="+res.seat_no;
          }
       });
       

@@ -34,6 +34,10 @@
 	
 	String id = rdto.getMem_id();
 	
+	String[] mv_titles = rdto.getRev_title().split(";");
+	String mv_title = mv_titles[2];
+	//System.out.println(mv_title);
+	
 %>
 
 <script type="text/javascript">
@@ -86,24 +90,32 @@ $(function(){
 	IMP.init("imp10502566");
 
 	$("#payKakao").click(function(){
-		alert("test");
+		//alert("test");
 		IMP.request_pay({
 			pg:"kakaopay.TC0ONETIME",
 			pay_method:"card",
 			merchant_uid : "3cine(1)"+ Date.now(),
-			name:"오펜하이머",
-			amount:14000
+			name:"<%=mv_title%>",
+			amount:<%=sdto.getTotalPrice()%>,
+			buy_name:"<%=id%>"
 		},function(rsp){
-			console.log(rsp);
 			
-			if(imp.success){
+			if(rsp.success){
 				var msg="결제가 완료되었습니다.";
-				msg+="\n결제금액 : "+rsp.paid_amount+"원";
+				msg+="\n영화 :"+"<%=mv_title%>";
+				msg+="\n극장 : 3cine"+"<%=rdto.getRev_name()+rdto.getRev_place()%>";
+				msg+="\n날짜 : "+"<%=rdto.getRev_date()%>";
+				msg+="\n인원 : "+"<%=(sdto.getAdultCnt()!=0)?"성인 "+sdto.getAdultCnt()+"명 ":""%>"+
+				"<%=(sdto.getTeenCnt()!=0)?"청소년 "+sdto.getAdultCnt()+"명 ":""%>"+
+				"<%=(sdto.getChildCnt()!=0)?"아동 "+sdto.getAdultCnt()+"명":""%>";
+				msg+="\n좌석 : "+"<%=sdto.getSeat_name()%>";
+				msg+="\n결제금액 : "+"<%=sdto.getTotalPrice()%>"+"원";
 				
-				location.href="index.jsp?main=Movie_payment/paySuccess.jsp?msg="+msg;
+				alert(msg);
+				location.href="index.jsp";
 			}
 			else{
-				var msg = "결제에 실패하였습니다.";
+				var msg = "결제에 실패하였습니다.\n";
 				msg+=rsp.error_msg;
 				
 				//실패시 reload
@@ -116,33 +128,40 @@ $(function(){
 
 	//kg이니시스 결제
 	$("#kg").click(function(){
-		alert("test");
+		//alert("test");
 		IMP.request_pay({
 			pg:"html5_inicis.INIBillTst",
 			pay_method:"card",
 			merchant_uid : "3cine(1)"+ Date.now(),
-			name:"오펜하이머",
-			amount:14000
+			name:"<%=mv_title%>",
+			amount:<%=sdto.getTotalPrice()%>,
+			buy_name:"<%=id%>"
 		},function(rsp){
-			console.log(rsp);
 			
-			/if(imp.success){
+			if(rsp.success){
 				var msg="결제가 완료되었습니다.";
-				msg+="\n결제금액 : "+rsp.paid_amount+"원";
+				msg+="\n영화 :"+"<%=mv_title%>";
+				msg+="\n극장 : 3cine"+"<%=rdto.getRev_name()+rdto.getRev_place()%>";
+				msg+="\n날짜 : "+"<%=rdto.getRev_date()%>";
+				msg+="\n인원 : "+"<%=(sdto.getAdultCnt()!=0)?"성인 "+sdto.getAdultCnt()+"명 ":""%>"+
+				"<%=(sdto.getTeenCnt()!=0)?"청소년 "+sdto.getAdultCnt()+"명 ":""%>"+
+				"<%=(sdto.getChildCnt()!=0)?"아동 "+sdto.getAdultCnt()+"명":""%>";
+				msg+="\n좌석 : "+"<%=sdto.getSeat_name()%>";
+				msg+="\n결제금액 : "+"<%=sdto.getTotalPrice()%>"+"원";
 				
-				location.href="index.jsp?main=Movie_payment/paySuccess.jsp?msg="+msg;
+				alert(msg);
+				location.href="index.jsp";
 			}
 			else{
-				var msg = "결제에 실패하였습니다.";
+				var msg = "결제에 실패하였습니다.\n";
 				msg+=rsp.error_msg;
 				
 				//실패시 reload
 				location.reload();
-			} 
+			}
 			alert(msg);
 		
 		});
-		
 	});
 	
 });
@@ -154,13 +173,13 @@ $(function(){
 <body>
 
 
-<table class="table table-bordered" style= vertical-align: middle;" >
+<table class="table table-bordered" style= "vertical-align: middle;" >
 	<caption align="top"><b>결제정보</b></caption>
 	<tr>
 		<th>주문자</th>
-		<td colspan="6"><b><%=rdto.getMem_id() %></b></td>
+		<td colspan="6" align="center"><b><%=rdto.getMem_id() %></b></td>
 	</tr>
-	<tr class="table table-warning">
+	<tr class="table table-danger">
 		<th>영화</th>
 		<th>극장명</th>
 		<th>상영관</th>
@@ -187,67 +206,13 @@ $(function(){
 		<td><%=nf.format(sdto.getTotalPrice()) %></td>
 	</tr>
 	<tr>
-		<td colspan="7">
+		<td colspan="7" align="center">
 			<b>최종결제 수단</b>
 		</td>
 	</tr>
-<!-- 	<tr>
-		<td colspan="7">
-			<input type="radio" value="신용카드" name="payment" checked><b>신용카드</b>
-			<input type="radio" value="카카오페이" name="payment"><b>카카오페이</b>
-			<input type="radio" value="실시간 계좌이체" name="payment"><b>실시간 계좌이체</b>
-		</td>
-	</tr>
+
 	<tr>
-		<td colspan="7">
-			카드종류&nbsp;&nbsp;
-			<select name="card">
-				<option value="">BC카드</option>
-				<option value="">현대카드</option>
-				<option value="">KB국민카드</option>
-				<option value="">삼성카드</option>
-				<option value="">신한카드</option>
-				<option value="">하나카드</option>
-				<option value="">우리카드</option>
-			</select>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="7">
-			카드번호&nbsp;&nbsp;
-			<input type="text" name="cardNum1" id="cardNum1" maxlength="4" style="width: 120px;">
-			-
-			<input type="password" name="cardNum2" id="cardNum2" maxlength="4" style="width: 120px;">
-			-
-			<input type="password" name="cardNum3" id="cardNum3" maxlength="4" style="width: 120px;">
-			-
-			<input type="text" name="cardNum4" id="cardNum4" maxlength="4" style="width: 120px;">
-		</td>
-	</tr>
-	<tr>
-		<td colspan="7">
-			유효기간&nbsp;&nbsp;
-			<input type="text" name="expM" id="expM" maxlength="2" style="width: 60px;">월
-			<input type="text" name="expY" id="expY" maxlength="2" style="width: 60px;">년
-			&nbsp;&nbsp;&nbsp;<small style="color: gray">예)2020년 9월 -> 09월 15년</small>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="7">
-			비밀번호&nbsp;&nbsp;
-			<input type="text" name="cardPw" id="cardPw" maxlength="2" style="width: 60px;"> <b style="font-size: 1.7em;">**</b>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="7">
-			법정생년월일(6자리)&nbsp;&nbsp;
-			<input type="password" name="birth" id="birth" maxlength="6" style="width: 180px;">
-			-
-			<b style="font-size: 1.7em;">*******</b>
-		</td>
-	</tr> -->
-	<tr>
-		<td colspan="7">
+		<td colspan="7" align="center">
 			<input type="button" value="카카오페이" class="btn btn-outline-success" id="payKakao">
 			<input type="button" value="kG이니시스" class="btn btn-outline-success" id="kg">
 		</td>
