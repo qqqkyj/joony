@@ -1,3 +1,5 @@
+<%@page import="Dao.MemberDao"%>
+<%@page import="Dto.MemberDto"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="Dao.ReservationDao"%>
 <%@page import="Dto.ReservationDto"%>
@@ -37,6 +39,9 @@
 	String[] mv_titles = rdto.getRev_title().split(";");
 	String mv_title = mv_titles[2];
 	//System.out.println(mv_title);
+	
+	MemberDao mdao = new MemberDao();
+	String name = mdao.getName(id);
 	
 %>
 
@@ -172,14 +177,11 @@ $(function(){
 
 <body>
 
-
+<div class="container">
 <table class="table table-bordered" style= "vertical-align: middle;" >
 	<caption align="top"><b>결제정보</b></caption>
-	<tr>
-		<th>주문자</th>
-		<td colspan="6" align="center"><b><%=rdto.getMem_id() %></b></td>
-	</tr>
 	<tr class="table table-danger">
+		<th>주문자명</th>
 		<th>영화</th>
 		<th>극장명</th>
 		<th>상영관</th>
@@ -189,6 +191,7 @@ $(function(){
 		<th>총가격</th>
 	</tr>
 	<tr>
+		<td><%=name %></td>
 		<td>
 		<img src="upload/Oppenheimer2.jpg" style="width: 100px;">
 			<%-- <%=rdto.getRev_poster() %> --%>
@@ -206,20 +209,20 @@ $(function(){
 		<td><%=nf.format(sdto.getTotalPrice()) %></td>
 	</tr>
 	<tr>
-		<td colspan="7" align="center">
+		<td colspan="8" align="center">
 			<b>최종결제 수단</b>
 		</td>
 	</tr>
 
 	<tr>
-		<td colspan="7" align="center">
+		<td colspan="8" align="center">
 			<input type="button" value="카카오페이" class="btn btn-outline-success" id="payKakao">
 			<input type="button" value="kG이니시스" class="btn btn-outline-success" id="kg">
 		</td>
 	</tr>
 	
 </table>
-
+</div>
 
 
 </body>
