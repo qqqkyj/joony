@@ -6,7 +6,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	
-	/* String rev_no=request.getParameter("rev_no");
+	String rev_no=request.getParameter("rev_no");
 	int adultCnt = request.getParameter("adultCnt").equals("")?0:Integer.parseInt(request.getParameter("adultCnt"));
 	int teenCnt = request.getParameter("teenCnt").equals("")?0:Integer.parseInt(request.getParameter("teenCnt"));
 	int childCnt = request.getParameter("childCnt").equals("")?0:Integer.parseInt(request.getParameter("childCnt"));
@@ -23,10 +23,10 @@
 	
 	//좌석테이블에 insert
 	SeatDao dao = new SeatDao();
-	dao.insertSeat(dto); */
+	dao.insertSeat(dto);
 	
 	//최신에 insert한 좌석정보의 시퀀스 반환
-	SeatDao dao = new SeatDao();
+	/* SeatDao dao = new SeatDao(); */
 	int seat_no = dao.maxNum();
 	
 	JSONObject ob = new JSONObject();

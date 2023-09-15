@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Dto.ReservationDto;
 import mysql.db.DBConnect_2;
@@ -103,6 +105,36 @@ public class ReservationDao {
 		}
 		
 		return dto;
+	}
+	
+	//영화시퀀스번호와 동일한 예약시퀀스번호 가져오기(좌석예매에서 필요)
+	public List<String> getRev_no(String mv_no){
+		List<String> list = new ArrayList<>();
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from reservation where mv_no=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, mv_no);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				list.add(rs.getString("rev_no"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return list;
 	}
 	
 }

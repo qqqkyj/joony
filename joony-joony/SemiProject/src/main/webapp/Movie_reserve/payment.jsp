@@ -123,6 +123,7 @@ $(function(){
 				var msg = "결제에 실패하였습니다.\n";
 				msg+=rsp.error_msg;
 				
+				
 				//실패시 reload
 				location.reload();
 			}
@@ -193,8 +194,8 @@ $(function(){
 	<tr>
 		<td><%=name %></td>
 		<td>
-		<img src="upload/Oppenheimer2.jpg" style="width: 100px;">
-			<%-- <%=rdto.getRev_poster() %> --%>
+		<!-- <img src="upload/Oppenheimer2.jpg" style="width: 100px;"> -->
+			<%=rdto.getRev_poster() %>
 			<%=rdto.getRev_title() %>
 		</td>
 		<td><%=rdto.getRev_name() %></td>

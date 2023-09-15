@@ -140,5 +140,41 @@ public class SeatDao {
 		
 		return dto;
 	}
+	
+	
+	//rev_no에 해당하는 데이터가져오기
+		public SeatDto getSeatRev(String rev_no) {
+			SeatDto dto = new SeatDto();
+			
+			Connection conn = db.getConnection();
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql = "select * from seat_table where rev_no=?";
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, Integer.parseInt(rev_no));
+				
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					dto.setSeat_no(rs.getString("seat_no"));
+					dto.setSeat_name(rs.getString("seat_name"));
+					dto.setAdultCnt(rs.getInt("adultCnt"));
+					dto.setTeenCnt(rs.getInt("teenCnt"));
+					dto.setChildCnt(rs.getInt("childCnt"));
+					dto.setTotalPrice(rs.getInt("totalPrice"));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				db.dbClose(rs, pstmt, conn);
+			}
+			
+			return dto;
+		}
 
 }

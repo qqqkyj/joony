@@ -204,15 +204,16 @@ ul li{
    
    //System.out.println(adultPrice+","+ teenPrice+","+ childPrice);
    
-   //사전에 예매된 좌석들을 가져오기
-   SeatDao sdao = new SeatDao();
-   List<SeatDto> list = sdao.getSeats();
-   
+   //사전에 예매된 좌석들을 가져오기(영화별)
+   String mv_no=dto.getMv_no();
+   List<String> rev_nos = dao.getRev_no(mv_no);
    String occupiedSeats="";
    
-   for(int i=0; i<list.size(); i++){
-      occupiedSeats+=list.get(i).getSeat_name()+",";
+   for(int i=0; i<rev_nos.size(); i++){
+	   SeatDao sdao = new SeatDao();
+	   occupiedSeats+=sdao.getSeatRev(rev_nos.get(i)).getSeat_name()+",";
    }
+   
    
    String[] seats = occupiedSeats.split(",");
    
@@ -220,18 +221,20 @@ ul li{
 <script type="text/javascript">
 $(function(){
    
-   //사전에 예매된 좌석들에 occupied 클래스 적용
-   <%
-      for(int i=0; i<seats.length; i++){
-         %>
-         var seat = $("#<%=seats[i]%>");
-         if(seat){
-            seat.addClass("occupied");
-         }
-         <%
-      }
-   %>
-   
+		//사전에 예매된 좌석들에 occupied 클래스 적용
+		 <%
+		    if(occupiedSeats!=""){
+		    	for(int i=0; i<seats.length; i++){
+				       %>
+				       var seat = $("#<%=seats[i]%>");
+				       if(seat){
+				          seat.addClass("occupied");
+				       }
+				       <%
+				    }
+		    }
+		 %>
+      
    
    
    var adult=0;
@@ -321,7 +324,7 @@ $(function(){
       var seatName = $(this).text();
       
       if(total==0){
-         alert("좌석을 선택해 주세요.");
+         alert("인원을 선택해 주세요.");
          return;
       }
       
@@ -364,9 +367,11 @@ $(function(){
       var selectedSeat = $("#selectedSeat").text();
       var rev_no = <%=dto.getRev_no()%>;
       
+      /* alert(adultCnt+","+teenCnt+","+childCnt+","+totalPrice+","+selectedSeat+","+rev_no); */
+      
       $.ajax({
          type:"post",
-         url:"seatInsert.jsp",
+         url:"Movie_reserve/seatInsert.jsp",
          data:{"adultCnt":adultCnt,"teenCnt":teenCnt,"childCnt":childCnt,"totalPrice":totalPrice,"selectedSeat":selectedSeat,"rev_no":rev_no},
          dataType:"json",
          success:function(res){
@@ -375,12 +380,13 @@ $(function(){
          }
       });
       
+      
    });
    
    
 });
 
-</script> --%>
+</script>
 </head>
 <body>
 <br><hr style="color: white;"><br>

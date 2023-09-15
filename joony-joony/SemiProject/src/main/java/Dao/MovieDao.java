@@ -118,6 +118,35 @@ public class MovieDao {
          
          return mv_dto;
       };
+      
+      
+      //영화타이틀로 부터 시퀀스번호 받아오기
+      public int getMvNum(String title) {
+    	  int num=0;
+    	  Connection conn = db.getConnection();
+    	  PreparedStatement pstmt = null;
+    	  ResultSet rs = null;
+    	  
+    	  String sql = "select mv_no from movie_table where mv_title=?";
+    	  
+    	  try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				num=rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+    	  
+    	  return num;
+      }
+      
    };
 
  
