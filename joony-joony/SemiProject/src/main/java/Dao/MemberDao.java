@@ -303,4 +303,60 @@ DBConnect_2 db=new DBConnect_2();
 			db.dbClose(pstmt, conn);
 		}
 	}
+	
+	//NaverInsert
+	public void naverInsert(MemberDto dto) {
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "insert into member_table(mem_id,mem_name,mem_gender,mem_email,mem_regdate) values(?,?,?,?,now())";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getMem_id());
+			pstmt.setString(2, dto.getMem_name());
+			pstmt.setString(3, dto.getMem_gender());
+			pstmt.setString(4, dto.getMem_email());
+			
+			pstmt.execute();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+		
+	}
+	
+	//Naver 존재하는 아이디인지 체크
+	public boolean naverGetId(String id) {
+		Boolean flag = false;
+		
+		Connection conn = db.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from member_table where mem_id=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				flag = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return flag;
+	}
 }

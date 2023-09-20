@@ -351,7 +351,7 @@ $(function(){
             //alert(arr);
          }
          
-         //선택한 좌석을 정렬
+         //선택한 좌석을 정렬(이름순)
          $("#selectedSeat").text(arr.sort());
       }
             
@@ -443,7 +443,7 @@ $(function(){
     
    <div class="container">
     <div class="screen" style="text-align: center;font-size: 35pt;margin-top: 30px;margin-bottom: 30px;">SCREEN</div>
-    <%
+    <% //ASCII코드
        for(int i=65; i<75; i++){%>
        <div class="row">
        <%

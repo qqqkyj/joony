@@ -48,49 +48,6 @@
 <script type="text/javascript">
 $(function(){
 	
-	//번호입력시 focus이동
-	$("#cardNum1").on("keyup", function(){
-		if ($(this).val().length == 4) {
-			$("#cardNum2").focus();
-		}
-	});
-	
-	$("#cardNum2").on("keyup", function(){
-		if ($(this).val().length == 4) {
-			$("#cardNum3").focus();
-		}
-	});
-	
-	$("#cardNum3").on("keyup", function(){
-		if ($(this).val().length == 4) {
-			$("#cardNum4").focus();
-		}
-	});
-	
-	$("#cardNum4").on("keyup", function(){
-		if ($(this).val().length == 4) {
-			$("#expM").focus();
-		}
-	});
-	
-	$("#expM").on("keyup", function(){
-		if ($(this).val().length == 2) {
-			$("#expY").focus();
-		}
-	});
-	
-	$("#expY").on("keyup", function(){
-		if ($(this).val().length == 2) {
-			$("#cardPw").focus();
-		}
-	});
-	
-	$("#cardPw").on("keyup", function(){
-		if ($(this).val().length == 2) {
-			$("#birth").focus();
-		}
-	});
-	
 	//카카오페이 결제
 	IMP.init("imp10502566");
 
