@@ -52,7 +52,7 @@ public class ResultController {
 	}
 	
 	@GetMapping("board/insert/data")
-	public String resImage2() {
+	public String webImage() {
 		return "result5";
 	}
 }
