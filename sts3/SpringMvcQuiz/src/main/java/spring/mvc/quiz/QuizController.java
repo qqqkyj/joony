@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,11 +16,26 @@ import spring.mvc.dto.SangDto;
 public class QuizController {
 	
 	@GetMapping("/ilike/movie")
-	public String form() {
-		return "/form";
+	public String form1() {
+		return "form";
 	}
 	
-	@GetMapping("/quiz/result1")
+	@GetMapping("school/myinfo")
+	public String form2() {
+		return "form";
+	}
+	
+	@GetMapping("shop/ipgo")
+	public String form3() {
+		return "form";
+	}
+	
+	@GetMapping("myshinsang")
+	public String form4() {
+		return "form";
+	}
+	
+	@GetMapping("/ilike/result1")
 	public ModelAndView result1(String msg) {
 		
 		ModelAndView mv = new ModelAndView();
@@ -31,7 +47,7 @@ public class QuizController {
 		return mv;
 	}
 	
-	@GetMapping("/quiz/result2")
+	@GetMapping("/school/result2")
 	public ModelAndView result2(String name, String school, String grade, String addr) {
 		
 		ModelAndView mv = new ModelAndView();
@@ -46,24 +62,18 @@ public class QuizController {
 		return mv;
 	}
 	
-	@PostMapping("/quiz/result3")
-	public ModelAndView result3(@RequestParam SangDto dto) {
+	@PostMapping("/shop/result3")
+	public String result3(@ModelAttribute SangDto dto) {
 		
-		ModelAndView mv = new ModelAndView();
-		
-		mv.addObject("dto",dto);
-		
-		mv.setViewName("result3");
-		
-		return mv;
+		return "result3";
 	}
 	
-	@PostMapping("/quiz/result4")
+	@PostMapping("/result4")
 	public ModelAndView result4(@RequestParam Map<String, String> map) {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.addObject("map", map);
+		mv.addAllObjects(map);
 		
 		mv.setViewName("result4");
 		

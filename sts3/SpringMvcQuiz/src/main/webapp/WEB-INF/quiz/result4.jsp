@@ -20,10 +20,10 @@
 			<th>주소</th>
 		</tr>
 		<tr>
-			<td>${map.name }</td>
-			<td>${map.age }</td>
-			<td>${map.blood }</td>
-			<td>${map.addr }</td>
+			<td>${name }</td>
+			<td>${age }</td>
+			<td>${blood }</td>
+			<td>${addr }</td>
 		</tr>
 	</table>
 </body>

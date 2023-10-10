@@ -12,11 +12,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h2>제목을 메세지로 받아서 출력하고 그아래 이미지_result1</h2>
 	<form action="result1" class="form-control">
 		<input type="text" name="msg">
 		<input type="submit" value="result1전송" class="btn btn-outline-success">
 	</form>
 	
+	<h2>get방식 테이블 출력(이름,학교,학년,학교주소)_result2</h2>
 	<form action="result2" method="get" class="form-control">
 		<table class="table table-bordered">
 			<tr>
@@ -51,6 +53,7 @@
 		</table>
 	</form>
 	
+	<h2>post방식 dto 출력(상품명,카테고리,가격,색상)_result3</h2>
 	<form action="result3" method="post" class="form-control">
 		<table class="table table-bordered">
 			<tr>
@@ -85,6 +88,7 @@
 		</table>
 	</form>
 	
+	<h2>post방식 Map출력(이름,나이,혈액형,주소)_result4</h2>
 	<form action="result4" method="post" class="form-control">
 		<table class="table table-bordered">
 			<tr>

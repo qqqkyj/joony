@@ -12,19 +12,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table class="table table-bordered">
-		<tr>
-			<th>상품명</th>
-			<th>카테고리</th>
-			<th>가격</th>
-			<th>색상</th>
-		</tr>
-		<tr>
-			<td>${sangDto.sang }</td>
-			<td>${sangDto.category }</td>
-			<td>${sangDto.price }</td>
-			<td>${sangDto.color }</td>
-		</tr>
-	</table>
+	<div style="margin-left: 200px; margin-top: 50px;">
+		<button type="button" class="btn btn-info" onclick="location.href='naver/form1'" style="width: 200px;">각각 읽기</button><br>
+		
+		<button type="button" class="btn btn-info" onclick="location.href='naver/form2'" style="width: 200px;">DTO 읽기</button><br>
+		
+		<button type="button" class="btn btn-info" onclick="location.href='naver/form3'" style="width: 200px;">Map 읽기</button><br>
+		
+		<button type="button" class="btn btn-info" onclick="location.href='naver/form4'" style="width: 200px;">이미지 업로드</button><br>
+	</div>
 </body>
 </html>

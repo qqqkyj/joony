@@ -12,19 +12,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table class="table table-bordered">
-		<tr>
-			<th>상품명</th>
-			<th>카테고리</th>
-			<th>가격</th>
-			<th>색상</th>
-		</tr>
-		<tr>
-			<td>${sangDto.sang }</td>
-			<td>${sangDto.category }</td>
-			<td>${sangDto.price }</td>
-			<td>${sangDto.color }</td>
-		</tr>
-	</table>
+	<div class="alert alert-danger" style="width: 300px;">
+		상품명:${shopDto.sang }<br>
+		색상: <b style="color:${shopDto.color};">${shopDto.color }</b><br>
+		가격:<fmt:formatNumber value="${shopDto.price }" type="currency"/><br>
+		선택한 이미지:<img alt="" src="../photo/${shopDto.image }.png">
+	</div>
 </body>
 </html>

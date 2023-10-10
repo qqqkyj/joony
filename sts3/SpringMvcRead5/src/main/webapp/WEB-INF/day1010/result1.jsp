@@ -12,19 +12,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table class="table table-bordered">
-		<tr>
-			<th>상품명</th>
-			<th>카테고리</th>
-			<th>가격</th>
-			<th>색상</th>
-		</tr>
-		<tr>
-			<td>${sangDto.sang }</td>
-			<td>${sangDto.category }</td>
-			<td>${sangDto.price }</td>
-			<td>${sangDto.color }</td>
-		</tr>
-	</table>
+	<img alt="" src="../photo/cat.gif">
+	<div class="alert alert-info" style="width: 300px;">
+		이름:${name }<br>
+		성별:${gender }<br>
+		거주지역:${addr }<br>
+	</div>
 </body>
 </html>

@@ -12,8 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<button onclick="location.href=ilike/movie'" class="btn btn-outline-info">제목을 메세지로 받아서 출력하고 그아래 이미지_result1</button><br>
-<button onclick="location.href='school/myinfo'" class="btn btn-outline-success">get방식 태이블 출력(이름,학교,학년,학교주소)_result2</button><br>
+<button onclick="location.href='ilike/movie'" class="btn btn-outline-info">제목을 메세지로 받아서 출력하고 그아래 이미지_result1</button><br>
+<button onclick="location.href='school/myinfo'" class="btn btn-outline-success">get방식 테이블 출력(이름,학교,학년,학교주소)_result2</button><br>
 <button onclick="location.href='shop/ipgo'" class="btn btn-outline-danger">post방식 dto 출력(상품명,카테고리,가격,색상)_result3</button><br>
 <button onclick="location.href='myshinsang'" class="btn btn-outline-warning">post방식 Map출력(이름,나이,혈액형,주소)_result4</button><br>
 </body>

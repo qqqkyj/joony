@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="result" method="post">
+<form action="read1" method="post">
 	<table class="table table-bordered" style="width: 300px;">
 	<tr>
 		<th>이름</th>
@@ -21,30 +21,21 @@
 		</td>
 	</tr>
 	<tr>
-		<th>좋아하는 색</th>
+		<th>성별</th>
 		<td>
-			<input type="color" name="color" class="form-control" style="width: 100px;">
+			<input type="radio" name="gender" value="남자"  style="width: 100px;" checked="checked">남자
+			<input type="radio" name="gender" value="여자"  style="width: 100px;">여자
 		</td>
 	</tr>
 	<tr>
-		<th>취미</th>
+		<th>주거지역</th>
 		<td>
-			<input type="checkbox" name="hobby" value="웨이트"  style="width: 100px;" checked="checked">웨이트
-			<input type="checkbox" name="hobby" value="복싱"  style="width: 100px;">복싱
-			<input type="checkbox" name="hobby" value="테니스"  style="width: 100px;">테니스
-			<input type="checkbox" name="hobby" value="골프"  style="width: 100px;">골프
-			<input type="checkbox" name="hobby" value="주짓수"  style="width: 100px;">주짓수
-		</td>
-	</tr>
-	<tr>
-		<th>가장 좋아하는 언어</th>
-		<td>
-			<select name="language" class="form-control">
-				<option value="java">java</option>
-				<option value="html">html</option>
-				<option value="oracle">oracle</option>
-				<option value="jsp">jsp</option>
-				<option value="spring">spring</option>
+			<select name="addr" class="form-control">
+				<option value="서울">서울</option>
+				<option value="경기">경기</option>
+				<option value="인천">인천</option>
+				<option value="강원">강원</option>
+				<option value="부산">부산</option>
 			</select>
 		</td>
 	</tr>
