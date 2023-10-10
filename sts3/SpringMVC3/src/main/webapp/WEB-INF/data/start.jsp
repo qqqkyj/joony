@@ -15,7 +15,7 @@
 <ul>
 	<li><a href="login/form">로그인폼</a></li>
 	
-	<li><a href="data/form">입력폼연습</a></li>
+	<li><a href="data/myform">입력폼연습</a></li>
 	
 </ul>
 </body>
