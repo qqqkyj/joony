@@ -13,35 +13,36 @@
 </head>
 <body>
 <div style="margin: 100px 50px;">
-	<form action="write" method="post">
+	<form action="update" method="post">
 		<table class="table table-bordered" style="width: 350px;">
+			<input type="hidden" name="num" value="${dto.num }">
 			<tr>
 				<th>자동차명</th>
 				<td>
-					<input type="text" name="carname" required="required" class="form-control">
+					<input type="text" name="carname" required="required" class="form-control" value="${dto.carname }">
 				</td>
 			</tr>
 			<tr>
 				<th>자동차가격</th>
 				<td>
-					<input type="text" name="carprice" required="required" class="form-control">
+					<input type="text" name="carprice" required="required" class="form-control" value="${dto.carprice }">
 				</td>
 			</tr>
 			<tr>
 				<th>자동차색상</th>
 				<td>
-					<input type="color" name="carcolor" required="required" class="form-control">
+					<input type="color" name="carcolor" required="required" class="form-control" value="${dto.carcolor }">
 				</td>
 			</tr>
 			<tr>
 				<th>자동차구입일</th>
 				<td>
-					<input type="date" name="carguip" required="required" class="form-control">
+					<input type="date" name="carguip" required="required" class="form-control" value="${dto.carguip}">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" class="btn btn-outline-info" value="DB저장">
+					<input type="submit" class="btn btn-outline-info" value="DB수정">
 					<input type="button" class="btn btn-outline-success" onclick="location.href='list'" value="목록">
 				</td>
 			</tr>

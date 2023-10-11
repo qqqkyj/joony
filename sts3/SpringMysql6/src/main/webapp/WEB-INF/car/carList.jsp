@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<button type="button" onclick="location.href='writeForm'" class="btn btn-outline-warning">차 정보 입력</button><br>
+
 <c:if test="${totalCount==0 }">
 	<h3 class="alert alert-info">저장된 차의 정보가 없습니다.</h3>
 </c:if>
@@ -20,6 +22,32 @@
 	<h3 class="alert alert-info">${totalCount }개의 자동차가 등록되었습니다.</h3>
 </c:if>
 
-<button type="button" onclick="location.href='writeForm'" class="btn btn-outline-warning">차 정보 입력</button>
+<hr>
+
+<table class="table table-bordered" style="width: 1000px;">
+	<tr>
+		<th width="60">번호</th>
+		<th width="60">차량명</th>
+		<th width="60">차색상</th>
+		<th width="60">차량가격</th>
+		<th width="60">구입일</th>
+		<th width="60">편집</th>
+	</tr>
+	
+	<c:forEach var="dto" items="${list }" varStatus="i">
+		<tr>
+			<td>${i.count }</td>
+			<td>${dto.carname }</td>
+			<td style="width: 20px; height: 20px; background-color: ${dto.carcolor};">${dto.carcolor }</td>
+			<td><fmt:formatNumber value="${dto.carprice }" type="currency"/> </td>
+			<td>${dto.carguip }</td>
+			<td>
+				<button class="btn btn-outline-warning" onclick="location.href='updateform?num=${dto.num}'">수정</button>
+				<button class="btn btn-outline-danger" onclick="location.href='delete?num=${dto.num}'">삭제</button>
+			</td>
+		</tr>
+	</c:forEach>
+	
+</table>
 </body>
 </html>
