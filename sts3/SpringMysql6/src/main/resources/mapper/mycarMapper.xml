@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="spring.mysql.mycar.MyCarDao">
+  	<!-- mycar의 모든 데이터 얻기 -->
+  	<select id="getAllMyCar" resultType="mdto">
+  		select * from mycar order by num desc
+  	</select>
+  	<!-- 전체 개수 얻기 -->
+  	<select id="getTotalCount" resultType="int">
+  		select count(*) from mycar
+  	</select>
+  </mapper>
