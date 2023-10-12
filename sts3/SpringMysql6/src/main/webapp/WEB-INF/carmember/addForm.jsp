@@ -12,10 +12,32 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- <c:redirect url="kakao/list"></c:redirect> --%>
-<button type="button" class="btn btn-outline-info" style="width: 120px;" onclick="location.href='kakao/list'">자동차 정보목록</button><br>
-
-<button type="button" class="btn btn-outline-info" style="width: 120px;" onclick="location.href='member/list'">자동차 구입고객 명단</button><br>
-
+<form action="addFormAction" method="post">
+	<table class="table table-bordered">
+		<tr>
+			<th>이름</th>
+			<td>
+				<input type="text" name="name" class="form-control" required="required">
+			</td>
+		</tr>
+		<tr>
+			<th>핸드폰</th>
+			<td>
+				<input type="text" name="hp" class="form-control" required="required">
+			</td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td>
+				<input type="text" name="addr" class="form-control" required="required">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" value="등록" class="btn btn-outline-success">
+			</td>
+		</tr>
+	</table>
+</form>
 </body>
 </html>

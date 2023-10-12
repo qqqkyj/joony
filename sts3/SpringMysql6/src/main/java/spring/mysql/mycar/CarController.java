@@ -2,6 +2,7 @@ package spring.mysql.mycar;
 
 import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,12 +73,26 @@ public class CarController {
 		return mv;
 	}
 	
+	//updateForm으로 이동_방법2
+	/*@GetMapping("/kakao/updateform")
+	public String updateForm(@RequestParam String num, Model model) {	
+
+		//num에 해당하는 데이터 가져오기
+		MyCarDto dto = dao.getData(num);		
+			
+		model.addObject("dto", dto);
+			
+			
+		return "car/updateForm";
+		}*/	
+
+	
 	//update
 	@PostMapping("/kakao/update")
 	public String update(@ModelAttribute MyCarDto dto) {
 		
 		dao.updateMyCar(dto);
-		
+		  
 		return "redirect:list";
 	}
 	
