@@ -68,5 +68,17 @@
 	</tr>
 </table>
 
+<div style="width: 900px; text-align: center">
+	<form action="list" class="d-inline-flex">
+		<select name="title" class="form-control" style="width: 120px;">
+			<option value="name" ${title=='name'?"selected":"" }>이름</option>
+			<option value="addr" ${title=='addr'?"selected":"" }>주소</option>
+			<option value="driver" ${title=='driver'?"selected":"" }>운전면허</option>
+		</select>
+		<input type="text" name="search" class="form-control" placeholder="검색단어" style="width: 150px;" value="${search }">
+		<button type="submit" class="btn btn-success">검색</button>
+	</form>
+</div>
+
 </body>
 </html>

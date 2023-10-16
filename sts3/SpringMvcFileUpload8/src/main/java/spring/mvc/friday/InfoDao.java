@@ -1,6 +1,7 @@
 package spring.mvc.friday;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,13 @@ public class InfoDao implements InfoInter {
 		session.insert("insertOfMyInfo", dto);
 	}
 
-	@Override
-	public List<InfoDto> getAllInfos() {
-		
-		return session.selectList("selectAllOfMyInfo");
-	}
+
+	/*
+	 * public List<InfoDto> getAllInfos() {
+	 * 
+	 * return session.selectList("selectAllOfMyInfo"); }
+	 */
+	
 
 	@Override
 	public void deleteMyinfo(String num) {
@@ -46,6 +49,12 @@ public class InfoDao implements InfoInter {
 		
 		session.update("updateOfMyInfo", dto);
 		
+	}
+
+	@Override
+	public List<InfoDto> getAllInfos(Map<String, String> map) {
+		// TODO Auto-generated method stub
+		return session.selectList("selectAllOfMyInfo",map);
 	}
 
 }
