@@ -13,7 +13,7 @@
 <title>게시판 상세페이지</title>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin: 100px 100px;">
 <table class="table table-bordered">
 	<tr>
 		<td>
@@ -25,19 +25,21 @@
 	</tr>
 	<tr>
 		<td>
-			<c:forEach var="p" items="${dto.photo }">
-				<c:if test="${p=='no' }">
-					<img alt="" src="../photo/noimg.png">
-				</c:if>
-				<c:if test="${p!='no' }">
-					<img alt="" src="../upload/${p}">
-				</c:if>			
-			</c:forEach>
-			${dto.content }
+			<c:if test="${dto.photo!='no' }">
+				<c:forTokens var="p" items="${dto.photo }" delims=",">
+					<img alt="" src="../upload/${p}" style="width: 100px; height: 100px; border: 2px solid green; border-radius: 20px;" >
+				</c:forTokens>
+			</c:if>			
+			<br><br>
+			<pre>${dto.content }</pre>
 		</td>
 	</tr>
 	<tr>
 		<td align="center">
+			<input type="button" value="글쓰기" onclick="location.href='writeform'" class="btn btn-outline-success">
+			<input type="button" value="답글" onclick="location.href='writeform?num=${dto.num}&regroup=${ dto.regroup}&restep=${ dto.restep}&relevel=${dto.relevel }&currentPage=${currentPage }'" class="btn btn-outline-success">
+			<input type="button" value="수정" onclick="location.href='updatepassform?num=${dto.num}&currentPage=${currentPage }'" class="btn btn-outline-success">
+			<input type="button" value="삭제" onclick="location.href='deletepassform?num=${dto.num}&currentPage=${currentPage }'" class="btn btn-outline-success">
 			<input type="button" value="목록" onclick="location.href='list?currentPage=${currentPage}'" class="btn btn-outline-success">
 		</td>
 	</tr>

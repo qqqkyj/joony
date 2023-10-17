@@ -13,17 +13,17 @@
 </head>
 <body>
 	<div style="margin: 200px 200px;">
-		<form action="updatepass" method="post">
+		<form action="deletepass" method="post">
 			<input type="hidden" name="num" value="${num }">
 			<input type="hidden" name="currentPage" value="${currentPage }">
 			
-			<div class="alert alert-info" style="width: 300px; font-size: 1.3em;">
+			<div class="alert alert-danger" style="width: 300px; font-size: 1.3em;">
 				<b>비밀번호를 입력해 주세요.</b>
 			</div>
 			<div class="d-inline-flex">
 				<input type="password" name="pass" class="form-control" style="width: 120px;" required="required" >
 				
-				<button type="submit" class="btn btn-outline-info">수정하기</button>
+				<button type="submit" class="btn btn-outline-danger">삭제하기</button>
 				<button type="button" class="btn btn-outline-info" onclick="history.back()">이전으로</button>
 			</div>
 		</form>

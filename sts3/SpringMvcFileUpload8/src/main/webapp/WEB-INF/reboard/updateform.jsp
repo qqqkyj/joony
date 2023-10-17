@@ -13,38 +13,24 @@
 </head>
 <body>
 <div style="margin: 50px 100px;">
-	<form action="insert" method="post" enctype="multipart/form-data">
+	<form action="update" method="post" enctype="multipart/form-data">
 		<!-- hidden 5개 -->
-		<input type="hidden" name="num" value="${num }">
+		<input type="hidden" name="num" value="${dto.num }">
 		<input type="hidden" name="currentPage" value="${currentPage }">
-		<input type="hidden" name="regroup" value="${regroup }">
-		<input type="hidden" name="restep" value="${restep }">
-		<input type="hidden" name="relevel" value="${relevel }">
 		
 		<table class="table table-bordered" style="width: 500px;">
-			<caption align="top"><b>
-				<c:if test="${num==0 }">새글쓰기</c:if>
-				<c:if test="${num!=0 }">댓글쓰기</c:if>
-			</b></caption>
 			
 			<tr>
 				<th>작성자</th>
 				<td>
-					<input type="text" name="writer" class="form-control" required="required" style="width: 130px;">
-				</td>
-			</tr>
-			
-			<tr>
-				<th>비밀번호</th>
-				<td>
-					<input type="password" name="pass" class="form-control" required="required" style="width: 300px;">
+					<input type="text" name="writer" class="form-control" value="${dto.writer }" required="required" style="width: 130px;">
 				</td>
 			</tr>
 			
 			<tr>
 				<th>제목</th>
 				<td>
-					<input type="text" name="subject" class="form-control" required="required" style="width: 120px;">
+					<input type="text" name="subject" class="form-control" value="${dto.subject }" required="required" style="width: 120px;">
 				</td>
 			</tr>
 			
@@ -57,13 +43,13 @@
 			
 			<tr>
 				<td colspan="2">
-					<textarea style="width: 480px; height: 130px;" name="content" required="required" class="form-control"></textarea>
+					<textarea style="width: 480px; height: 130px;" name="content" required="required" class="form-control">${dto.content }</textarea>
 				</td>
 			</tr>
 			
 			<tr>
 				<td colspan="2" align="center">
-					<button type="submit" class="btn btn-info" style="width: 100px;">저장</button>		
+					<button type="submit" class="btn btn-info" style="width: 100px;">수정</button>		
 					<button type="button" class="btn btn-info" style="width: 100px;" onclick="location.href='list?currentPage=${currentPage}'">목록</button>		
 				</td>
 			</tr>

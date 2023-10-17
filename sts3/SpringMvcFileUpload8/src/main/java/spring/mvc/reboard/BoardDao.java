@@ -77,8 +77,38 @@ public class BoardDao implements BoardDaoInter {
 	}
 
 	@Override
-	public BoardDto detailBoard(String num) {
-		return session.selectOne("detailOfReboard", num);
+	public BoardDto getBoard(String num) {
+		return session.selectOne("getBoard", num);
+	}
+
+	@Override
+	public void updateReadCount(String num) {
+		
+		session.update("updateOfReadCount", num);
+	}
+
+	@Override
+	public int getCheckPass(String num, String pass) {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("num", num);
+		map.put("pass", pass);
+
+		return session.selectOne("checkpassEqualOfReboard", map);
+	}
+
+	@Override
+	public void updateBoard(BoardDto dto) {
+		
+		session.update("updateOfReboard", dto);
+	}
+
+	@Override
+	public void deleteBoard(String num) {
+		
+		session.delete("deleteOfReboard", num);
+		
 	}
 	
 	
