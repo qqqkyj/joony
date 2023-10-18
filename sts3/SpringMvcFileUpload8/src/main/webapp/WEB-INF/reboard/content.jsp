@@ -20,7 +20,7 @@
 			<b>${dto.subject }</b><br>
 			<i class="bi bi-person-circle"></i>
 			${dto.writer }
-			<small style="float: right; margin-right: 150px;">작성일:<fmt:formatDate value="${dto.writeday }" pattern="yyyy-MM-dd"/>&nbsp;&nbsp;조회수:${dto.readcount }</small>			
+			<small style="float: right; margin-right: 100px; color: gray">작성일:<fmt:formatDate value="${dto.writeday }" pattern="yyyy-MM-dd"/>&nbsp;&nbsp;조회수:${dto.readcount }</small>			
 		</td>
 	</tr>
 	<tr>
@@ -34,6 +34,70 @@
 			<pre>${dto.content }</pre>
 		</td>
 	</tr>
+	
+	<!-- 댓글 -->
+	<tr>
+		<td>
+			<div id="answer">
+			<c:if test="${acount>0 }">
+				<b>댓글: ${acount}</b><br><br>
+				<c:forEach var="a" items="${alist }">
+					${a.nickname } : ${a.content }
+					<small style="float: right; margin-right: 50px; color: gray">
+						<fmt:formatDate value="${a.writeday }" pattern="yyyy-MM-dd HH:mm"/>
+					</small>
+					&nbsp;
+					<i class="bi bi-trash" style="cursor: pointer;" onclick="adelete(${a.idx},${a.pass })"></i>
+					
+					<script type="text/javascript">
+					function adelete(idx,pass) {
+						
+						var check = prompt("비밀번호를 입력해 주세요.");
+						
+						if(pass==check){
+							$.ajax({
+								type:"get",
+								data:{"idx":idx},
+								dataType:"json",
+								url:"adelete",
+								success:function(res){
+								
+									location.reload();
+								}
+								
+							});
+						}
+							else{
+							alert("비밀번호가 일치하지 않습니다!");
+						}
+						
+					}
+					</script>
+					
+					<hr>
+				</c:forEach>
+			</c:if>
+			</div>
+			<br>
+			<form action="ainsert" method="post" style="width: 600px;">
+				<!-- hidden -->
+				<input type="hidden" name="num" value="${dto.num }">
+				<input type="hidden" name="currentPage" value="${currentPage }">
+					<div class="d-inline-flex">
+						<b>닉네임: </b>
+						<input type="text" name="nickname" class="form-control" style="width: 120px;" required="required">
+						<b>비밀번호: </b>
+						<input type="password" name="pass" class="form-control" style="width: 120px;" required="required">
+					</div>
+						<br>
+					<div class="d-inline-flex">
+						<input type="text" name="content" class="form-control" style="width: 500px;" placeholder="댓글내용을 입력해 주세요.">
+						<button type="submit" class="btn btn-outline-info">확인</button>
+					</div>
+			</form>
+		</td>
+	</tr>
+	
 	<tr>
 		<td align="center">
 			<input type="button" value="글쓰기" onclick="location.href='writeform'" class="btn btn-outline-success">

@@ -6,5 +6,6 @@
 		<typeAliases>
 			<typeAlias type="spring.mvc.friday.InfoDto" alias="indto"/>
 			<typeAlias type="spring.mvc.reboard.BoardDto" alias="bdto"/>
+			<typeAlias type="answer.data.AnswerDto" alias="adto"/>
 		</typeAliases>
 	</configuration>

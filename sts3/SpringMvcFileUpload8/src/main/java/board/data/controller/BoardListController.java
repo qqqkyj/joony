@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import answer.data.AnswerDao;
 import spring.mvc.reboard.BoardDao;
 import spring.mvc.reboard.BoardDto;
 
@@ -28,6 +29,9 @@ public class BoardListController {
 	
 	@Autowired
 	BoardDao dao;
+	
+	@Autowired
+	AnswerDao adao;
 
 	@GetMapping("/board/list")
 	public ModelAndView list(
@@ -67,6 +71,11 @@ public class BoardListController {
 			
 			//각 페이지에서 필요한 게시글 가져오기
 			List<BoardDto> list = dao.getPagingList(startNum, perPage);
+			
+			//list의 각 글에 댓글의 개수 표시
+			for(BoardDto d:list) {
+				d.setAcount(adao.getAnswerList(d.getNum()).size());
+			}
 			
 			//각 페이지에 출력할 시작번호
 			int no = totalCount-(currentPage-1)*perPage;
