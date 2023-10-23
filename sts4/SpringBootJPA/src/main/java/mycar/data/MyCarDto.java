@@ -34,6 +34,9 @@ public class MyCarDto {
 	@Column
 	private String carguip;
 	
+	@Column
+	private String carphoto;
+	
 	@CreationTimestamp//엔티티 생성시점에 시간이 자동등록
 	@Column(updatable = false)//수정시 이 컬럼은 수정하지 않음
 	//updatable = false 없으면 날짜가 null로 찍힐것

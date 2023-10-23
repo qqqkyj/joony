@@ -41,7 +41,10 @@ height: 50px;
  		<c:forEach var="list" items="${list }" varStatus="i">
  		<tr>
  			<td>${ i.count}</td>
- 			<td>${list.carname }</td>
+ 			<td>
+ 			${list.carname }
+ 			<a href="detail?num=${list.num }"><img alt="" src="../save/${list.carphoto }" style="width: 100px;"></a>
+ 			</td>
  			<td align="center"><div class="box" style="background-color: ${list.carcolor}"></div></td>
  			<td><fmt:formatNumber value="${list.carprice }" type="currency"/> </td>
  			<td><fmt:formatDate value="${list.guipday }" pattern="yyyy-MM-dd"/> </td>
