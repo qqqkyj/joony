@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="data.model.mapper.MovieMapperInter">
+	<select id="getTotalCount" resultType="int">
+		select count(*) from mycine
+	</select>
+	<select id="getAllDatas" resultType="mdto">
+		select * from mycine order by mv_num
+	</select>
+	<select id="getData" parameterType="String" resultType="mdto">
+		select * from mycine where mv_num=#{mv_num}
+	</select>
+	<insert id="insertMovie" parameterType="mdto">
+		insert into mycine values (null,#{mv_title},#{mv_poster},#{mv_director},#{mv_opendate})
+	</insert>
+</mapper>
