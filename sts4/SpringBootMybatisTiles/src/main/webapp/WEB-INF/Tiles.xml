@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+<!-- 레이아웃 구성 -->
+   <definition name="layout1" template="/WEB-INF/layout/layout1.jsp">
+      <put-attribute name="title" value="/WEB-INF/layout/title.jsp"/>
+      <put-attribute name="menu" value="/WEB-INF/layout/menu.jsp"/>
+      <put-attribute name="main" value="/WEB-INF/layout/main.jsp"/>
+      <put-attribute name="info" value="/WEB-INF/layout/info.jsp"/>
+   </definition>
+   
+   <!-- name은 mapping주소가 됨 -->
+   <!-- <definition name="home.titles" extends="layout1">
+   	<put-attribute name="main" value="/WEB-INF/layout/main.jsp"></put-attribute>
+   </definition>
+   
+   <definition name="list.titles" extends="layout1">
+   	<put-attribute name="main" value="/WEB-INF/board/list.jsp"></put-attribute>
+   </definition>
+   
+   <definition name="input.titles" extends="layout1">
+   	<put-attribute name="main" value="/WEB-INF/board/addform.jsp"></put-attribute>
+   </definition> -->
+   
+   <!-- wild card, tiles mapping방법, name은 mapping주소, 1은 파일주소, 2는 jsp파일이름 -->
+   <definition name="/*/*" extends="layout1">
+   	<put-attribute name="main" value="/WEB-INF/{1}/{2}.jsp"></put-attribute>
+   </definition>
+   
+</tiles-definitions>
