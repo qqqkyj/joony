@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-ul.menu{
+/* ul.menu{
 	list-style: none;
 }
 
@@ -32,15 +32,23 @@ ul.menu li{
 ul.menu a{
 	text-decoration: none;
 	color: black;
-}
+} */
 </style>
 </head>
 <body>
-<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
-	<ul class="menu">
+<c:set var="root" value="<%=request.getContextPath() %>"/>
+	<div class="menu">
+	  <a href="${root }">Home</a>
+	  <a href="${root }/ipgo/ipgoform">상품등록</a>
+	  <a href="${root }/ipgo/list">상품목록</a>>
+	  <a href="${root }/board/list">게시판</a>
+	  <a href="${root }/member/list">회원목록</a>
+	  <a href="${root }/member/form">회원가입</a>
+	  <a href="${root }/load/map">오시는 길</a>
+	</div>
+	<%-- <ul class="menu">
 		<li>
 			<a href="${root }">Home</a>
-		</li>
 		<li>
 			<a href="${root }/ipgo/ipgoform">상품등록</a>
 		</li>
@@ -59,6 +67,6 @@ ul.menu a{
 		<li>
 			<a href="${root }/load/map">오시는 길</a>
 		</li>
-	</ul>
+	</ul> --%>
 </body>
 </html>

@@ -12,8 +12,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
-<img alt="" src="${root }/짱구.PNG">
-각 종 정보 나타나게 할 것!!
+<c:set var="root" value="<%=request.getContextPath() %>"/>
+  <pre>
+  	상호 : 크리에이티브쌍용 대표자 : 뿡뿡이
+	개인정보보호책임자 : 강주니(joony@naver.com)
+	전화 : 010-1234-5656 주소 : 서울시 강남구 역삼동 한독빌딩8층 쌍용교육센터
+	사업자등록번호 : 123-10-12120 통신판매업신고번호 : 2010-강남역삼-0208호
+  </pre>
 </body>
 </html>

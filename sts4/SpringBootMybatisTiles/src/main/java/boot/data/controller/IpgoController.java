@@ -30,7 +30,7 @@ public class IpgoController {
 	
 	@GetMapping("/")
 	public String start() {
-		return "redirect:ipgo/list";
+		return "/layout/main";
 	}
 	
 	@GetMapping("/ipgo/list")
@@ -43,12 +43,13 @@ public class IpgoController {
 		model.addObject("totalCount", totalCount);
 		model.addObject("list", list);
 		
-		model.setViewName("ipgolist");
+		//model.setViewName("ipgolist");//jsp
+		model.setViewName("/ipgo/ipgolist");//tiles
 		
 		return model;
 	}
 	
-	@GetMapping("/ipgo/ipgoform")
+	/*@GetMapping("/ipgo/ipgoform")
 	public String ipgoform() {
 		return "ipgoform";
 	}
@@ -97,6 +98,6 @@ public class IpgoController {
 		
 		
 		return "redirect:list";
-	}
+	}*/
 
 }

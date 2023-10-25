@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<c:set var="root" value="<%=request.getContextPath() %>"/>
+<img alt="" src="${root }/image/짱구.PNG" style="width: 100px;">
+각 종 정보 나타나게 할 것!!
 </body>
 </html>

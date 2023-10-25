@@ -12,8 +12,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
-<a href="${root }"><img alt="" src="${root }/맹구.PNG"> 
-<b>SpringBoot+Mybatis+Titles</b></a>
+<div class="main">
+<c:set var="root" value="<%=request.getContextPath() %>"/>
+	<img alt="" src="${root }/image/상점1.PNG" ">
+	<img alt="" src="${root }/image/상점2.PNG" ">
+	<img alt="" src="${root }/image/상점3.PNG" ">
+	<img alt="" src="${root }/image/상점4.PNG" ">
+	<img alt="" src="${root }/image/상점5.PNG" ">
+	<h2>Main Page 입니다.</h2>
+</div>
 </body>
 </html>

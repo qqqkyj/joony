@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("boot.data.*")
+@ComponentScan("boot.last.mini")
 @MapperScan("boot.data.mapper")
 public class SpringBootMybatisTilesApplication {
 

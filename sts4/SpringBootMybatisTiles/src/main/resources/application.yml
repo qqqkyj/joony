@@ -3,10 +3,10 @@ server:
   port: 8080
  #jsp
 spring:
-  mvc:
-    view:
-      prefix: /WEB-INF/ipgo/
-      suffix: .jsp
+  #mvc:
+    #view:
+      #prefix: /WEB-INF/ipgo/
+      #suffix: .jsp
   devtools:
     livereload:
       enabled: true
