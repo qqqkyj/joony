@@ -79,15 +79,15 @@ div.row{
 	font-size: 1.1em;
 }
 
-div.leftcolumn {   
+/* div.leftcolumn {   
   float: left;
   width: 20%;
-}
+} */
 
 /* Right column */
 div.rightcolumn {
-  float: left;
-  width: 80%;
+  /* float: left; */
+  width: 100%;
   background-color: #f1f1f1;
   padding-left: 20px;
 }
@@ -174,17 +174,17 @@ div.footer {
 <body>
 <div class="layout">
 	<div class="title">
-		<tiles:insertAttribute name="title"/>
+		<tiles:insertAttribute name="title2"/>
 	</div>
 	<div class="menu">
 		<tiles:insertAttribute name="menu"/>
 	</div>
 	<div class="row">
-		<div class="leftcolumn">
+<%-- 		<div class="leftcolumn">
 			<div class="card">
 				<tiles:insertAttribute name="info"/>
 			</div>
-		</div>
+		</div> --%>
 		<div class="rightcolumn">
 			<div class="card">
 				<tiles:insertAttribute name="main"/>

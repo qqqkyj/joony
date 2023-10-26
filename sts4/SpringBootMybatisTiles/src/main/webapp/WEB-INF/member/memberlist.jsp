@@ -12,10 +12,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:set var="root" value="<%=request.getContextPath() %>"></c:set>
-<a href="/"><img alt="" src="${root }/image/맹구.PNG" style="width: 150px;"> 
-<b><!-- SpringBoot+Mybatis+Titles -->
-	짱구는 못말려 상점
-</b></a>
+
 </body>
 </html>

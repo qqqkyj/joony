@@ -39,14 +39,11 @@ ul.menu a{
 <c:set var="root" value="<%=request.getContextPath() %>"/>
 	<div class="menu">
 	  <a href="/">Home</a>
-	  <a href="${root }/ipgo/ipgoform">상품등록</a>
-	  <a href="${root }/ipgo/list">상품목록</a>>
-	  <a href="${root }/board/list">답변형게시판</a>
-	  <a href="${root }/member/list">회원목록</a>
-	  <a href="${root }/member/form">회원가입</a>
-	  <a href="${root }/login/main">로그인</a>
-	  <a href="${root }/load/map">오시는 길</a>
-	  <a href="${root }/daou/intro">다우기술</a>
+	  <a href="${root }/daou/service">서비스</a>
+	  <a href="${root }/daou/intro">다우소개</a>
+	  <a href="${root }/daou/res">책임경영</a>
+	  <a href="${root }/daou/ir">IR</a>
+	  <a href="${root }/daou/recruit">채용</a>
 	</div>
 	<%-- <ul class="menu">
 		<li>

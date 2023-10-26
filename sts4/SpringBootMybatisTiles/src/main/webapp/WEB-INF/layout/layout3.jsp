@@ -44,7 +44,7 @@ div.menu {
   font-family: 'Gamja Flower';
   font-size: 1.1em;
   overflow: hidden;
-  background-color: #333;
+  /* background-color: #333; */
   padding-left: 5%;
 }
 
@@ -52,18 +52,19 @@ div.menu {
 div.menu a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  /* color: #f2f2f2; */
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   margin-left: 10px;
-  width: 10%;
+  width: 15%;
 }
 
 /* Change color on hover */
 div.menu a:hover {
   background-color: #ddd;
-  color: black;
+  color: royalblue;
 }
 
 div.main img{
@@ -79,15 +80,15 @@ div.row{
 	font-size: 1.1em;
 }
 
-div.leftcolumn {   
+/* div.leftcolumn {   
   float: left;
   width: 20%;
-}
+} */
 
 /* Right column */
 div.rightcolumn {
   float: left;
-  width: 80%;
+  width: 100%;
   background-color: #f1f1f1;
   padding-left: 20px;
 }
@@ -174,17 +175,17 @@ div.footer {
 <body>
 <div class="layout">
 	<div class="title">
-		<tiles:insertAttribute name="title"/>
+		<tiles:insertAttribute name="title3"/>
 	</div>
 	<div class="menu">
-		<tiles:insertAttribute name="menu"/>
+		<tiles:insertAttribute name="menu3"/>
 	</div>
 	<div class="row">
-		<div class="leftcolumn">
+		<%-- <div class="leftcolumn">
 			<div class="card">
 				<tiles:insertAttribute name="info"/>
 			</div>
-		</div>
+		</div> --%>
 		<div class="rightcolumn">
 			<div class="card">
 				<tiles:insertAttribute name="main"/>
@@ -192,7 +193,7 @@ div.footer {
 		</div>
 	</div>
 	<div class="footer">
-		<tiles:insertAttribute name="footer"/>
+		<tiles:insertAttribute name="footer3"/>
 	</div>
 </div>
 </body>

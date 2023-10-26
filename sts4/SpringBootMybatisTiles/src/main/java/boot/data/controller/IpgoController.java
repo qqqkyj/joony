@@ -49,9 +49,9 @@ public class IpgoController {
 		return model;
 	}
 	
-	/*@GetMapping("/ipgo/ipgoform")
+	@GetMapping("/ipgo/ipgoform")
 	public String ipgoform() {
-		return "ipgoform";
+		return "/ipgo/ipgoform";
 	}
 	
 	@PostMapping("/ipgo/insert")
@@ -98,6 +98,6 @@ public class IpgoController {
 		
 		
 		return "redirect:list";
-	}*/
+	}
 
 }
