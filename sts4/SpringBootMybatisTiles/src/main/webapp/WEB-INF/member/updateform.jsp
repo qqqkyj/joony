@@ -24,6 +24,7 @@
 <script type="text/javascript">
 	$(function() {
 		
+		
 		$("#btnphoto").click(function() {
 			$("#myphoto").trigger("click");
 		});
@@ -43,7 +44,7 @@
         });
 		 
 		 //아이디 입력시 아이디 체크
-		 $("#btnidcheck").click(function(){
+		 /* $("#btnidcheck").click(function(){
 			
 			 var id = $("#id").val();
 			 
@@ -66,7 +67,7 @@
 				}
 			 }); 
 			 
-		 });
+		 }); */
 		 
 		 $("#pass").keyup(function(){
 			 if($(this).val().length>=4){
@@ -98,16 +99,16 @@
 	function check(){
 		
 		//사진
-		if($("#myphoto").val()==""){
+		/* if($("#myphoto").val()==""){
 			alert("사진을 넣어주세요.");
 			return false;
-		}
+		} 
 		
 		//id
 		if($("span.idsuccess").text()!="success"){
 			alert("아이디 중복체크를 해주세요.");
 			return false;
-		}
+		}*/
 		
 		//pass
 		if($("span.passsuccess").text()!="ok"){
@@ -120,10 +121,11 @@
 </head>
 <body>
 	<div style="margin: 100px 100px;">
-		<form action="insert" method="post" enctype="multipart/form-data" onsubmit="return check()">
+		<form action="update" method="post" enctype="multipart/form-data" onsubmit="return check()">
+		<input type="hidden" name="num" value="${dto.num }">
 			<table class="table table-bordered" style="width: 600px;">
 				<caption align="top">
-					<b>회원가입</b>
+					<b>회원수정</b>
 				</caption>
 					<tr>
 					<td rowspan="6" align="center">
@@ -134,14 +136,14 @@
 							<button type="button" id="btnphoto" class="btn btn-secondary">사진선택</button>
 						</div>
 						<br> 
-						<img id="showimg">
+						<img id="showimg" src="../membersave/${dto.photo }">
 					</td>
 
 					<td>
 						<div class="d-inline-flex">
-							<input type="text" placeholder="아이디입력" name="id" id="id" class="form-control" style="width: 120px;">
-							<button type="button" class="btn btn-danger" id="btnidcheck">중복체크</button>&nbsp;&nbsp;
-							<span class="idsuccess" style="width: 60px;"></span>
+							<input type="text" value="${dto.id }" readonly="readonly" name="id" id="id" class="form-control" style="width: 120px;">
+							<!-- <button type="button" class="btn btn-danger" id="btnidcheck">중복체크</button>&nbsp;&nbsp;
+							<span class="idsuccess" style="width: 60px;"></span> -->
 						</div>
 						</td>
 					</tr>
@@ -149,7 +151,7 @@
 					<tr>
 						<td>
 						<div class="d-inline-flex">
-							<input type="password" style="width: 120px;" name="pass" class="form-control" id="pass" placeholder="숫자4자리"
+							<input type="password" style="width: 120px;" name="pass" class="form-control" id="pass" value="${dto.pass }"
 							maxlength="4" required="required">
 							<input type="password" style="width: 120px;" class="form-control" id="pass2" placeholder="숫자4자리"
 							maxlength="4" required="required">
@@ -160,32 +162,32 @@
 					
 					<tr>
 						<td>
-							<input type="text" name="name" class="form-control" placeholder="이름" required="required"
+							<input type="text" name="name" class="form-control" placeholder="이름" required="required" value="${dto.name }"
 							style="width: 150px;">
 						</td>
 					</tr>
 					
 					<tr>
 						<td>
-							<input type="text" name="email" class="form-control" placeholder="이메일" required="required">
+							<input type="text" name="email" class="form-control" placeholder="이메일" required="required" value="${dto.email }" }>
 						</td>
 					</tr>
 					
 					<tr>
 						<td colspan="2">
-							<input type="text" name="addr" class="form-control" placeholder="주소" required="required">
+							<input type="text" name="addr" class="form-control" placeholder="주소" required="required" value="${dto.addr }">
 						</td>
 					</tr>
 					
 					<tr>
 						<td colspan="2">
-							<input type="text" name="hp" class="form-control" placeholder="핸드폰번호" required="required">
+							<input type="text" name="hp" class="form-control" placeholder="핸드폰번호" required="required" value="${dto.hp }">
 						</td>
 					</tr>
 					
 					<tr>
 						<td colspan="2" align="center">
-							<input type="submit" value="회원가입" class="btn btn-info" style="width: 120px;">
+							<input type="submit" value="회원수정" class="btn btn-info" style="width: 120px;">
 							<input type="button" value="로그인" class="btn btn-info" style="width: 120px;" onclick="location.href='/login/main'">
 						</td>
 					</tr>

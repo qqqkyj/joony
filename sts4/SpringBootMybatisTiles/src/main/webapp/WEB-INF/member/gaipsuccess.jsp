@@ -12,25 +12,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- 로그인폼 만들어오기 -->
-<div>
-   <table>
-      <tr>
-         <td width="300px">
-            <input type="text" placeholder="아이디" class="form-control" required="required">
-         </td>
-      </tr>
-      <tr>
-         <td  width="300px">
-            <input type="text" placeholder="비밀번호" class="form-control" required="required">
-         </td>
-      </tr>
-      <tr>
-         <td>
-            <button class="btn btn-outline-info" type="button" style="width: 300px;">로그인</button>
-         </td>
-      </tr>
-   </table>
-</div>
+
 </body>
 </html>

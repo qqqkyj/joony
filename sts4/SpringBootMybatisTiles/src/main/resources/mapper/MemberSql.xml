@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper 경로로 설정해줘야 됨 -->
+<mapper namespace="boot.data.mapper.MemberMapperInter">
+	<insert id="insertMember" parameterType="member">
+		insert into bootmember values(null,#{name},#{id},#{pass},#{photo},#{hp},#{addr},#{email},now())
+	</insert>
+	<select id="getAllMembers" resultType="member">
+		select * from bootmember order by id
+	</select>
+	<select id="getSerchId" parameterType="String" resultType="int">
+		select count(*) from bootmember where id=#{id}
+	</select>
+	<select id="totalCount" resultType="int">
+		select count(*) from bootmember
+	</select>
+	<delete id="deleteMember" parameterType="String">
+		delete from bootmember where num=#{num}
+	</delete>
+	<select id="getData" parameterType="String" resultType="member">
+		select * from bootmember where num=#{num}
+	</select>
+	<update id="updateMember" parameterType="member">
+		update bootmember set  name=#{name}, pass=#{pass}, hp=#{hp}, addr=#{addr}, email=#{email}
+		<if test="photo!=null">
+			,photo=#{photo}
+		</if>
+		where num=#{num}
+	</update>
+</mapper>
