@@ -33,7 +33,7 @@ public class MemberController {
 	MemberService service;
 	
 	@GetMapping("/member/myinfo")
-	public String myinfo(Model model) {
+	public String myinfo(HttpSession session ,Model model) {
 		
 		List<MemberDto> list = service.getAllMembers();
 		
@@ -106,18 +106,12 @@ public class MemberController {
 		if(service.checkAdmin(dto.getId())) {
 			return "redirect:list";
 		}else {
-			return "/member/gaipsuccess";
+			return "/member/myinfo";
 		}
 		
 		
 	}
 	
-	//deleteMember
-	@GetMapping("/member/delete")
-	public String deleteMember(@Parameter String num) {
-		service.deleteMember(num);
-		return "redirect:myinfo";
-	}
 	
 	//updateform
 	@GetMapping("/member/updateform")
@@ -163,6 +157,45 @@ public class MemberController {
 		service.updateMember(dto);
 		
 		return "redirect:myinfo";
+	}
+	
+	//삭제는 ajax
+	@GetMapping("/member/delete")
+	@ResponseBody
+	public void deleteMember(@RequestParam String num) {
+		service.deleteMember(num);
+	}
+	
+	//사진만 수정
+	@PostMapping("/member/updatephoto")
+	@ResponseBody
+	public void photoupload(@RequestParam String num,
+			MultipartFile photo,
+			HttpSession session) {
+		//업로드할 경로
+		String path= session.getServletContext().getRealPath("/membersave");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		
+		String fileName = sdf.format(new Date())+photo.getOriginalFilename();
+		
+		//업로드
+		try {
+			photo.transferTo(new File(path+"/"+fileName));
+			//db사진수정
+			service.updatePhoto(num, fileName);
+			session.setAttribute("loginphoto", service.getData(num).getPhoto());
+			
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	
 	}
 
 

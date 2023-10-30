@@ -11,16 +11,12 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
 </head>
-<body>
 <c:set var="root" value="<%=request.getContextPath() %>"/>
-<c:if test="${sessionScope==null }">
-	<img alt="" src="${root }/image/짱구.PNG" style="width: 100px;">
-	각 종 정보 나타나게 할 것!!
-</c:if>
-<c:if test="${sessionScope!=null }">
-	<img alt="" src="${root }/membersave/${sessionScope.loginphoto}" style="width: 100px;">
-	각 종 정보 나타나게 할 것!!
-	
-</c:if>
+	<!-- 로그아웃폼 만들어오기 -->
+<img alt="" src="${root}/membersave/맹구.png" width="200" align="center" hspace="20">
+<br><br>
+<b>${name }님</b><br><br>
+<button type="button" class="btn btn-danger" style="width: 100px;"
+onclick="location.href='logoutprocess'">로그아웃</button>
 </body>
 </html>

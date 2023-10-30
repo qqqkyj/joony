@@ -14,23 +14,26 @@
 <body>
 	<!-- 로그인폼 만들어오기 -->
 <div>
+<form action="loginprocess" method="post">
    <table>
       <tr>
          <td width="300px">
-            <input type="text" placeholder="아이디" class="form-control" required="required">
+            <input type="text" placeholder="아이디" name="id" class="form-control" required="required" value="${sessionScope.saveok==null?"":sessionScope.myid }">
          </td>
       </tr>
       <tr>
          <td  width="300px">
-            <input type="text" placeholder="비밀번호" class="form-control" required="required">
+            <input type="password" placeholder="비밀번호"  name="pass" class="form-control" required="required">
          </td>
       </tr>
       <tr>
          <td>
-            <button class="btn btn-outline-info" type="button" style="width: 300px;">로그인</button>
+         	<input type="checkbox" name="cbsave" ${sessionScope.saveok==null?"":"checked" }>아이디저장
+            <button class="btn btn-outline-info" type="submit" style="width: 300px;">로그인</button>
          </td>
       </tr>
    </table>
+   </form>
 </div>
 </body>
 </html>

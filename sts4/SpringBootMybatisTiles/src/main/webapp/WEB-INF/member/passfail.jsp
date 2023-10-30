@@ -12,15 +12,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:set var="root" value="<%=request.getContextPath() %>"/>
-<c:if test="${sessionScope==null }">
-	<img alt="" src="${root }/image/짱구.PNG" style="width: 100px;">
-	각 종 정보 나타나게 할 것!!
-</c:if>
-<c:if test="${sessionScope!=null }">
-	<img alt="" src="${root }/membersave/${sessionScope.loginphoto}" style="width: 100px;">
-	각 종 정보 나타나게 할 것!!
-	
-</c:if>
+<script type="text/javascript">
+	alert("로그인 실패!!");
+	history.back();
+</script>
 </body>
 </html>

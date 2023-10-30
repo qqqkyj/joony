@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -17,5 +18,15 @@
 <b><!-- SpringBoot+Mybatis+Titles -->
 	짱구는 못말려 상점
 </b></a>
+<c:if test="${sessionScope.loginok!=null }">
+	<b style="font-size: 1.2em; float:right; ">${sessionScope.myid }님</b>
+	<button type="button" onclick="location.href='${root}/login/logoutprocess'" class="btn btn-danger"
+style="float: right; margin-right: 100px;">Logout</button>
+</c:if>
+<c:if test="${sessionScope.loginok==null }">
+	<button type="button" onclick="location.href='${root}/login/main'" class="btn btn-success"
+style="float: right; margin-right: 100px;">Login</button>
+</c:if>
+
 </body>
 </html>

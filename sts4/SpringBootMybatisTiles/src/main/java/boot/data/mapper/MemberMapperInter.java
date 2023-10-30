@@ -1,6 +1,7 @@
 package boot.data.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,5 +16,8 @@ public interface MemberMapperInter {
 	public MemberDto getData(String num);
 	public void deleteMember(String num);
 	public void updateMember(MemberDto dto);
-
+	public String getName(String id);
+	public int loginPassCheck(Map<String, String> map);
+	public MemberDto getDataById(String id);
+	public void updatePhoto(Map<String, String> map);
 }
