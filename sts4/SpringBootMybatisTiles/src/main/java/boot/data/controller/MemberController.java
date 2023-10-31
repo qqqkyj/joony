@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.tiles.autotag.core.runtime.annotation.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,7 +118,7 @@ public class MemberController {
 	@GetMapping("/member/updateform")
 	public String updateform(@Parameter String num, Model model) {
 		
-		MemberDto dto = service.getData(num);
+		MemberDto dto = service.getDataByNum(num);
 		
 		model.addAttribute("dto", dto);
 		
@@ -162,7 +163,14 @@ public class MemberController {
 	//삭제는 ajax
 	@GetMapping("/member/delete")
 	@ResponseBody
-	public void deleteMember(@RequestParam String num) {
+	public void deleteMember(@RequestParam String num, HttpSession session) {
+		
+		//기존에 저장했던 사진파일 삭제 후 db에서 멤버삭제
+		String path = session.getServletContext().getRealPath("/membersave");
+		String photo = service.getDataByNum(num).getPhoto();
+		File file = new File(path+"\\"+photo);
+		file.delete();
+				
 		service.deleteMember(num);
 	}
 	
@@ -179,12 +187,16 @@ public class MemberController {
 		
 		String fileName = sdf.format(new Date())+photo.getOriginalFilename();
 		
+		String photo1 = service.getDataByNum(num).getPhoto();
+		File file = new File(path+"\\"+photo1);
+		file.delete();
+		
 		//업로드
 		try {
 			photo.transferTo(new File(path+"/"+fileName));
 			//db사진수정
 			service.updatePhoto(num, fileName);
-			session.setAttribute("loginphoto", service.getData(num).getPhoto());
+			session.setAttribute("loginphoto", service.getDataByNum(num).getPhoto());
 			
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
@@ -196,6 +208,25 @@ public class MemberController {
 		
 		
 	
+	}
+	
+	//나의 정보에서 삭제
+	@GetMapping("/member/deleteme")
+	@ResponseBody
+	public void deleteinfo(String num,HttpSession session) {
+		
+		//기존에 저장했던 사진파일 삭제 후 db에서 멤버삭제
+		String path = session.getServletContext().getRealPath("/membersave");
+		String photo = service.getDataByNum(num).getPhoto();
+		File file = new File(path+"\\"+photo);
+		file.delete();
+		
+		service.deleteMember(num);
+		
+		session.removeAttribute("loginok");
+		session.removeAttribute("myid");
+		session.removeAttribute("loginphoto");
+		session.removeAttribute("saveok");
 	}
 
 

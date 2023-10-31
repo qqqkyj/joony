@@ -49,9 +49,9 @@ public class MemberService implements MemberServiceInter {
 	}
 
 	@Override
-	public MemberDto getData(String num) {
+	public MemberDto getDataByNum(String num) {
 		// TODO Auto-generated method stub
-		return mapperInter.getData(num);
+		return mapperInter.getDataByNum(num);
 	}
 
 	@Override
