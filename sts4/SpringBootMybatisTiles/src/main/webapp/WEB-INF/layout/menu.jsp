@@ -41,10 +41,11 @@ ul.menu a{
 	  <a href="/">Home</a>
 	  <a href="${root }/ipgo/ipgoform">상품등록</a>
 	  <a href="${root }/ipgo/list">상품목록</a>>
-	  <a href="${root }/board/list">답변형게시판</a>
+	  <a href="${root }/reboard/list">답변형게시판</a>
 	  <a href="${root }/member/list">회원목록</a>
 	  <a href="${root }/member/myinfo">나의정보</a>
-	  <a href="${root }/login/main">로그인</a>
+	  <a href="${root }/memboard/list">회원게시판</a>
+	  <%-- <a href="${root }/login/main">로그인</a> --%>
 	  <a href="${root }/load/map">오시는 길</a>
 	  <a href="${root }/daou/intro">다우기술</a>
 	</div>
