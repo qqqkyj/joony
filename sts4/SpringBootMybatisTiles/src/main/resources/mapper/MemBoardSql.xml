@@ -22,4 +22,14 @@
 	<select id="getList" parameterType="HashMap" resultType="memboard">
 		select * from memboard order by num desc limit #{start},#{perpage}
 	</select>
+	<update id="updateMemBoard" parameterType="memboard">
+		update memboard set subject=#{subject}, content=${content}
+		<if test="uploadfile!='no'">
+			uploadfile=#{uploadfile}
+		</if>
+		where num=#{num}
+	</update>
+	<delete id="deleteBoard">
+	
+	</delete>
 </mapper>
