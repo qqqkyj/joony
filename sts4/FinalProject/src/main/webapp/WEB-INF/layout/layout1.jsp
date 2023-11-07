@@ -26,6 +26,20 @@
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
+<!-- <style type="text/css">
+	.menu{
+		background-color: blue;
+	}
+	.header{
+	background-color: yellow;
+	}
+	.main{
+	background-color: red;
+	}
+	.footer{
+	background-color: gray;
+	}
+</style> -->
 </head>
 <body>
 

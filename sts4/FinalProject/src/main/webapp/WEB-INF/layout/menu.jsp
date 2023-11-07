@@ -14,13 +14,19 @@
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+nav{
+	font-size: 1.5em;
+}
+</style>
 </head>
 <body>
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-light">
-		<div class="container px-4 px-lg-5">
-			<a class="navbar-brand" href="#!"><img alt=""
-				src="../img/icon.PNG" width="120px;"> </a>
+		<div class="container px-4 px-lg-3">
+			<a class="navbar-brand" href="#!">
+				<img alt="" src="../img/icon.PNG" style="width: 20vh;"> 
+			</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -29,12 +35,10 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#!">Home</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" id="navbarDropdown" href="#"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Fleamarket</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="#!">All Products</a></li>
 							<li><hr class="dropdown-divider" /></li>

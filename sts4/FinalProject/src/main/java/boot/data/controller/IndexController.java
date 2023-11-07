@@ -8,7 +8,7 @@ public class IndexController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "/layout/layout1";
+		return "/layout/main";
 	}
 
 }
