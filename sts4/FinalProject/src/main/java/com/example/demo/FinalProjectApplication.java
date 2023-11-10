@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan("boot.data.*")
-@ComponentScan("boot.last.final")
+@ComponentScan("com.example.demo")
 @MapperScan("boot.data.mapper")
 public class FinalProjectApplication {
 

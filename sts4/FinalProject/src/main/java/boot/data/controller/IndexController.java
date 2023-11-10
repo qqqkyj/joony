@@ -10,5 +10,15 @@ public class IndexController {
 	public String index() {
 		return "/layout/main";
 	}
+	
+	@GetMapping("/index2")
+	public String index2() {
+		return "/category/layout/main";
+	}
+	
+	@GetMapping("/index3")
+	public String index3() {
+		return "/detail/layout/main";
+	}
 
 }
