@@ -53,7 +53,7 @@ nav{
 					<input type="search" class="form-control rounded"
 						placeholder="Search" aria-label="Search"
 						aria-describedby="search-addon" />
-					<button type="button" class="btn btn-dark">search</button>
+					<button type="button" class="btn btn-dark" onclick="location.href='/loginform'">search</button>
 				</div>
 
 				<!-- 장바구니 -->

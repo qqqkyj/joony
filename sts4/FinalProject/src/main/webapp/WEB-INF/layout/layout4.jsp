@@ -56,14 +56,8 @@
 		<div class="menu">
 			<tiles:insertAttribute name="menu" />
 		</div>
-		<div class="header">
-			<tiles:insertAttribute name="header" />
-		</div>
-		<div class="detail">
-			<tiles:insertAttribute name="detail" />
-		</div>
-		<div class="main" >
-			<tiles:insertAttribute name="main" />
+		<div class="login">
+			<tiles:insertAttribute name="login" />
 		</div>
 		<div class="footer">
 			<tiles:insertAttribute name="footer" />

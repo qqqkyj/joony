@@ -20,5 +20,10 @@ public class IndexController {
 	public String index3() {
 		return "/detail/layout/main";
 	}
-
+	
+	@GetMapping("/loginform")
+	public String loginform() {
+		return "/index/login/main";
+	}
+	
 }
