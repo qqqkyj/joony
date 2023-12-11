@@ -1,0 +1,11 @@
+package day0703;
+
+public class ArrayList_13 {
+
+	public static void main(String[] args) {
+		//List의 메서드 확인, 연습
+		
+		
+	}
+
+}

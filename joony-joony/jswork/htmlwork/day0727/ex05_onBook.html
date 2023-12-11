@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        button{
+            width: 120px;
+            height: 40px;
+            border-radius: 20px;
+            font-size: '1.3em';
+            font-family: 'Gamja Flower' ;
+            cursor: pointer;
+        }
+
+        button.a{background-color: blueviolet; color: white;}
+        button.b{background-color: green; color: lightgrey;}
+        button.c{background-color: blanchedalmond; color: black;}
+
+        div{
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            font-size: 20pt;
+            font-family: 'Gamja Flower';
+        }
+
+        #one{
+            left: 100px;
+            top: 100px;
+        }
+
+        #two{
+            left: 300px;
+            top: 100px;
+        }
+
+        #three{
+            left: 700px;
+            top: 100px;
+        }
+
+        #four{
+            left: 1100px;
+            top: 100px;
+        }
+
+        #result{
+            left: 150px;
+            font-size: 2em;
+            text-align: center;
+            width: 800px;
+            top: 500px;
+            border: 3px solid green;
+            border-radius: 30px;
+            padding-top: 20px;
+        }
+
+        #three h3:hover{
+            cursor: pointer;
+            background-color: orange;
+        }
+
+        #inwon{
+            margin-left: 10px;
+            margin-top: 10px;
+            font-family: 'Gamja Flower';
+        }
+
+    </style>
+    <script>
+        $(function(){
+
+            var theater="",movie="",inwon="",time="";
+
+            //#one에 버튼 추가
+            var b="<button type='button' id='btn1' class='a'>영화 예매</button>"
+            $("#one").append(b);
+
+            //버튼1 이벤트
+            $("#btn1").click(function(){
+                var b2="<button type='button' id='btn2' class='b'>극장선택</button>"
+                b2+="&nbsp;<button type='button' id='btn3' class='c'>영화선택</button>"
+                $("#two").html(b2);
+            })
+
+            //버튼2는 나중에 동적생성이므로 on 이벤트
+            $(document).on("click","#btn2",function(){
+                var s="<h3 class='theater'>CGV강남점</h3>";
+                s+="<h3 class='theater'>MEGABOX 청담</h3>";
+                s+="<h3 class='theater'>MEGABOX 코엑스</h3>";
+                s+="<h3 class='theater'>CGV 왕십리</h3>";
+
+                $("#three").html(s);
+
+            })
+
+            //버튼3
+            $(document).on("click","#btn3",function(){
+                var s="<h3 class='movie'>밀수</h3>";
+                s+="<h3 class='movie'>미션 임파서블</h3>";
+                s+="<h3 class='movie'>엘리멘탈</h3>";
+                s+="<h3 class='movie'>명탐정코난:흑철의 어영</h3>";
+                s+="<h3 class='movie'>바비</h3>";
+
+                $("#three").html(s);
+            })
+
+            //버튼4
+
+            //영화관, 영화제목 클릭시 이벤트
+            $(document).on("click","#three h3",function(){
+                //클릭한 h3태그에서 class를 얻는다
+                var s="";
+
+                var select = $(this).attr("class");
+                
+                if(select=="theater"){
+                    theater="극장명: "+$(this).text()+"<br>";
+                }
+                else{
+                    movie="영화명: "+$(this).text()+"<br>";
+
+                    //인원수
+                    var tag="";
+
+                    //시간배열_라디오박스
+                    var times=["09:00","13:30","15:20","18:50","20:30"];
+
+                    $.each(times,function(i,elt){
+                        tag+="<input type='radio' name='time' value='"+times[i]+"'>"+times[i]+"<br>";
+                    })
+
+                    tag+="<input type='number' min='1' max='5' value='0' id='inwon'>";
+
+                    $("#four").html(tag)
+
+                }
+
+                s+=theater+movie;
+                $("#result").html(s);
+
+                /*$("input[name='time']").click(function(){
+                    time = "예매시간: "+$(this).val()+"<br>";
+                    $("#result").html(s+time);
+
+                    $("#inwon").change(function(){
+                    inwon="인원수: "+$(this).val()+"명<br>";
+                    $("#result").html(s+time+inwon);
+                })
+                })*/
+
+                      
+            })
+
+            $(document).on("click","input[name='time']",function(){
+                time = "예매시간: "+$(this).val()+"<br>";
+                $("#result").html(theater+movie+time);
+
+                    $(document).on("change","#inwon",function(){
+                        inwon="인원수: "+$(this).val()+"명<br>";
+                        $("#result").html(theater+movie+time+inwon);
+                })
+            
+            })
+       
+
+        })
+    </script>
+</head>
+<body>
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <div id="four"></div>
+    <div id="result"></div>
+
+</body>
+</html>

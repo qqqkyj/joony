@@ -1,0 +1,9 @@
+package day0703;
+
+public class FileException_04 {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

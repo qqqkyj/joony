@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <title>Document</title>
+    <style>
+        .small{
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+        }
+        .large{
+            width: 600px;
+            height: 600px;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px gray;
+        }
+        div{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="show"></div>
+    <div>
+        <img src="" class="large">
+    </div>
+
+    <script>
+        var s="";
+
+        var imgarr=[{src:"../연예인사진/1.jpg"},
+                    {src:"../연예인사진/2.jpg"},
+                    {src:"../연예인사진/3.jpg"},
+                    {src:"../연예인사진/4.jpg"},
+                    {src:"../연예인사진/5.jpg"}];
+        
+        $.each(imgarr,function(i,elt){
+            s+='<img src="'+elt.src+'" class="small">';
+        })
+
+        $("#show").html(s);
+
+        $(".small").hover(function(){
+            $(this).css("transform","rotate(30deg)");
+        },function(){
+            $(this).css("transform","rotate(0deg)");
+        })
+
+        $(".small").click(function(){
+            var photo = $(this).attr("src");
+            $(".large").attr("src",photo);
+        })
+       
+
+    </script>
+</body>
+</html>

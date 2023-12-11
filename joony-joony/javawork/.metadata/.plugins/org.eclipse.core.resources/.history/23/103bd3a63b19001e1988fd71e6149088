@@ -1,0 +1,15 @@
+package day0703;
+
+import java.io.InputStream;
+
+public class FileException_03 {
+
+	public static void main(String[] args) {
+		InputStream is = System.in;
+		int a = 0;
+		System.out.println("한글자 입력:");
+		a=is.read();//스캐너 처럼 is를 통해 글자를 읽어옴
+		
+	}
+
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Gamja+Flower&family=Nanum+Pen+Script&family=Noto+Serif+KR:wght@200&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<title>Insert title here</title>
+<style>
+	body{
+		background-color: pink;
+	}
+	#bg{
+		font-family: Nanum Pen Script;
+		text-align: center;
+		margin-top: 80px;
+		font-size: 3em;
+	}
+</style>
+</head>
+<body>
+	<div id="bg">순영form</div></span>
+<div align="center" style="margin-top: 80px;">
+<form action="selfStudyAction.jsp" method="post">
+	<table class="table table-bordered" style="width: 500px;">
+		<tr>
+			<th colspan="2" style="text-align: center;">상품검색</th>
+		</tr>
+		<tr>
+			<th>상품명:</th>
+			<td>
+				<input type="text" name="irum" placeholder="상품명 기입">
+			</td>
+		</tr>
+		<tr>
+			<th>사이즈 선택:</th>
+			<td>
+				<input type="radio" name="size" value="XS">XS&nbsp;
+				<input type="radio" name="size" value="S">S&nbsp;
+				<input type="radio" name="size" value="M">M&nbsp;
+				<input type="radio" name="size" value="L">L&nbsp;
+				<input type="radio" name="size" value="XL">XL&nbsp;
+				<input type="radio" name="size" value="2XL">2XL&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<th>색상 선택:</th>
+			<td>
+				<input type="checkbox" name="color" value="red">red&nbsp;
+				<input type="checkbox" name="color" value="lightpink">lightpink&nbsp;
+				<input type="checkbox" name="color" value="black">black&nbsp;
+				<input type="checkbox" name="color" value="aqua">aqua&nbsp;
+				<input type="checkbox" name="color" value="gray">gray&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<th>추가 상품:</th>
+			<td>
+			<select size="2" multiple="multiple" name="plus">
+				<option value="마스크">마스크</option>
+				<option value="헤어밴드">헤어밴드</option>
+				<option value="응원봉">응원봉</option>
+				<option value="마스크 목걸이">마스크 목걸이</option>
+				<option value="방수팩">방수팩</option>
+			</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" class="btn btn-outline-info" width="100px">
+			</td>
+		</tr>
+	</table>
+</form>
+</div>
+</body>
+</html>

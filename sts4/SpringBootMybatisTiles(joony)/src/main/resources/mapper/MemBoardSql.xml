@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- mapper 경로로 설정해줘야 됨 -->
+<mapper namespace="boot.data.mapper.MemBoardMapperInter">
+	<select id="getTotalCount" resultType="int">
+		select count(*) from memboard
+	</select>
+	<update id="updateReadCount" parameterType="String">
+		update memboard set readCount = readCount+1 where num=#{num}
+	</update>
+	<insert id="insertBoard" parameterType="memboard">
+		insert into memboard values (null,#{name},#{myid},#{subject},#{content},#{uploadfile},0,now());
+	</insert>
+	<select id="getData" parameterType="String" resultType="memboard">
+		select * from memboard where num=#{num}
+	</select>
+	<select id="getMaxNum" resultType="int">
+		select ifnull(max(num),0) from memboard
+	</select>
+	<select id="getList" parameterType="HashMap" resultType="memboard">
+		select * from memboard order by num desc limit #{start},#{perpage}
+	</select>
+	<update id="updateMemBoard" parameterType="memboard">
+		update memboard set subject=#{subject}, content=${content}
+		<if test="uploadfile!='no'">
+			uploadfile=#{uploadfile}
+		</if>
+		where num=#{num}
+	</update>
+	<delete id="deleteBoard">
+	
+	</delete>
+</mapper>

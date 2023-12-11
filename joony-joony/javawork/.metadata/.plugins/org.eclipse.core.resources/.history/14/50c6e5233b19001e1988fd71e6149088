@@ -1,0 +1,14 @@
+package day0703;
+
+import java.io.InputStream;
+
+public class FileException_03 {
+
+	public static void main(String[] args) {
+		InputStream is = System.in;
+		int a = 0;
+		System.out.println("한글자");
+		
+	}
+
+}

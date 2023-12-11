@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>buttonEvent</title>
+    <script>
+        function ok(){
+            alert("예");
+        }
+
+        window.onload=function(){//browser에 html이 다 나타나면 event를 진행하겠다
+            var no=document.getElementById('btnno');
+            no.onclick=function(){
+                alert("아니오");
+            }
+        }
+        //confirm창
+        function okConfirm(){
+            var ans=confirm('아침밥 드셨나요?');
+            if(ans){//true=1, false=0
+                alert("네");
+            }
+            else{
+                alert("아니오");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>아침밥 드셨나요?</h1>
+    <form action="#">
+        <fieldset>
+            <legend>아침식사여부</legend>
+            <input type="button" value="예" onclick="ok()">
+            <input type="button" value="아니오" id="btnno">
+        </fieldset>
+    </form>
+
+    <div>
+        <input type="button" value="여기를 눌러보세요" onclick="okConfirm()">
+        <!--confirm창에서 아침드셨나요? 네 아니면 아니오 나오도록 해보세요-->
+        
+    </div>
+
+</body>
+</html>

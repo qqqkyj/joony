@@ -1,0 +1,12 @@
+package day0703;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class SetInt_11 {
+		
+	public static void main(String[] args) {
+		HashSet<Integer> set1 = new HashSet<Integer>();
+	}
+
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 50px;
+            margin: 3px;
+            text-align: center;
+            line-height: 50px;
+            background: purple;
+            color: white;
+        }
+
+        #pink{
+            background: pink;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="pink"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box green"></div>
+
+    <script>
+        //getElementByTagName
+        var divAll=document.getElementsByTagName("div");
+
+        //전체 div에 style border를 5px solid gray
+        for(var i=0; i<divAll.length; i++){
+            divAll[i].style.border='5px solid gray';
+        }
+
+        //className, class이름이 box인 곳에 innerHTML
+        var boxAll = document.getElementsByClassName('box');
+        for(var i=0; i<boxAll.length; i++){
+            boxAll[i].innerHTML='item';//innerText
+        }
+
+        //id, id가 pink인
+        var pinkbox = document.getElementById('pink');
+        pinkbox.innerHTML='pink box';
+
+        //querySelector, 가장 첫번째 div만 이벤트 적용
+        var qs = document.querySelector('div');
+        qs.style.backgroundColor='cyan';
+
+        //querySelectorAll
+        var qsAll = document.querySelectorAll('div');
+        for(var i=0; i<qsAll.length; i++){
+            qsAll[i].innerText="hello!!";
+        }
+
+    </script>
+</body>
+</html>

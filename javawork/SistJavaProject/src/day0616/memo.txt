@@ -1,0 +1,15 @@
+오늘 github저장소 만들고 gitbash테스트 하는 중
+your repository->new->public/private선택->Add a Readme file(체크)->create repository
+->code->주소복사
+
+파일에서 gitbash열기
+git config --global user.name "ooo"
+git config --global user.email "github_emailAddress"
+git init
+git remote add origin 복사한 주소(https://github.com/qqqkyj/joony.git)
+git commit -m "first"
+------------------------------------------------>여기까지 처음할때
+git remote set-url origin 복사한 주소(https://github.com/qqqkyj/joony.git)
+git add origin 복사한 주소(https://github.com/qqqkyj/joony.git)
+git commit -m -first (메시지 보내기)
+git push origin master

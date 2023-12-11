@@ -1,0 +1,19 @@
+package day0703;
+
+import java.io.BufferedReader;
+
+public class FileException_04 {
+	
+	public static void read() {
+		String fileName = "C:\\sis0615\\File\\monday.txt";
+		
+		BufferedReader in = new BufferedReader(in);
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		
+	}
+
+}

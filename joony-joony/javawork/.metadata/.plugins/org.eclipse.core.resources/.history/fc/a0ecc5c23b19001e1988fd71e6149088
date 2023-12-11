@@ -1,0 +1,24 @@
+package day0703;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+public class FileException_03 {
+
+	public static void main(String[] args) {
+		InputStream is = System.in;
+		int a = 0;
+		System.out.println("한글자 입력:");
+		
+		try {
+			a=is.read();//스캐너 처럼 is를 통해 글자를 읽어옴
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("오류\n"+e.getMessage());
+		}
+		
+		System.out.println("***3초 뒤 출력***");
+		
+	}
+
+}

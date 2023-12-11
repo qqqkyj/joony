@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--외부 css-->
+    <link rel="stylesheet" href="../css/buttonStyle.css">
+    <style>
+        #out{
+            position: absolute;
+            left: 20px;
+            top: 100px;
+            background-color: antiquewhite;
+            padding: 10px;
+            width: 300px;
+            height: 150px;
+            border: 1px solid gray;
+        }
+    </style>
+    <script>
+        function test1(num){
+            alert(num+1000);
+        }
+
+        function test2(str){
+            alert("문자열 ["+str+']을 \n 받았어요!!');
+        }
+
+        //test3 데이터를 추가할까요? 확인 추가했어요 취소 취소됐어요를 out에 출력
+        function test3(){
+            var ans = confirm("데이터를 추가할까요?");
+            var result=document.getElementById("out");
+            if(ans){
+                result.innerHTML="추가했어요";//id="out"이 유일값이기에 out.innerHTML도 가능
+            }
+            else{
+                result.innerHTML="취소됐어요";
+            }
+        }
+        //당신이 사는 지역은? 서울... 내가 사는 지역은 서울입니다 out에 출력!!!
+        window.onload=function(){
+            var b = document.getElementById("btn4");//btn4를 찾고
+            b.onclick=function(){//onclick 이벤트
+                var ans = prompt("당신이 사는 지역은?","지역 입력");
+            if(ans){
+                document.getElementById("out").innerHTML="내가 사는 지역은 "+ans.fontcolor('magenta')+"입니다.";
+            }
+            else{
+                alert('취소되었습니다.');
+            }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="alert" class="btn btn-green" onclick="test1(1234)"></input>
+    <input type="button" value="alert" class="btn btn-pink" onclick="test2('hello')"></input>
+    <input type="button" value="confirm" class="btn btn-black" onclick="test3()"></input>
+    <input type="button" value="prompt" class="btn btn-orange" id="btn4"></input>
+
+    <div id="out"></div><!--영역형태로 임의의 블럭을 만들어 놓음-->
+</body>
+</html>

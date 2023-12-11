@@ -1,0 +1,39 @@
+package day0703;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.attribute.AclEntry;
+import java.util.StringTokenizer;
+
+public class FileToken_08 {
+	
+	public static void movieRead() {
+		String fileName="C:\\sis0615\\File\\movie.txt";
+		FileReader fr=null;
+		BufferedReader br=null;
+		
+		try {
+			fr=new FileReader(fileName);
+			br = new BufferedReader(fr);
+			
+			System.out.println("****과일목록****");
+			System.out.println("제목\t이름\t나이");
+			System.out.println("-------------------------------");
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	public static void main(String[] args) {
+
+		movieRead();
+		System.out.println("****File close!!****");
+	}
+
+}

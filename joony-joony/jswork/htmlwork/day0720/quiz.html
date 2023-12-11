@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/buttonStyle.css">
+    <title>Document</title>
+    <style>
+        #out,#result{
+            width: 400px;
+            height: 500px;
+            padding: 20px;
+            margin-top: 10px;
+            margin-left: 10px;
+            border: 1px solid gray;
+        }
+
+        img{
+            width: 400px;
+            height: 500px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var food1 = document.getElementById("food1");
+            food1.onclick=function(){
+                var ans = confirm("음식을 출력할까요?");
+                if(ans){
+                    document.getElementById("out").innerHTML='<img src="../Food/1.jpg" style="width: 400px; height: 500px;">';
+                }
+                else{
+                    alert("취소를 누르셨습니다.");
+                }
+            }
+
+            /*var food2 = document.getElementById("food2");
+            food2.onclick=function(){
+                var ans = confirm("음식을 출력할까요?");
+                if(ans){
+                    document.getElementById("out").innerHTML='<img src="../Food/2.jpg" style="width: 400px; height: 500px;">';
+                }
+                else{
+                    alert("취소를 누르셨습니다.");
+                }
+            }*/
+
+            var people = document.getElementById("entP");
+            people.onclick=function(){
+                document.getElementById("out").innerHTML='<img src="../연예인사진/10.jpg" style="width: 400px; height: 500px;">';
+            }
+
+        }
+
+        //사용자정의 함수, 반복적으로 사용해야하는 메소드가 있을 경우 따로 만들어서 window.onload에서 호출
+        function click2(){//id값과 사용자정의함수의 이름이 같을 때 먹히지 않음
+            var ans = confirm("음식을 출력할까요?");
+            if(ans){
+                document.getElementById("out").innerHTML='<img src="../Food/2.jpg" style="width: 400px; height: 500px;">';
+            }
+            else{
+                alert("취소를 누르셨습니다.");
+            }
+        }
+
+        function img(){
+            var imgArr = new Array();
+            imgArr.push('<img src="../연예인사진/1.jpg">');
+            imgArr.push('<img src="../연예인사진/2.jpg">');
+            imgArr.push('<img src="../연예인사진/3.jpg">');
+            imgArr.push('<img src="../연예인사진/4.jpg">');
+            imgArr.push('<img src="../연예인사진/5.jpg">');
+
+            var num = prompt("출력할 이미지의 index번호를 입력해 주세요.","index번호 입력");
+
+            if(num==null){
+                alert('번호를 입력하지 않았습니다.')
+            }
+
+            if(num<0||num>=imgArr.length){
+                alert('해당번호의 이미지는 존재하지 않습니다.');
+            }
+            else{
+                document.getElementById("result").innerHTML= imgArr[num];
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <!--버튼 2개에 하나는 food, 하나는 연예인이라고 쓰고 css는 우리가 만든 buttonstyle에서 적용
+        food버튼을 클릭하면 음식사진을 div에 출력하고 연예인을 클릭하면 연예인 한 명을 출력
+        (단, 2번 모두 음식을 출력할까요?라고 물어보고 예를 클릭시에만 이미지 출력)-->
+
+        <form name="frm" action="#">
+            <input type="button" id="food1" value="food" class="btn btn-orange">
+            <input type="button" id="food2" value="food" class="btn btn-green" onclick="click2()">
+            <input type="button" id="entP" value="연예인" class="btn btn-pink">
+        </form>
+
+        <div id="out"></div>
+
+        <!--문제2. 이미지출력이라는 버튼 생성, 클릭시 prompt로 "출력할 이미지의 index번호를 입력해 주세요.라고 출력"
+            0번을 입력하면 0번 이미지 출력(총 5개의 이미지를 imgArr이라는 이름으로 삽입, 배열형태)
+            단, 배열인덱스에 없는 값 입력시 div에 "해당번호는 없습니다. 라고 출력"-->
+
+        <form>
+            <input type="button" onclick="img()" value="이미지출력" class="btn btn-black" style="margin-top: 10px; margin-left: 10px;">
+        </form>
+
+        <div id="result"></div>
+
+
+
+</body>
+</html>

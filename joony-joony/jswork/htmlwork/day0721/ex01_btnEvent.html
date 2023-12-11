@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #photo{
+            position: absolute;
+            left: 500px;
+            top: 200px;
+            width: 400px;
+            height: 500px;
+            border: 10px groove gold;
+        }
+
+        #btnRandom{
+            margin-left: 400px;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <input type="image" src="../flower_ani/f1.png" id="btnRandom">
+    <b>이미지버튼을 누르면 이미지 변경</b>
+    <img src="" id="photo">
+
+    <script>
+        //배열에 여러개 이미지 넣는다
+        var imgArr=new Array();
+
+        imgArr.push("../연예인사진/10.jpg");
+        imgArr.push("../연예인사진/11.jpg");
+        imgArr.push("../연예인사진/12.jpg");
+        imgArr.push("../연예인사진/14.jpg");
+        imgArr.push("../만화이미지/01.png");
+        imgArr.push("../만화이미지/02.png");
+        imgArr.push("../만화이미지/03.png");
+        imgArr.push("../만화이미지/05.png");
+        imgArr.push("../Food/1.jpg");
+        imgArr.push("../Food/3.jpg");
+        
+        //초기이미지 얻어서 랜덤하게 초기이미지 넣기
+        var randomImg=parseInt(Math.random()*10);
+        photo.setAttribute("src", imgArr[randomImg]);
+
+         btnRandom.onclick=function(){
+
+                //0~9사이의 난수값을 얻는다
+                var randomImg=parseInt(Math.random()*10);
+
+                //photo에 경로값을 수정
+                photo.setAttribute("src", imgArr[randomImg]);
+
+        }
+    
+
+        //이벤트...이미지 버튼을 누르면 경로값을 수정
+
+    </script>
+</body>
+</html>

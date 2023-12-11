@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Open+Sans&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+</head>
+<body>
+<button type="button" id="btn1" class="btn btn-outline-info">xml읽기(myfood)</button>
+<button type="button" id="btn2" class="btn btn-outline-info">json읽기(myfood)</button>
+<div id="show">출력하는 곳</div>
+<script>
+	$("#btn1").click(function(){
+		$("#show").empty();
+		var s="";
+		$.ajax({
+			type:"get",
+			url:"FoodToXml.jsp",
+			dataType:"xml",
+			success:function(data){
+				$(data).find("myfood").each(function(i,ele){
+					
+					var e=$(ele);
+					s+="num: "+e.attr("num")+"<br>";
+					s+="foodname: "+e.find("foodname").text()+"<br>";
+					var photo = e.find("foodphoto").text();
+					s+="<img src='"+photo+"'>"+"<br>";
+					s+="price: "+e.find("price").text()+"<br>";
+					s+="cnt: "+e.find("cnt").text()+"<br>";
+					s+="-------------------------"+"<br>";
+					
+				})
+				$("#show").append(s);
+			}
+		})
+	})
+	
+	$("#btn2").click(function(){
+		$("#show").empty();
+		var s="";
+		$.ajax({
+			type:"get",
+			url:"ShopToJson.jsp",
+			dataType:"json",
+			success:function(data){
+				
+					s+="<table class='table table-bordered'>";
+					s+="<tr>";
+					s+="<th>번호</th><th>상품이름</th><th>색상</th><th>가격</th><th>이미지</th>"
+					s+="</tr>";
+					
+				$.each(data,function(i,ele){
+					s+="<td>"+ele.num+"</td>";
+					s+="<td>"+ele.sangpum+"</td>";
+						s+="<td>"+ele.color+"</td>";
+					s+="<td>"+ele.price+"</td>";
+					var photo=ele.imgname;
+					s+="<td>"+"<img src='"+photo+"'>"+"</td>";
+					s+="</tr>";
+				})
+				s+="</table>";
+				
+				$("#show").append(s);
+			}
+		})
+	})
+</script>
+
+</body>
+</html>

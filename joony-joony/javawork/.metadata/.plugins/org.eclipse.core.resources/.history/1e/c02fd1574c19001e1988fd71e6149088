@@ -1,0 +1,31 @@
+package day0703;
+
+import java.util.StringTokenizer;
+
+public class StringToken_07 {
+
+	public static void main(String[] args) {
+		//문자열을 특정문자로 분리하는 방법들
+		
+		String str="red,magenta,gray,pink,yellow";
+		
+		System.out.println("String객체의 split을 이용한 분리");
+		String[] arrColor = str.split(",");
+		System.out.println("총"+arrColor.length+"개");
+		
+		for(int i=0; i<arrColor.length; i++) {
+			System.out.println(i+"번지:"+arrColor[i]);
+		}
+		
+		System.out.println("================================");
+		System.out.println("StringTokeneizer객체를 이용한 분리");
+		StringTokenizer st = new StringTokenizer(str, ",");
+		System.out.println("총 토큰수: "+st.countTokens());
+		
+		while(st.hasMoreTokens()) {//다음 토큰이 있으면 true값 반환, 없으면 false 반환
+			System.out.println(st.nextToken());
+			
+		}
+	}
+
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--외부css-->
+    <link rel="stylesheet" href="../css/buttonStyle.css">
+    <style>
+
+    </style>
+    <script>
+        /*confirm
+        정말 삭제하시겠습니까? 확인누르면 네 삭제할래요 취소누르면 취소합니다*/
+
+        /*창에 당신의 이름은? 이름입력후 경고창에 내이름은 홍길동 입니다라고 출력*/
+        function hello(){
+            var ans=confirm("정말 삭제하시겠습니까?");
+            if(ans){
+                alert('네 삭제할래요.');
+            }
+            else{
+                alert('취소합니다.');
+            }
+        }
+
+        window.onload=function hi(){
+            var prom = document.getElementById('btn3');
+            prom.onclick=function(){
+                var name=prompt('당신의 이름은?','이름 입력');
+
+                if(name!=null){//취소버튼이 있을 땐 null값 체크를 해주자
+                    alert('내 이름은 '+name+'입니다.');
+                }
+                else{
+                    alert('취소를 누르셨습니다.');
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <button type="button" class="btn btn-green" onclick="alert('안녕하세요')">alert</button>
+    <button type="button" class="btn btn-pink" onclick="hello()"">confirm</button>
+    <input type="button" value="prompt" class="btn btn-black" id="btn3">
+</body>
+</html>

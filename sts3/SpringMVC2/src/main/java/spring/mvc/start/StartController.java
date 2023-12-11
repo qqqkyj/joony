@@ -1,0 +1,24 @@
+package spring.mvc.start;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class StartController {
+	
+	//start.jsp로 가기위한 메서드(forward)
+	//@RequestMapping(value = "/")
+	
+	@GetMapping("/")//pom.xml에서 5.2.9로 version변경하기, 5버전부터 사용가능
+	public String start(Model model) {
+		//Model: request에 데이터를 저장하기 위한 인터페이스
+		//서블릿에서 하던 request.setAttribute와 같음
+		model.addAttribute("name", "김영환");
+		model.addAttribute("addr", "서울시 강남구");
+		return "start";//WEB-INF/day1005/start.jsp
+	}
+	
+	
+}

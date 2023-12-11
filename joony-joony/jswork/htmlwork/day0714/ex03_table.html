@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table html</title>
+    <style>
+        table{
+            border: 1px solid gray;
+            border-collapse: collapse;/*칸과 칸사이 합침(여백제거)*/
+        }
+        tr,th,td{
+            border: 1px solid purple;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <!--tr은 table row 하나의 행-->
+        <tr>
+            <th>이름</th><!--th는 제목-->
+            <th>학교</th>
+            <th>학과</th>
+            <th>학년</th>
+        </tr>
+        <tr>
+            <td>이민호</td>
+            <td>원주대학교</td>
+            <td>의과대학</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>최지우</td>
+            <td>연세대학교</td>
+            <td>유아교육학과</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>건국대학교</td>
+            <td>행정학과</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td colspan="4" align="center">4칸합침!!</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,52 @@
+package day0703;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileBuffer_05 {
+	
+	public static void read() {
+		String FileName ="C:\\sis0615\\File\\test.txt";
+		BufferedReader br;
+		FileReader fr;
+		
+		try {
+		
+			fr = new FileReader(FileName);
+			br = new BufferedReader(fr);
+			System.out.println("File Open!!");
+			
+			while(true){
+				String s = br.readLine();
+				
+				if(s==null) {
+					break;
+				}
+				
+				System.out.println(s);
+			}
+			
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("파일이 없습니다.\n"+e.getMessage());
+		}catch (IOException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				br.close();
+				fr.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		read();
+		System.out.println("*****메모 정상종료******");
+	}
+
+}
